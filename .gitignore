@@ -3,6 +3,7 @@
 /tamas_szabo_cv_en.synctex.gz
 /tmp
 /document.log
+*.fdb_latexmk
 *.acn
 *.acr
 *.alg
@@ -34,7 +35,6 @@
 *.nlo
 *.nls
 *.out
-*.pdf
 *.pyg
 *.run.xml
 *.snm

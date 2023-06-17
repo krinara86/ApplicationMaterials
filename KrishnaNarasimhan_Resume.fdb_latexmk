@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1687035231 "/Users/krishna/CV/KrishnaNarasimhan_Resume.tex" "KrishnaNarasimhan_Resume.pdf" "KrishnaNarasimhan_Resume" 1687035234
+["pdflatex"] 1687035231 "/Users/krishna/CV/KrishnaNarasimhan_Resume.tex" "KrishnaNarasimhan_Resume.pdf" "KrishnaNarasimhan_Resume" 1687035749
   "/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1583400434 1444 95ffe0f19b974d50849790c8225c7ef7 ""
   "/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmmi12.tfm" 1583400433 1524 4414a8315f39513458b80dfc63bff03a ""
   "/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmmi6.tfm" 1583400433 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -116,7 +116,7 @@
   "/Library/Application Support/MiKTeX/texmfs/install/tex/latex/tools/calc.sty" 1583400446 10216 5efd55f2010055e7b7875afd6a75be82 ""
   "/Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty" 1583400446 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty" 1583400446 57049 74963e80d77be39a0b7442967b27c75b ""
-  "/Users/krishna/CV/KrishnaNarasimhan_Resume.tex" 1687035231 5867 5097013a3572c6994ca575939ffecfe4 ""
+  "/Users/krishna/CV/KrishnaNarasimhan_Resume.tex" 1687035748 5867 5097013a3572c6994ca575939ffecfe4 ""
   "/Users/krishna/Library/Application Support/MiKTeX/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1602159186 14064 198d9ecac82a96ec081b74209e8348c9 ""
   "/Users/krishna/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1602857728 9874043 d3174c99b7170ae697de3fc54400ea53 ""
   "/Users/krishna/Library/Application Support/MiKTeX/texmfs/data/pdftex/config/pdftex.map" 1668418019 351468 da928fb81da432935acecfa1b6b7a8b9 ""
@@ -170,7 +170,7 @@
   "/Users/krishna/Library/Application Support/MiKTeX/texmfs/install/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1583400552 9715 b051d5b493d9fe5f4bc251462d039e5f ""
   "KrishnaNarasimhan_Resume.aux" 1687035234 1305 22c91c40005840f7c360b4b1dc81f42c "pdflatex"
   "KrishnaNarasimhan_Resume.out" 1687035234 596 1e8374a14c58e0982ec33e7ef97a7520 "pdflatex"
-  "KrishnaNarasimhan_Resume.tex" 1687035231 5867 5097013a3572c6994ca575939ffecfe4 ""
+  "KrishnaNarasimhan_Resume.tex" 1687035748 5867 5097013a3572c6994ca575939ffecfe4 ""
   "moderncv.cls" 1686932159 33783 be403d83d3699cfdbadbbb37d6a716d2 ""
   "moderncvbodyiii.sty" 1686932160 10536 47e4485e5e7c9b2c4afd81dbf1352fab ""
   "moderncvcollection.sty" 1686932159 3575 1a2abf3a782da6b0439c99d2354d12d3 ""
@@ -185,7 +185,7 @@
   "publications.tex" 1687015017 5787 b1af036e69ac44db67da2a6c3d499a83 ""
   "tweaklist.sty" 1686932159 2019 cb29d3f6a08bf1e85170b28fbe6588d8 ""
   (generated)
-  "KrishnaNarasimhan_Resume.pdf"
   "KrishnaNarasimhan_Resume.aux"
-  "KrishnaNarasimhan_Resume.out"
+  "KrishnaNarasimhan_Resume.pdf"
   "KrishnaNarasimhan_Resume.log"
+  "KrishnaNarasimhan_Resume.out"
