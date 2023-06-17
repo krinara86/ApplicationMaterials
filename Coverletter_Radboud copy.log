@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300) (preloaded format=pdflatex 2020.10.16)  17 JUN 2023 22:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300) (preloaded format=pdflatex 2020.10.16)  17 JUN 2023 21:35
 entering extended mode
-**/Users/krishna/CV/Coverletter_Radboud.tex
-(/Users/krishna/CV/Coverletter_Radboud.tex
+**"/Users/krishna/CV/Coverletter_Radboud copy.tex"
+("/Users/krishna/CV/Coverletter_Radboud copy.tex"
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-03> (moderncv.cls
 Document Class: moderncv 2022-02-21 v2.3.1 modern curriculum vitae and letter document class
@@ -524,8 +524,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 Package hyperref Info: Option `breaklinks' set `true' on input line 18.
 Package hyperref Info: Option `bookmarksopen' set `true' on input line 18.
- (Coverletter_Radboud.aux)
-\openout1 = `Coverletter_Radboud.aux'.
+ ("Coverletter_Radboud copy.aux")
+\openout1 = `"Coverletter_Radboud copy.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
@@ -630,9 +630,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 18.
 LaTeX Info: Redefining \pageref on input line 18.
 LaTeX Info: Redefining \nameref on input line 18.
- (Coverletter_Radboud.out) (Coverletter_Radboud.out)
+ ("Coverletter_Radboud copy.out") ("Coverletter_Radboud copy.out")
 \@outlinefile=\write4
-\openout4 = `Coverletter_Radboud.out'.
+\openout4 = `"Coverletter_Radboud copy.out"'.
 
 \pagenumberwidth=\skip98
 LaTeX Font Info:    Font shape `OT1/cmss/m/it' in size <12> not available
@@ -653,22 +653,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--25
 {/Users/krishna/Library/Application Support/MiKTeX/texmfs/data/pdftex/config/pdftex.map}] [2]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 43.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 43.
- (Coverletter_Radboud.aux)
+ ("Coverletter_Radboud copy.aux")
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 43.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 43.
-Package rerunfilecheck Info: File `Coverletter_Radboud.out' has not changed.
+Package rerunfilecheck Info: File `"Coverletter_Radboud copy".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 25388 strings out of 481293
- 479580 string characters out of 2906857
- 732983 words of memory out of 3000000
+ 25392 strings out of 481293
+ 479700 string characters out of 2906857
+ 732997 words of memory out of 3000000
  40468 multiletter control sequences out of 15000+200000
- 537830 words of font info for 52 fonts, out of 3000000 for 9000
+ 537964 words of font info for 54 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,72p,1478b,470s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 84i,13n,72p,1455b,470s stack positions out of 5000i,500n,10000p,200000b,50000s
 </Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss12.pfb></Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmssi12.pfb>
-Output written on Coverletter_Radboud.pdf (2 pages, 41767 bytes).
+Output written on "Coverletter_Radboud copy.pdf" (2 pages, 41702 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  3 named destinations out of 1000 (max. 500000)

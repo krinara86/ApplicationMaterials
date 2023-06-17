@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300) (preloaded format=pdflatex 2020.10.16)  17 JUN 2023 17:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300) (preloaded format=pdflatex 2020.10.16)  17 JUN 2023 22:53
 entering extended mode
 **/Users/krishna/CV/KrishnaNarasimhan_Resume.tex
 (/Users/krishna/CV/KrishnaNarasimhan_Resume.tex
@@ -687,15 +687,15 @@ Package rerunfilecheck Info: File `KrishnaNarasimhan_Resume.out' has not changed
 (rerunfilecheck)             Checksum: 1E8374A14C58E0982EC33E7EF97A7520;596.
  ) 
 Here is how much of TeX's memory you used:
- 25835 strings out of 481293
- 487937 string characters out of 2906857
+ 25837 strings out of 481293
+ 487959 string characters out of 2906857
  742445 words of memory out of 3000000
  40857 multiletter control sequences out of 15000+200000
- 542203 words of font info for 75 fonts, out of 3000000 for 9000
+ 542264 words of font info for 76 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,8n,72p,831b,527s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/Users/krishna/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/fontawesome5/fa5free0.enc}{/Users/krishna/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/fontawesome5/fa5brands0.enc}{/Users/krishna/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/fontawesome5/fa5free1.enc} </Users/krishna/Library/Application Support/MiKTeX/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk>{/Users/krishna/Library/Application Support/MiKTeX/texmfs/install/fonts/enc/dvips/fontawesome5/fa5free2.enc}</Users/krishna/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/fontawesome5/FontAwesome5Brands-Regular.pfb></Users/krishna/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/fontawesome5/FontAwesome5Free-Regular.pfb></Users/krishna/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb></Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss10.pfb></Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss12.pfb></Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmssi12.pfb></Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt10.pfb></Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on KrishnaNarasimhan_Resume.pdf (5 pages, 174895 bytes).
+Output written on KrishnaNarasimhan_Resume.pdf (5 pages, 174557 bytes).
 PDF statistics:
  138 PDF objects out of 1000 (max. 8388607)
  13 named destinations out of 1000 (max. 500000)
