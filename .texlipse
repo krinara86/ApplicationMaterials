@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Fri May 22 13:41:38 CEST 2015
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=document.tex
+outputFile=tamas_szabo_cv_en.pdf
+langSpell=en
+markDer=true
+srcDir=

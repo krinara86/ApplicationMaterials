@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper,sans]{moderncv} 
+\moderncvstyle{banking} 
+\moderncvcolor{blue} 
+\usepackage{fontawesome5}
+\usepackage[scale=0.75]{geometry}
+\usepackage{enumitem}
+
+\AtBeginDocument{
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+}
+
+
+\name{Dr. Krishna}{Narasimhan}
+\phone[mobile]{+49~1741750063}
+\email{krishna.nm86@gmail.com}
+\renewcommand*{\emailsymbol}{{\small\faEnvelope}}
+\social[Linkedin][www.linkedin.com/in/krishna-narasimhan-41a8a214/]{\faLinkedin \hspace{0.1cm} LinkedIn}
+%\photo[64pt][0.4pt]{krishna.png}
+
+\begin{document}
+\pagestyle{empty}
+\makecvtitle
+
+\section{Profile}
+Experienced Software Engineer and Computer Scientist with a diverse portfolio that encompasses managing industry-standard software products, collaborating with international client teams, teaching graduate level courses and spearheading research and development efforts. Notably adept at enhancing productivity through developing tools primarily aimed at assisting other software engineers and domain experts. Academic and professional interests include developer tools, static/dynamic program analysis, domain-specific languages, and AI for coding assistance. A committed educator and leader with a demonstrated history of leading research teams. Passionate about the intersection of traditional software development and innovative AI technologies.
+
+
+\section{Employment}
+\cventry{Jan 2020 -- present}{Postdoctoral Researcher}{Technische Universität Darmstadt}{Darmstadt, Germany}{}{
+  As the lead of a research team, I design and build AI-based code models that are reliable, explainable, and capable of understanding software semantics. My investigations extend to advancing the current standard in API misuse detection and program security. In addition to these responsibilities, I educate graduate students on programming languages and AI coding assistance, while also serving on the University's Hiring Committee (Berufskomission).
+}
+\vspace{1ex}
+\cventry{Jan 2017 -- Jan 2020}{IT Consultant/Software Architect}{Itemis AG}{Stuttgart, Germany}{}{
+  As a Software Architect and consultant, I designed and developed bespoke domain-specific languages and software tools, primarily catering to clients in the automotive and embedded systems industries. This involved understanding their unique needs, crafting precise language specifications, and building user-friendly tools to improve their operational efficiency and project effectiveness.
+}
+\vspace{1ex}
+\cventry{September 2013 -- Dec 2016}{Research/Teaching Assistant}{Goethe University}{Frankfurt, Germany}{}{Managed the Foundations of Programming Languages lecture series while conducting research on addressing productivity issues associated with evolving software.}
+\vspace{1ex}
+\cventry{September 2011 -- Dec 2013}{Research/Teaching Assistant}{Universität des Saarlandes}{Saarbrücken, Germany}{}{Contributed to the Software Engineering Chair as a research assistant, supported graduate-level courses on software engineering and security, and aided the team in developing advanced program analysis tools for Android Malware detection.}
+\vspace{1ex}
+\cventry{September 2009 -- Dec 2010}{Software Development Engineer}{Scantron}{Chennai, India}{}{Developed and maintained a diverse software suite for the education sector, utilizing languages such as Script\#, SQL, and JavaScript. Collaborated with a team of developers and testers to deliver high-quality software products.}
+\vspace{1ex}
+\section{Education}
+\cventry{2014--2017}{Ph.D. in Computer Software}{Goethe University}{Frankfurt, Germany}{Suma cum laude}{\raggedright\textbf{Thesis} - \texttt{Combining user interaction and automation to evolve source code.}}
+\vspace{0.5ex}
+\cventry{2011--2014}{Master of Science - MSc, Computer Science}{Universität des Saarlandes}{Saarbrücken, Germany}{}{\raggedright\textbf{Thesis} - \texttt{Android decompression chamber:A hybrid(static/dynamic) approach to detecting Android malware.}}
+\vspace{0.5ex}
+\cventry{2007--2010}{Master of Computer Applications - MCA}{Anna University}{Chennai, India}{}{}
+\cventry{2004--2007}{Bachelor of Science - BSc, Mathematics}{University of Madras}{Chennai, India}{}{}
+
+\section{Service}
+I have served on the program committee of several top-tier software engineering conferences including \href{https://2021.ecoop.org/committee/ecoop-2021-ecoop-artifacts-artifact-evaluation-committee}{ECOOP}, \href{https://conf.researchr.org/committee/sle-2019/sle-2019-papers-artifact-evaluation-committee}{SLE}, \href{https://conf.researchr.org/committee/issta-2021/issta-2021-artifact-evaluation-artifact-evaluation-committee}{ISSTA}, and \href{https://2020.splashcon.org/committee/splash-2020-Artifacts-artifact-evaluation-committee}{OOPSLA}.
+
+
+\section{Projects}
+\cvitem{CogniCrypt}{State of the art in allow-listing based API misuse detection. \href{https://ci.eclipse.org/cognicrypt/}{Website}}
+\cvitem{jGuard}{Java extensions Making APIs misuse resilient by design. \href{https://youtu.be/tnQGMyMjZRA}{Video demonstration }}
+\cvitem{mbeddr}{an extensible set of integrated languages for embedded software development - \href{http://www.mbeddr.com}{Website}}
+\cvitem{Transparent abstractions}{Effective methods to simplify software reuse - \href{https://fileadmin.cs.lth.se/cs/research/sde/transparent-abstractions/}{Website}}
+
+\section{Skills}
+\cvitem{Technical skills}{
+Experienced in object oriented programming languages and building domain-specific languages/ modelling tools using XText and Jetbrains MPS. Skilled in static/dynamic program analysis and tooling for code assistance. Proficient in software design, maintenance, and security.
+}
+\cvitem{Soft skills}{
+Experienced in technical writing, presenting, and leadership. Strong collaborator with international and inter-disciplinary teams. Effective educator at graduate level. Excellent communicator with superior problem-solving abilities.
+}
+\input{publications.tex}
+\end{document}
