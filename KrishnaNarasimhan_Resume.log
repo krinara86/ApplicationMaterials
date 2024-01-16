@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.2)  2 NOV 2023 16:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.2)  16 JAN 2024 15:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -690,53 +690,41 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 37.
+(Font)              using `OT1/cmss/bx/n' instead on input line 38.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 37.
+(Font)              using `OT1/cmss/bx/n' instead on input line 38.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 41.
+(Font)              using `OT1/cmss/bx/n' instead on input line 42.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 41.
+(Font)              using `OT1/cmss/bx/n' instead on input line 42.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 43.
+(Font)              using `OT1/cmss/bx/n' instead on input line 46.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 43.
+(Font)              using `OT1/cmss/bx/n' instead on input line 46.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 45.
+(Font)              using `OT1/cmss/bx/n' instead on input line 48.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 45.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 47.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 47.
+(Font)              using `OT1/cmss/bx/n' instead on input line 48.
 
 [1
 
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free2.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands0.enc}]
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 49.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 50.
 
 
@@ -745,7 +733,27 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 50.
+(Font)              using `OT1/cmss/bx/n' instead on input line 52.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 52.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 54.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 55.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 55.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 55.
 
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: OT1).
@@ -753,31 +761,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 52.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 52.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 52.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 54.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 54.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 55.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 55.
+(Font)              using `OT1/cmss/bx/n' instead on input line 57.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
@@ -785,7 +769,23 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 61.
+(Font)              using `OT1/cmss/bx/n' instead on input line 57.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 59.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 59.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 60.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 60.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
@@ -793,15 +793,7 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 63.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 64.
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 65.
+(Font)              using `OT1/cmss/bx/n' instead on input line 66.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
@@ -809,13 +801,30 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 70.
+(Font)              using `OT1/cmss/bx/n' instead on input line 68.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 73.
+(Font)              using `OT1/cmss/bx/n' instead on input line 69.
 
-(./publications.tex [2]
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 70.
+
+[2]
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 72.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 75.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 78.
+
+(./publications.tex
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 1.
@@ -897,6 +906,7 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 41.
 
+[3{c:/texlive/2023/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free0.enc}]
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 44.
@@ -913,7 +923,6 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 50.
 
-[3{c:/texlive/2023/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free0.enc}]
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 54.
@@ -979,6 +988,7 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 85.
 
+[4]
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 93.
@@ -999,7 +1009,6 @@ LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 97.
 
-[4]
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
 (Font)              using `OT1/cmss/bx/n' instead on input line 101.
@@ -1017,18 +1026,18 @@ Package rerunfilecheck Info: File `KrishnaNarasimhan_Resume.out' has not changed
 (rerunfilecheck)             Checksum: 1E8374A14C58E0982EC33E7EF97A7520;596.
  ) 
 Here is how much of TeX's memory you used:
- 26268 strings out of 474398
- 499829 string characters out of 5754206
- 1940036 words of memory out of 5000000
+ 26274 strings out of 474398
+ 499877 string characters out of 5754206
+ 1938036 words of memory out of 5000000
  47813 multiletter control sequences out of 15000+600000
- 575526 words of font info for 113 fonts, out of 8000000 for 9000
+ 575733 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 129i,8n,129p,1051b,695s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 129i,8n,129p,1051b,699s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Brands-Regular.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Regular.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb>
-Output written on KrishnaNarasimhan_Resume.pdf (5 pages, 210270 bytes).
+Output written on KrishnaNarasimhan_Resume.pdf (5 pages, 211908 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 122 compressed objects within 2 object streams
+ 152 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
  13 named destinations out of 1000 (max. 500000)
  31301 words of extra memory for PDF output out of 35830 (max. 10000000)
 
