@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaboration Opportunities at Leiden University: Advancing AI-Powered Coding Assistance</title>
+    <style>
+        /* Basic Reset & Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            /* Light grey background for the overall page */
+            color: #333;
+            scroll-behavior: smooth;
+            /* Smooth scrolling between sections */
+        }
+
+        /* Presentation Container - acts as a wrapper for all pages */
+        .presentation-container {
+            max-width: 1000px;
+            /* Max width for content readability */
+            margin: 20px auto;
+            /* Center the container with some margin from top/bottom */
+            background-color: #fff;
+            /* White background for the content area */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+            border-radius: 10px;
+            overflow: hidden;
+            /* Ensures content stays within rounded corners */
+        }
+
+        /* Individual Page Styling */
+        .presentation-page {
+            padding: 40px 60px;
+            /* Generous padding for each page */
+            border-bottom: 1px solid #e0e0e0;
+            /* Separator line between pages */
+            min-height: 70vh;
+            /* Minimum height for each page to give a distinct feel */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            /* Align content to the top of the page */
+            align-items: flex-start;
+            /* Align content to the left */
+            box-sizing: border-box;
+            /* Include padding in height calculation */
+            background-color: #ffffff;
+            /* White background for each page */
+        }
+
+        .presentation-page:last-child {
+            border-bottom: none;
+            /* No border after the last page */
+        }
+
+        /* Title Page Specific Styling */
+        .title-page {
+            justify-content: center;
+            /* Center content vertically on the title page */
+            align-items: center;
+            /* Center content horizontally on the title page */
+            text-align: center;
+            min-height: 90vh;
+            /* Make title page taller */
+        }
+
+        /* Headings */
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #0056b3;
+            /* Darker blue for headings */
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 600;
+            width: 100%;
+            /* Ensure headings take full width */
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.1em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        /* Text Elements */
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 25px;
+            padding-left: 0;
+            margin-bottom: 15px;
+        }
+
+        ul ul {
+            list-style-type: circle;
+            margin-left: 20px;
+        }
+
+        b {
+            font-weight: bold;
+        }
+
+        i {
+            font-style: italic;
+        }
+
+        /* Block Styles (similar to Beamer) */
+        .block,
+        .example-block,
+        .alert-block {
+            padding: 20px 30px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .block {
+            background-color: #e9f5ff;
+            border-left: 6px solid #007bff;
+        }
+
+        .example-block {
+            background-color: #e6ffed;
+            border-left: 6px solid #28a745;
+        }
+
+        .alert-block {
+            background-color: #ffe6e6;
+            border-left: 6px solid #dc3545;
+        }
+
+        .block h3,
+        .example-block h3,
+        .alert-block h3 {
+            color: #0056b3;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        /* Code Styling */
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.4;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+            /* Allows long lines to wrap */
+            word-wrap: break-word;
+            /* Breaks long words */
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background-color: #e0e0e0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #555;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Captions for figures/tables */
+        .caption {
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 10px;
+            color: #555;
+            font-style: italic;
+            width: 100%;
+        }
+
+        /* Diagram/Flow Styling */
+        .diagram-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+            width: 100%;
+        }
+
+        .diagram-node {
+            background-color: #f0f8ff;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 15px 25px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            color: #0056b3;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+        }
+
+        .diagram-arrow {
+            font-size: 2em;
+            color: #007bff;
+            margin: -5px 0;
+            /* Adjust to bring nodes closer */
+            font-weight: bold;
+        }
+
+        .diagram-label {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Specific diagram for Signature states */
+        .signature-states {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            width: 100%;
+        }
+
+        .state-box {
+            background-color: #e9f5ff;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 30px;
+            /* Increased margin for arrows */
+            text-align: center;
+            font-weight: bold;
+            color: #0056b3;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            min-width: 180px;
+            position: relative;
+            flex-shrink: 0;
+            /* Prevent shrinking */
+        }
+
+        .state-box:not(:last-child)::after {
+            content: '\2192';
+            /* Right arrow */
+            position: absolute;
+            right: -25px;
+            /* Position the arrow between boxes */
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #007bff;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .state-box.error {
+            border-color: #dc3545;
+            background-color: #ffe6e6;
+            color: #dc3545;
+        }
+
+        .state-box.error::after {
+            color: #dc3545;
+        }
+
+        .state-method {
+            font-size: 0.8em;
+            color: #555;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .state-box.error.state-method {
+            color: #dc3545;
+        }
+
+        /* Hybrid System Diagram */
+        .hybrid-system-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+            width: 100%;
+        }
+
+        .hybrid-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .hybrid-component {
+            background-color: #e0f2f7;
+            /* Light blue */
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 20px 30px;
+            text-align: center;
+            font-weight: bold;
+            color: #0056b3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .hybrid-arrow-down {
+            font-size: 2.5em;
+            color: #007bff;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .hybrid-arrow-right {
+            font-size: 2.5em;
+            color: #007bff;
+            font-weight: bold;
+            margin: 0 15px;
+        }
+
+        .hybrid-feedback-arrow {
+            position: absolute;
+            font-size: 2em;
+            color: #28a745;
+            /* Green for feedback */
+            font-weight: bold;
+            z-index: 5;
+        }
+
+        .feedback-left {
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .feedback-right {
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .feedback-up {
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-90deg);
+        }
+
+        .feedback-label {
+            font-size: 0.8em;
+            color: #555;
+            font-style: italic;
+            position: absolute;
+            white-space: nowrap;
+        }
+
+        .label-top {
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .label-bottom {
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .label-left {
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .label-right {
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .dsl-sub-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            border: 1px dashed #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .dsl-sub-node {
+            background-color: #fff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #0056b3;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="presentation-container">
+
+        <section class="presentation-page title-page">
+            <h1>Collaboration Opportunities at Leiden University: Advancing AI-Powered Coding Assistance</h1>
+            <h2>Krishna Narasimhan</h2>
+            <h3>Assistant Professor Candidate</h3>
+            <p>June 29, 2025</p>
+        </section>
+
+        <section class="presentation-page">
+            <h2>Synergies with LIACS Research Strengths</h2>
+            <div class="block">
+                <h3>Leiden Institute of Advanced Computer Science (LIACS)</h3>
+                <ul>
+                    <li>A center of excellence for multidisciplinary research and education in Computer Science &amp;
+                        AI.[1, 2]</li>
+                    <li>Strong emphasis on theoretical foundations, formal methods, AI, and data science.[1, 2]</li>
+                </ul>
+            </div>
+            <div class="block">
+                <h3>LIACS Research Areas Aligning with My Vision</h3>
+                <ul>
+                    <li><b>Artificial Intelligence and Machine Learning:</b> ADA group, Reinforcement Learning lab.[2,
+                        3]</li>
+                    <li><b>Human AI:</b> Dedicated research area, crucial for human-computer interaction in SE.[2]</li>
+                    <li><b>Software and AI in Business:</b> Practical application and business implications of AI in
+                        SE.[2, 4]</li>
+                    <li><b>Systems and Security:</b> Cyber Security Lab, High Performance Computing, LERC (Embedded
+                        Systems).[2]</li>
+                    <li><b>Theory:</b> Algorithms, Concurrent Systems, Systems Modelling Lab (SML), System Verification
+                        Lab (SVL) - for formal methods.[2]</li>
+                </ul>
+            </div>
+            <p>My expertise in DSLs, program analysis, and AI for software assistance creates a fertile ground for
+                impactful, interdisciplinary projects within LIACS.[5]</p>
+        </section>
+
+        <section class="presentation-page">
+            <h2>Collaboration Idea 1: Human-AI Interaction for Context-Aware Misuse Prevention</h2>
+            <div class="block">
+                <h3>The Challenge: Bridging the "Expertise Gap"</h3>
+                <ul>
+                    <li>Novice developers struggle with LLM outputs; need actionable, understandable feedback.[5]</li>
+                    <li>Current AI tools lack adaptation to developer knowledge/cognitive state.[5]</li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <h3>My Contribution &amp; Leiden Synergy</h3>
+                <ul>
+                    <li><b>My Expertise:</b> Formal API models (jGuard), trustworthy AI, program analysis.[5]</li>
+                    <li><b>Prof. Felienne Hermans:</b> Programming education, programmer cognition ("The Programmer's
+                        Brain"), Hedy language for novices.[6, 7, 8]</li>
+                    <li><b>Dr. Joost Broekens:</b> Explainable AI (XAI), human-AI/robot interaction, adaptive AI,
+                        computational modeling of emotions.[9, 10, 11, 12]</li>
+                </ul>
+            </div>
+
+            <h3>Project Idea: Adaptive AI for API Misuse Feedback</h3>
+            <div class="hybrid-system-diagram">
+                <div class="hybrid-row">
+                    <div class="hybrid-component">Human Developer</div>
+                    <span class="hybrid-arrow-right">&rarr;</span>
+                    <div class="hybrid-component" style="min-width: 280px;">AI Assistant (LLM Core)</div>
+                </div>
+                <div class="hybrid-arrow-down">&darr;</div>
+                <div class="hybrid-row">
+                    <div class="hybrid-component">Developer Context DSL<br>(Mental Model, Program Graph)</div>
+                    <span class="hybrid-arrow-right">&rarr;</span>
+                    <div class="hybrid-component">JGuard Formal API Contracts</div>
+                </div>
+                <div class="hybrid-arrow-down">&darr;</div>
+                <div class="hybrid-component">Personalized, Explainable Misuse Feedback &amp; Corrections</div>
+            </div>
+            <p class="caption">Visualizing Adaptive AI for API Misuse Feedback</p>
+            <p><i>Goal:</i> AI explains *why* a misuse occurred (based on jGuard rules), suggests compliant corrections,
+                and adapts explanation complexity based on developer's inferred expertise. Enhances learning and
+                productivity.</p>
+        </section>
+
+        <section class="presentation-page">
+            <h2>Collaboration Idea 2: Formal Verification and Synthesis of AI-Enhanced DSLs</h2>
+            <div class="block">
+                <h3>The Challenge: Ensuring Deterministic Correctness</h3>
+                <ul>
+                    <li>Providing provable guarantees for AI-generated code and guiding DSLs is critical for trustworthy
+                        AI.[5]</li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <h3>My Contribution &amp; Leiden Synergy</h3>
+                <ul>
+                    <li><b>My Expertise:</b> Deep expertise in DSLs (Jetbrains MPS), program analysis, formal methods
+                        for software correctness.[5]</li>
+                    <li><b>Prof. Joost Visser:</b> SE for ML, DSLs, software quality, compilers, program
+                        transformation.[13, 14, 15]</li>
+                    <li><b>Dr. Kristian Rietveld:</b> Optimizing compilers, generic program transformation techniques,
+                        performance analysis.[16, 17, 18]</li>
+                    <li><b>LIACS Theory Groups:</b> Systems Modelling Lab (SML), System Verification Lab (SVL) -
+                        foundational formal methods.[2]</li>
+                </ul>
+            </div>
+
+            <h3>Project Idea: AI-Driven Formal Verification of Code &amp; Specifications</h3>
+            <div class="diagram-flow">
+                <div class="diagram-node">AI (LLM)</div>
+                <div class="diagram-arrow">&darr;</div>
+                <div class="diagram-label">Suggests New API Patterns / Code</div>
+                <div class="diagram-node">JGuard DSL / Formal Models</div>
+                <div class="diagram-arrow">&darr;</div>
+                <div class="diagram-label">Formal Verification &amp; Static Analysis</div>
+                <div class="diagram-node">Provably Correct Code / Verified Specifications</div>
+                <div class="diagram-arrow">&darr;</div>
+                <div class="diagram-label">Feedback Loop for AI Refinement</div>
+                <div class="diagram-node">Trustworthy AI-Generated Systems</div>
+            </div>
+            <p class="caption">Visualizing AI-Driven Formal Verification</p>
+            <p><i>Goal:</i> Explore AI's role in synthesizing provably correct jGuard specifications or program
+                transformations. Push boundaries of automated software verification for safety-critical domains.</p>
+        </section>
+
+        <section class="presentation-page">
+            <h2>Collaboration Idea 3: AI-Driven Automated Design of Misuse-Resilient Systems</h2>
+            <div class="block">
+                <h3>The Challenge: Automating Robust System Design</h3>
+                <ul>
+                    <li>Automating design/generation of inherently misuse-resilient components for
+                        critical/resource-constrained systems.[5]</li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <h3>My Contribution &amp; Leiden Synergy</h3>
+                <ul>
+                    <li><b>My Expertise:</b> Domain-specific solutions (jGuard), AI integration with SE, embedded
+                        systems DSLs.[5]</li>
+                    <li><b>Prof. Holger Hoos:</b> Automated Machine Learning (AutoML), Programming by Optimization
+                        (PbO), trustworthy AI.[3, 19, 20]</li>
+                    <li><b>Dr. Todor Stefanov:</b> Embedded Systems, Deep Learning at the Edge, system-level design
+                        automation, model-based verification.[21, 22, 23, 24]</li>
+                </ul>
+            </div>
+
+            <h3>Project Idea: AutoML for Misuse-Resilient API Design</h3>
+            <div class="diagram-flow">
+                <div class="diagram-node">AI (AutoML / PbO)</div>
+                <div class="diagram-arrow">&darr;</div>
+                <div class="diagram-label">Explores Design Space of API Contracts</div>
+                <div class="diagram-node">JGuard (Verification as Fitness Function)</div>
+                <div class="diagram-arrow">&darr;</div>
+                <div class="diagram-label">Generates Optimized, Misuse-Resilient API Designs</div>
+                <div class="diagram-node">Target Domains: Embedded Systems, HPC, IoT</div>
+            </div>
+            <p class="caption">Visualizing Automated Design of Misuse-Resilient APIs</p>
+            <p><i>Goal:</i> Apply AI to automatically design and generate jGuard-like API specifications and
+                implementations. Rapid development of highly reliable and secure systems for complex domains (e.g.,
+                automotive, medical devices, IoT).</p>
+        </section>
+
+        <section class="presentation-page">
+            <h2>Conclusion: A Collaborative Path Forward</h2>
+            <div class="block">
+                <h3>My Research Vision: "Model First, AI Next"</h3>
+                <ul>
+                    <li>Foundational work in domain-specific API resilience (jGuard) provides deterministic
+                        correctness.[5]</li>
+                    <li>This grounds AI capabilities in precise, verifiable domain models, addressing LLM limitations
+                        (hallucination, expertise gap).[5]</li>
+                    <li>JGuard's explicit models serve as structured context for AI to reason accurately and
+                        reliably.[5]</li>
+                </ul>
+            </div>
+            <div class="block">
+                <h3>Strong Alignment with LIACS Strengths</h3>
+                <ul>
+                    <li>Deep synergies with Human AI, SE for ML, Formal Methods, Automated Design, and Embedded Systems
+                        expertise at Leiden.[2]</li>
+                    <li>Opportunities for impactful, interdisciplinary research, crucial for securing external
+                        funding.[5]</li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <h3>My Commitment to Leiden University</h3>
+                <p>To contribute significantly to Leiden's vibrant research environment, shaping the principles,
+                    methodologies, and tools that will define the next generation of <b>AI-native software
+                        engineering</b>.</p>
+                <p>Thank you.</p>
+            </div>
+        </section>
+
+    </div>
+</body>
+
+</html>
