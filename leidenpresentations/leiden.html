@@ -543,9 +543,13 @@
         <div class="slide-number" id="slideNumber">1 / 1</div>
 
 
-        <div class="slide">
-            <h1>DSL BASED APPROACH TO API MISUSE DETECTION</h1>
-            <p>Krishna Narasimhan</p>
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <h1>Domain-Specific Solutions for API Misuse</h1>
+            <h2>Static Detection, Runtime Prevention, and a Vision Towards AI-Powered Next Steps</h2>
+            <h3>Krishna Narasimhan</h3>
+            <p>Leiden University Interview</p>
+            <p>June 29, 2025</p>
         </div>
 
         <div class="slide">
@@ -557,7 +561,8 @@
                 <li>Types of misuses supported</li>
                 <li>Static approach (CrySL)</li>
                 <li>Dynamic approach (jGuard)</li>
-                <li>Demo (jGuard)</li>
+                <li> Broader software tooling challenges and an AI-enabled vision</li\>
+                <li>Collaboration thoughts and conclusion</li>
             </ul>
         </div>
 
@@ -565,246 +570,115 @@
             <h2>Challenges</h2>
             <p>API misuse = any unintended incorrect or potentially dangerous uses of an API that would not be caught by
                 the compiler.</p>
-            <p>Common key sizes: 56, 128, 192, 256, 512, 1024, 2048, 4096</p>
             <h3>Example Misuse: Incorrect Initialization</h3>
-            <pre><code class="java">
-KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-keyGen.init(128);
-Secretkey key = keyGen.generateKey(); // Assuming generateKey() was intended
-Cipher cipher = Cipher.getInstance("AES");
-cipher.init(Cipher.ENCRYPT_MODE, key, iv); // 'iv' is undefined in snippet
-cipher.doFinal(data);
-                </code></pre>
-            <p>Common `init` method signatures for `Cipher` and their usage percentages:</p>
-            <ul>
-                <li>`init(int opmode, Key key): void Cipher` - 54%</li>
-                <li>`init(int opmode, Key key, AlgorithmParameterSpec params): void Cipher` - 44%</li>
-                <li>`init(int opmode, Key key, Algorithm Parameters params): void Cipher` - 4%</li>
-                <li>`init(int opmode, Certificate certificate): void Cipher` - 2%</li>
-                <li>`init(int opmode, Certificate certificate, SecureRandom random): void` - Cipher</li>
-                <li>`init(int opmode, Key key, SecureRandom random): void` - Cipher</li>
-                <li>`init(int opmode, Key key, AlgorithmParameters params, SecureRandom random):`</li>
-                <li>`init(int opmode, Key key, AlgorithmParameterSpec params, SecureRandom rando):`</li>
-            </ul>
+            <div style="width: 45%; text-align: center; margin: 10px;">
+                <img src="apimisuseexample.png" alt="All the places one could misuse an API'"
+                    style="max-width: 100%; height: auto;">
+                <p>Research highlights how cryptographic API misuses lead to vulnerabilities due to complex
+                    programming choices and lack of usability features in APIs. Integrated security advice can
+                    significantly improve code security.</p>
+            </div>
         </div>
 
         <div class="slide">
             <h2>Seriousness</h2>
             <p>API misuses can lead to significant software vulnerabilities and real-world consequences.</p>
             <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
-                <div style="width: 45%; text-align: center; margin: 10px;">
-                    <img src="placeholder_paper_screenshot.png"
+                <div style="width: 30%; text-align: center; margin: 10px;">
+                    <img src="significance1.png"
                         alt="Screenshot of research paper 'Developers Deserve Security Warnings, Too'"
                         style="max-width: 100%; height: auto;">
                     <p>Research highlights how cryptographic API misuses lead to vulnerabilities due to complex
                         programming choices and lack of usability features in APIs. Integrated security advice can
-                        significantly improve code security. [1]</p>
+                        significantly improve code security.</p>
                 </div>
-                <div style="width: 45%; text-align: center; margin: 10px;">
-                    <img src="placeholder_zoom_reuters.png"
-                        alt="Screenshot of Reuters article 'Zoom reaches $85 mln settlement'"
+                <div style="width: 30%; text-align: center; margin: 10px;">
+                    <img src="significance2.png" alt="Screenshot of Reuters article 'Zoom reaches $85 mln settlement'"
                         style="max-width: 100%; height: auto;">
                     <p>Real-world impact: Zoom reached an $85 million settlement over user privacy and 'Zoombombing'
                         incidents, underscoring the financial and reputational costs of security flaws, often linked to
-                        API misuse. [1]</p>
+                        API misuse.</p>
                 </div>
             </div>
-            <p><em>(Note: Images are placeholders. In a live presentation, these would be actual screenshots. You will
-                    need to provide the image files and update the `src` attributes.)</em></p>
         </div>
 
         <div class="slide">
             <h2>Existing solutions</h2>
-            <h3>Documentation</h3>
+
             <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
                 <div style="width: 45%; text-align: center; margin: 10px;">
-                    <img src="placeholder_oracle_doc.png" alt="Screenshot of ORACLE Java SE Documentation"
+                    <h3>Documentation</h3>
+                    <img src="documentation.png" alt="Screenshot of ORACLE Java SE Documentation"
                         style="max-width: 100%; height: auto;">
                     <p>Extensive documentation like the "ORACLE Java SE Documentation: Java™ Cryptography Architecture
                         (JCA) Reference Guide" exists, but its sheer volume (e.g., 64 A4 Pages!!!) makes it challenging
-                        for developers to navigate and apply effectively. [1]</p>
+                        for developers to navigate and apply effectively.</p>
                 </div>
                 <div style="width: 45%; text-align: center; margin: 10px;">
-                    <img src="placeholder_static_analysis_paper.png"
+                    <h3>Static Analysis</h3>
+                    <img src="staticanalysis.png"
                         alt="Screenshot of research paper 'Why Don't Software Developers Use Static Analysis Tools to Find Bugs?'"
                         style="max-width: 100%; height: auto;">
                     <p>Research indicates that static analysis tools, despite their benefits in finding bugs early, are
-                        underused due to issues like false positives and how warnings are presented. [1]</p>
+                        underused due to issues like false positives and how warnings are presented.</p>
                 </div>
             </div>
-            <p>API usage patterns have variations!!! [1]</p>
-            <p><em>(Note: Images are placeholders. In a live presentation, these would be actual screenshots. You will
-                    need to provide the image files and update the `src` attributes.)</em></p>
+            <h3>Also: API usage patterns have variations!!! Different security standards (BSI v NIST), Versioning
+                affects
+                correct usage (Android 10 v Android 11)</h3>
         </div>
 
         <div class="slide">
             <h2>Common misuse types</h2>
-            <h3>Insecure parameters</h3>
-            <h3>Insecure Class Composition</h3>
-            <div style="text-align: center; margin: 10px;">
-                <img src="placeholder_mubench_paper.png"
-                    alt="Screenshot of research paper 'MUBench: A Benchmark for API-Misuse Detectors'"
-                    style="max-width: 100%; height: auto;">
-                <p>MUBench, a dataset of 89 API misuses from real-world projects, serves as a benchmark for API-misuse
-                    detectors. It reveals that 61 of these misuses (69.5%) cause crashes, highlighting their critical
-                    impact. [1]</p>
+            <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+                <div style="width: 45%; text-align: center; margin: 10px;">
+                    <img src="mubench.png"
+                        alt="Screenshot of research paper 'MUBench: A Benchmark for API-Misuse Detectors'"
+                        style="max-width: 100%; height: auto;">
+                </div>
+                <div style="width: 45%; text-align: center; margin: 10px;">
+
+                    <h3>Insecure parameters</h3>
+                    <h3>Incorrect method order</h3>
+                    <h3>Insecure Class Composition</h3>
+                </div>
             </div>
-            <p><em>(Note: Image is a placeholder. In a live presentation, this would be an actual screenshot. You will
-                    need to provide the image file and update the `src` attribute.)</em></p>
-            <h3>Table 1: API Misuses by Source</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Source</th>
-                        <th>Total Size</th>
-                        <th>Reviewed</th>
-                        <th>Misuse</th>
-                        <th>Crash</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>BUGCLAIMFY</td>
-                        <td>2914</td>
-                        <td>357</td>
-                        <td>290</td>
-                        <td>20</td>
-                    </tr>
-                    <tr>
-                        <td>QACKASHFIX</td>
-                        <td>24</td>
-                        <td>300</td>
-                        <td>24</td>
-                        <td>7</td>
-                    </tr>
-                    <tr>
-                        <td>SOURCEFORC</td>
-                        <td>130</td>
-                        <td>130</td>
-                        <td>13</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <td>GrRce</td>
-                        <td>2660</td>
-                        <td>78</td>
-                        <td>6</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>SUMVEY</td>
-                        <td>17</td>
-                        <td>17</td>
-                        <td>12</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Total</td>
-                        <td>6491</td>
-                        <td>1,169</td>
-                        <td>61</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+            <h3>MUBench, a dataset of 89 API misuses from real-world projects, serves as a benchmark for API-misuse
+                detectors. It reveals the three main misuse patterns</h3>
+        </div>
+
+        <div style="text-align: center; margin: 10px;">
+
+
         </div>
 
         <div class="slide">
             <h2>Insecure Parameter</h2>
-            <p>This slide illustrates a flow diagram of insecure parameter usage, specifically with
-                `Cipher.getInstance("AES")`. [1]</p>
-            <div
-                style="border: 1px solid #ccc; padding: 20px; margin: 20px auto; max-width: 600px; text-align: center;">
-                <p><code>Cipher cipher = Cipher.getInstance("AES");</code></p>
-                <p>&darr;</p>
-                <p>"AES" (Algorithm selected)</p>
-                <p>&darr;</p>
-                <p style="color: red; font-weight: bold;">Block mode missing</p>
-                <p>&darr;</p>
-                <p style="font-size: 2em;">&#x2024;&#x2024;&#x2024;&#x2024;</p>
-                <p>&darr;</p>
-                <p>String to select block mode and padding scheme</p>
-                <p>&darr;</p>
-                <p style="color: red; font-weight: bold;">"AES/ECB/..." (Insecure Block Mode)</p>
-                <p>&darr;</p>
-                <p style="color: red; font-weight: bold;">Block mode ECB is unsafe</p>
-                <p>&darr;</p>
-                <p style="color: green; font-weight: bold;">"AES/CBC/..." (Safer Alternative)</p>
-            </div>
-            <p><em>(Note: This is a textual representation of a flow diagram. In a live presentation, this would ideally
-                    be a visual diagram. You may need to create an image for this or style it further with CSS.)</em>
-            </p>
+            <img src="insecureparam.png"
+                alt="Flow diagram showing insecure parameter usage for Cipher.getInstance('AES')"
+                style="max-width: 90%; max-height: 70vh; display: block; margin: 20px auto;">
+            <h3>The diagram highlights common pitfalls: missing block mode specification and the
+                use of insecure modes like ECB.
+
+                A safer alternative, such as CBC, is recommended for secure implementation.
+            </h3>
         </div>
 
         <div class="slide">
             <h2>Incorrect call sequence</h2>
-            <pre><code class="java">
-Signature signature = Signature.getInstance("SHA256withRSA");
-signature.initSign(getPrivateKey());
-byte signed = signature.sign();
-                </code></pre>
-            <p>This code snippet demonstrates an incorrect call sequence for `Signature` where the `update` method is
-                omitted before `sign()`, leading to unsigned data. [1]</p>
-            <p>Example count: 300</p>
-        </div>
-
-        <div class="slide">
-            <h2>Incorrect call sequence</h2>
-            <h3>States of Signature Object (Correct Flow)</h3>
-            <div
-                style="border: 1px solid #ccc; padding: 20px; margin: 20px auto; max-width: 600px; text-align: center;">
-                <p><code>getInstance(String algorithm)</code> &rarr; <strong>Constructed</strong></p>
-                <p>&darr;</p>
-                <p><code>initSign (PrivateKey key)</code> &rarr; <strong>Initialized with PrivateKey</strong></p>
-                <p>&darr;</p>
-                <p><code>update (byte data)</code> &rarr; <strong>Updated with data for signing</strong> (Can be
-                    repeated)</p>
-                <p>&darr;</p>
-                <p><code>sign()</code> &rarr; <strong>Signature computed</strong></p>
-            </div>
-            <p><em>(Note: This is a textual representation of a state diagram. In a live presentation, this would
-                    ideally be a visual diagram. You may need to create an image for this or style it further with
-                    CSS.)</em></p>
-        </div>
-
-        <div class="slide">
-            <h2>Incorrect call sequence</h2>
-            <h3>States of Signature Object (Incorrect Flow)</h3>
-            <div
-                style="border: 1px solid #ccc; padding: 20px; margin: 20px auto; max-width: 600px; text-align: center;">
-                <p><code>getInstance(String algorithm)</code> &rarr; <strong>Constructed</strong></p>
-                <p>&darr;</p>
-                <p><code>initSign (PrivateKey key)</code> &rarr; <strong>Initialized with Privatekey</strong></p>
-                <p>&darr;</p>
-                <p style="color: red; font-weight: bold;"><code>sign()</code> (Bypasses update state)</p>
-                <p style="margin-top: 10px;">&#x2612; Data not signed</p>
-                <p style="margin-top: 10px;">Correct path: <code>update (byte data)</code> &rarr; <code>sign()</code>
-                </p>
-            </div>
-            <p><em>(Note: This is a textual representation of a state diagram. In a live presentation, this would
-                    ideally be a visual diagram. You may need to create an image for this or style it further with
-                    CSS.)</em></p>
+            <img src="incorrectparam.png" alt="Flow diagram showing missing update call for the signature object"
+                style="max-width: 90%; max-height: 70vh; display: block; margin: 20px auto;">
+            <h3>This code snippet demonstrates an incorrect call sequence for `Signature` where
+                the `update` method is omitted before `sign()`, leading to unsigned data. </h3>
         </div>
 
         <div class="slide">
             <h2>Insecure Class Composition</h2>
-            <div
-                style="border: 1px solid #ccc; padding: 20px; margin: 20px auto; max-width: 600px; text-align: center;">
-                <p><code>getInstance(String algorithm)</code> &rarr; <strong>Constructed</strong></p>
-                <p>&darr;</p>
-                <p><code>initSign (PrivateKey key)</code> &rarr; <strong>Initialized with Private Key</strong></p>
-                <p style="color: red; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;KeySize = 64 &#x2718;</p>
-                <p>&darr;</p>
-                <p><code>update (byte data)</code> &rarr; <strong>Updated with Data for Signing</strong> (Can be
-                    repeated)</p>
-                <p>&darr;</p>
-                <p><code>sign()</code> &rarr; <strong>Signature Computed</strong></p>
-            </div>
-            <p>This diagram illustrates an insecure class composition where a `keySize` of 64 is used during `initSign`,
-                which is typically considered insecure for modern cryptographic algorithms. [1]</p>
-            <p><em>(Note: This is a textual representation of a state diagram. In a live presentation, this would
-                    ideally be a visual diagram. You may need to create an image for this or style it further with
-                    CSS.)</em></p>
+            <img src="insecureclass.png" alt="Flow diagram showing missing update call for the signature object"
+                style="max-width: 90%; max-height: 70vh; display: block; margin: 20px auto;">
+            <h3>This diagram illustrates an insecure class composition where a `keySize` of 64 is used during
+                `initSign`,
+                which is typically considered insecure for modern cryptographic algorithms.</h3>
         </div>
 
         <div class="slide">
@@ -827,7 +701,8 @@ i1: initSign(privateKey);
 i2: initSign(privateKey,  );
 InitSigns := i1 | i2;
                 </code></pre>
-            <p>CrySL (Cryptographic Specification Language) allows API designers to specify correct usage patterns. This
+            <p>CrySL (Cryptographic Specification Language) allows API designers to specify correct usage patterns.
+                This
                 snippet shows the OBJECTS and EVENTS sections for `java.security.Signature`. [1]</p>
             <p><em>(Citation: CrySL: An Extensible Approach to Validating the Correct Usage of Cryptographic APIs.
                     Stefan Kruger, Johannes Spaeth, Karim Ali, Eric Bodden, Mira Mezini. ECOOP 2018.)</em></p>
@@ -864,14 +739,7 @@ generated Privkey[key];
         </div>
 
 
-        <!-- Slide 1: Title -->
-        <div class="slide active title-slide">
-            <h1>Domain-Specific Solutions for API Misuse</h1>
-            <h2>Static Detection, Runtime Prevention, and a Vision Towards AI-Powered Next Steps</h2>
-            <h3>Krishna Narasimhan</h3>
-            <p>Leiden University Interview</p>
-            <p>June 29, 2025</p>
-        </div>
+
 
         <!-- Slide 2: The Problem with API Misuse -->
         <div class="slide">
@@ -1427,7 +1295,8 @@ generated Privkey[key];
             </div>
             <div class="block">
                 <h4>Personalized Explanation (Based on Developer Level)</h4>
-                <p>"ECB mode encrypts identical blocks to identical ciphertexts, making patterns visible. GCM mode uses
+                <p>"ECB mode encrypts identical blocks to identical ciphertexts, making patterns visible. GCM mode
+                    uses
                     a unique IV for each encryption, ensuring security."</p>
             </div>
         </div>
@@ -1485,12 +1354,14 @@ generated Privkey[key];
                 <ul>
                     <li><strong>JGuard:</strong> Misuse-resilient APIs with zero false positives</li>
                     <li><strong>Developer Context DSL:</strong> Formalizing mental models and program context</li>
-                    <li><strong>Hybrid System:</strong> Bridging probabilistic AI with deterministic verification</li>
+                    <li><strong>Hybrid System:</strong> Bridging probabilistic AI with deterministic verification
+                    </li>
                 </ul>
             </div>
             <div class="example-block">
                 <h3>Vision Realized</h3>
-                <p>A new generation of intelligent, reliable, and user-centric software development tools that combine
+                <p>A new generation of intelligent, reliable, and user-centric software development tools that
+                    combine
                     the best of human expertise, AI capabilities, and formal verification</p>
             </div>
             <div style="margin-top: 40px;">
@@ -1509,12 +1380,14 @@ generated Privkey[key];
             <h2>1. Synergies with LIACS Research Strengths</h2>
             <h3>Leiden Institute of Advanced Computer Science (LIACS)</h3>
             <ul>
-                <li>Center of excellence for multidisciplinary research and education in Computer Science & AI, with a
+                <li>Center of excellence for multidisciplinary research and education in Computer Science & AI, with
+                    a
                     strong emphasis on theoretical foundations, formal methods, AI, and data science. [1]</li>
             </ul>
             <h3>LIACS Research Areas Aligning with My Vision</h3>
             <ul>
-                <li><strong>Artificial Intelligence and Machine Learning:</strong> This includes the ADA group and the
+                <li><strong>Artificial Intelligence and Machine Learning:</strong> This includes the ADA group and
+                    the
                     Reinforcement Learning lab. [1]</li>
                 <li><strong>Human AI:</strong> A dedicated research area crucial for human-computer interaction in
                     Software Engineering (SE). [1]</li>
@@ -1522,7 +1395,8 @@ generated Privkey[key];
                     implications of AI in SE. [1]</li>
                 <li><strong>Systems and Security:</strong> Encompasses the Cyber Security Lab, High Performance
                     Computing, and LERC (Embedded Systems). [1]</li>
-                <li><strong>Theory:</strong> Includes Algorithms, Concurrent Systems, Systems Modelling Lab (SML), and
+                <li><strong>Theory:</strong> Includes Algorithms, Concurrent Systems, Systems Modelling Lab (SML),
+                    and
                     System Verification Lab (SVL) for formal methods. [1]</li>
             </ul>
             <p>My expertise in Domain-Specific Languages (DSLs), program analysis, and AI for software assistance is
@@ -1539,11 +1413,14 @@ generated Privkey[key];
             </ul>
             <h3>My Contribution & Leiden Synergy</h3>
             <ul>
-                <li><strong>My Expertise:</strong> Formal API models (jGuard), trustworthy AI, and program analysis. [1]
+                <li><strong>My Expertise:</strong> Formal API models (jGuard), trustworthy AI, and program analysis.
+                    [1]
                 </li>
-                <li><strong>Prof. Felienne Hermans:</strong> Expertise in programming education, programmer cognition
+                <li><strong>Prof. Felienne Hermans:</strong> Expertise in programming education, programmer
+                    cognition
                     ("The Programmer's Brain"), and the Hedy language for novices. [1]</li>
-                <li><strong>Dr. Joost Broekens:</strong> Expertise in Explainable AI (XAI), human-AI/robot interaction,
+                <li><strong>Dr. Joost Broekens:</strong> Expertise in Explainable AI (XAI), human-AI/robot
+                    interaction,
                     adaptive AI, and computational modeling of emotions. [1]</li>
             </ul>
             <h3>Project Idea: Adaptive AI for API Misuse Feedback</h3>
@@ -1555,10 +1432,12 @@ generated Privkey[key];
                 <p>&darr;</p>
                 <p>Personalized, Explainable Misuse Feedback & Corrections</p>
             </div>
-            <p><strong>Goal:</strong> AI explains *why* a misuse occurred (based on jGuard rules), suggests compliant
+            <p><strong>Goal:</strong> AI explains *why* a misuse occurred (based on jGuard rules), suggests
+                compliant
                 corrections, and adapts explanation complexity based on the developer's inferred expertise, thereby
                 enhancing learning and productivity. [1]</p>
-            <p><em>(Note: This is a textual representation of a diagram. In a live presentation, this would ideally be a
+            <p><em>(Note: This is a textual representation of a diagram. In a live presentation, this would ideally
+                    be a
                     visual diagram. You may need to create an image for this or style it further with CSS.)</em></p>
         </div>
 
@@ -1566,14 +1445,17 @@ generated Privkey[key];
             <h2>3. Collaboration Idea 2: Formal Verification and Synthesis of AI-Enhanced DSLs</h2>
             <h3>The Challenge: Ensuring Deterministic Correctness</h3>
             <ul>
-                <li>Providing provable guarantees for AI-generated code and guiding DSLs is critical for trustworthy AI.
+                <li>Providing provable guarantees for AI-generated code and guiding DSLs is critical for trustworthy
+                    AI.
                     [1]</li>
             </ul>
             <h3>My Contribution & Leiden Synergy</h3>
             <ul>
-                <li><strong>My Expertise:</strong> Deep expertise in DSLs (Jetbrains MPS), program analysis, and formal
+                <li><strong>My Expertise:</strong> Deep expertise in DSLs (Jetbrains MPS), program analysis, and
+                    formal
                     methods for software correctness. [1]</li>
-                <li><strong>Prof. Joost Visser:</strong> Expertise in SE for ML, DSLs, software quality, compilers, and
+                <li><strong>Prof. Joost Visser:</strong> Expertise in SE for ML, DSLs, software quality, compilers,
+                    and
                     program transformation. [1]</li>
                 <li><strong>Dr. Kristian Rietveld:</strong> Expertise in optimizing compilers, generic program
                     transformation techniques, and performance analysis. [1]</li>
@@ -1592,9 +1474,11 @@ generated Privkey[key];
                 <p>Trustworthy AI-Generated Systems</p>
             </div>
             <p><strong>Goal:</strong> Explore AI's role in synthesizing provably correct jGuard specifications or
-                program transformations, pushing the boundaries of automated software verification for safety-critical
+                program transformations, pushing the boundaries of automated software verification for
+                safety-critical
                 domains. [1]</p>
-            <p><em>(Note: This is a textual representation of a diagram. In a live presentation, this would ideally be a
+            <p><em>(Note: This is a textual representation of a diagram. In a live presentation, this would ideally
+                    be a
                     visual diagram. You may need to create an image for this or style it further with CSS.)</em></p>
         </div>
 
@@ -1609,7 +1493,8 @@ generated Privkey[key];
             <ul>
                 <li><strong>My Expertise:</strong> Domain-specific solutions (jGuard), AI integration with SE, and
                     embedded systems DSLs. [1]</li>
-                <li><strong>Prof. Holger Hoos:</strong> Expertise in Automated Machine Learning (AutoML), Programming by
+                <li><strong>Prof. Holger Hoos:</strong> Expertise in Automated Machine Learning (AutoML),
+                    Programming by
                     Optimization (PbO), and trustworthy AI. [1]</li>
                 <li><strong>Dr. Todor Stefanov:</strong> Expertise in Embedded Systems, Deep Learning at the Edge,
                     system-level design automation, and model-based verification. [1]</li>
@@ -1623,10 +1508,13 @@ generated Privkey[key];
                 <p>&darr; (Generates Optimized, Misuse-Resilient API Designs)</p>
                 <p>Target Domains: Embedded Systems, HPC, IoT</p>
             </div>
-            <p><strong>Goal:</strong> Apply AI to automatically design and generate jGuard-like API specifications and
-                implementations, enabling rapid development of highly reliable and secure systems for complex domains
+            <p><strong>Goal:</strong> Apply AI to automatically design and generate jGuard-like API specifications
+                and
+                implementations, enabling rapid development of highly reliable and secure systems for complex
+                domains
                 (e.g., automotive, medical devices, IoT). [1]</p>
-            <p><em>(Note: This is a textual representation of a diagram. In a live presentation, this would ideally be a
+            <p><em>(Note: This is a textual representation of a diagram. In a live presentation, this would ideally
+                    be a
                     visual diagram. You may need to create an image for this or style it further with CSS.)</em></p>
         </div>
 
@@ -1634,18 +1522,21 @@ generated Privkey[key];
             <h2>5. Conclusion: A Collaborative Path Forward</h2>
             <h3>My Research Vision: "Model First, AI Next"</h3>
             <ul>
-                <li>Foundational work in domain-specific API resilience (jGuard) provides deterministic correctness. [1]
+                <li>Foundational work in domain-specific API resilience (jGuard) provides deterministic correctness.
+                    [1]
                 </li>
                 <li>Grounding AI capabilities in precise, verifiable domain models addresses LLM limitations like
                     hallucination and the expertise gap. [1]</li>
-                <li>JGuard's explicit models serve as structured context for AI to reason accurately and reliably. [1]
+                <li>JGuard's explicit models serve as structured context for AI to reason accurately and reliably.
+                    [1]
                 </li>
             </ul>
             <h3>Strong Alignment with LIACS Strengths</h3>
             <ul>
                 <li>Deep synergies with Human AI, SE for ML, Formal Methods, Automated Design, and Embedded Systems
                     expertise at Leiden. [1]</li>
-                <li>Opportunities for impactful, interdisciplinary research crucial for securing external funding. [1]
+                <li>Opportunities for impactful, interdisciplinary research crucial for securing external funding.
+                    [1]
                 </li>
             </ul>
             <h3>My Commitment to Leiden University</h3>
