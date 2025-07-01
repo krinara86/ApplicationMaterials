@@ -898,6 +898,30 @@ generated Privkey[key];
             </div>
         </div>
 
+        <div class="slide">
+            <h2>jGuard: Encoding State Machines Directly</h2>
+            <p>jGuard allows API designers to embed usage specifications directly into the API's implementation,
+                effectively making APIs "self-defensive".</p>
+            <p class="fragment fade-in">At its core, jGuard uses **guards** – special boolean fields that represent the
+                API's internal state. These guards are manipulated by method calls, ensuring correct sequencing.</p>
+
+            <div style="display: flex; justify-content: center; align-items: center; margin-top: 40px;">
+                <div
+                    style="background-color: #444; border: 2px solid #888; border-radius: 10px; padding: 20px; text-align: center; color: white; font-size: 1.1em; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
+                    <p><strong>API Method Call</strong></p>
+                    <p class="fragment fade-in" style="font-size: 2em; margin: 10px 0;">&darr;</p>
+                    <p class="fragment fade-in"><strong>jGuard `require` Clause</strong></p>
+                    <p class="fragment fade-in" style="font-size: 0.9em; color: #ccc;">(Checks current state/guards)</p>
+                    <p class="fragment fade-in" style="font-size: 2em; margin: 10px 0;">&darr;</p>
+                    <p class="fragment fade-in"><strong>Original Method Body</strong></p>
+                    <p class="fragment fade-in" style="font-size: 2em; margin: 10px 0;">&darr;</p>
+                    <p class="fragment fade-in"><strong>jGuard `when returns` Clause</strong></p>
+                    <p class="fragment fade-in" style="font-size: 0.9em; color: #ccc;">(Updates state/guards)</p>
+                </div>
+            </div>
+            <p class="fragment fade-in" style="margin-top: 30px;">This mechanism directly translates state machine
+                transitions into runtime checks, preventing misuses dynamically. </p>
+        </div>
 
         <!-- Slide 4: JGuard Core Concepts -->
         <div class="slide">
@@ -1013,32 +1037,6 @@ generated Privkey[key];
                     <div class="state-method">sign() without update()</div>
                 </div>
             </div>
-        </div>
-
-
-        <div class="slide">
-            <h2>jGuard: Encoding State Machines Directly</h2>
-            <p>jGuard allows API designers to embed usage specifications directly into the API's implementation,
-                effectively making APIs "self-defensive".</p>
-            <p class="fragment fade-in">At its core, jGuard uses **guards** – special boolean fields that represent the
-                API's internal state. These guards are manipulated by method calls, ensuring correct sequencing.</p>
-
-            <div style="display: flex; justify-content: center; align-items: center; margin-top: 40px;">
-                <div
-                    style="background-color: #444; border: 2px solid #888; border-radius: 10px; padding: 20px; text-align: center; color: white; font-size: 1.1em; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
-                    <p><strong>API Method Call</strong></p>
-                    <p class="fragment fade-in" style="font-size: 2em; margin: 10px 0;">&darr;</p>
-                    <p class="fragment fade-in"><strong>jGuard `require` Clause</strong></p>
-                    <p class="fragment fade-in" style="font-size: 0.9em; color: #ccc;">(Checks current state/guards)</p>
-                    <p class="fragment fade-in" style="font-size: 2em; margin: 10px 0;">&darr;</p>
-                    <p class="fragment fade-in"><strong>Original Method Body</strong></p>
-                    <p class="fragment fade-in" style="font-size: 2em; margin: 10px 0;">&darr;</p>
-                    <p class="fragment fade-in"><strong>jGuard `when returns` Clause</strong></p>
-                    <p class="fragment fade-in" style="font-size: 0.9em; color: #ccc;">(Updates state/guards)</p>
-                </div>
-            </div>
-            <p class="fragment fade-in" style="margin-top: 30px;">This mechanism directly translates state machine
-                transitions into runtime checks, preventing misuses dynamically. </p>
         </div>
 
         <!-- Slide 9: Meta Variables for Context -->
