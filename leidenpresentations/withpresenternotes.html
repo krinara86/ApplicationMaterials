@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain-Specific Solutions for API Misuse - Printable Version</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: white;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Page break handling */
+        @media print {
+            .slide-with-notes {
+                page-break-inside: avoid;
+                page-break-after: always;
+            }
+
+            .slide-with-notes:last-child {
+                page-break-after: avoid;
+            }
+
+            body {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        /* Slide container */
+        .slide-with-notes {
+            margin-bottom: 60px;
+            border-bottom: 3px solid #ddd;
+            padding-bottom: 40px;
+        }
+
+        .slide-number-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        /* Slide content styling */
+        .slide-content {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 40px;
+            background: #f9f9f9;
+            margin-bottom: 30px;
+            min-height: 400px;
+        }
+
+        /* Typography for slides */
+        .slide-content h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2980b9;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .slide-content h2 {
+            font-size: 2em;
+            font-weight: 600;
+            color: #27ae60;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .slide-content h3 {
+            font-size: 1.5em;
+            font-weight: 500;
+            color: #e67e22;
+            margin-bottom: 20px;
+        }
+
+        .slide-content h4 {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #8e44ad;
+            margin-bottom: 15px;
+        }
+
+        .slide-content p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .slide-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .slide-content ul li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1em;
+        }
+
+        .slide-content ul li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #2980b9;
+            font-weight: bold;
+        }
+
+        /* Code blocks */
+        .slide-content pre {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+
+        .slide-content code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+
+        /* Syntax highlighting */
+        .keyword {
+            color: #8b008b;
+            font-weight: bold;
+        }
+
+        .type {
+            color: #0000cd;
+        }
+
+        .string {
+            color: #008000;
+        }
+
+        .comment {
+            color: #808080;
+            font-style: italic;
+        }
+
+        .annotation {
+            color: #ff8c00;
+            font-weight: bold;
+        }
+
+        .method {
+            color: #00ced1;
+        }
+
+        .variable {
+            color: #dc143c;
+        }
+
+        /* Blocks */
+        .block,
+        .example-block,
+        .alert-block {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid;
+        }
+
+        .block {
+            background: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .example-block {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+
+        .alert-block {
+            background: #ffebee;
+            border-color: #f44336;
+        }
+
+        /* Tables */
+        .slide-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border: 1px solid #ddd;
+        }
+
+        .slide-content th,
+        .slide-content td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .slide-content th {
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+
+        /* Diagrams */
+        .diagram-flow {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .diagram-node {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .diagram-arrow {
+            font-size: 1.5em;
+            color: #2196f3;
+        }
+
+        /* Notes section */
+        .presenter-notes {
+            background: #fffef0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .presenter-notes h4 {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .presenter-notes p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .presenter-notes ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .presenter-notes ul li {
+            margin-bottom: 10px;
+            list-style-type: disc;
+        }
+
+        /* Special slides */
+        .title-slide {
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+
+        .title-slide h2 {
+            font-size: 1.8em;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .title-slide h3 {
+            font-size: 1.4em;
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+
+        .title-slide p {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        /* Impact numbers */
+        .impact-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #2980b9;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Citations */
+        .citation {
+            font-size: 0.85em;
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Slide 1 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 1 of 29</div>
+        <div class="slide-content title-slide">
+            <h1>Domain-Specific Solutions for API Misuse</h1>
+            <h2>Static Detection, Runtime Prevention, and a Vision Towards AI-Powered Next Steps</h2>
+            <h3>Krishna Narasimhan</h3>
+            <p>Leiden University Interview</p>
+            <p>July 3, 2025</p>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>I am Krishna. Thanks a lot for inviting me to give the talk and organising this whole day. I am quite
+                excited.</p>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 2 of 29</div>
+        <div class="slide-content">
+            <h2>Agenda</h2>
+            <ul>
+                <li>
+                    <h3>API misuses (Seriousness, Challenges)</h3>
+                </li>
+                <li>
+                    <h3>Existing approaches (Documentation/ Static Analysis)</h3>
+                </li>
+                <li>
+                    <h3>DSLs to the rescue (CrySL, jGuard)</h3>
+                </li>
+                <li>
+                    <h3>Types of misuses supported</h3>
+                </li>
+                <li>
+                    <h3>Static approach (CrySL)</h3>
+                </li>
+                <li>
+                    <h3>Dynamic approach (jGuard)</h3>
+                </li>
+                <li>
+                    <h3>Broader software tooling challenges and an AI-enabled vision</h3>
+                </li>
+                <li>
+                    <h3>Collaboration thoughts and conclusion</h3>
+                </li>
+            </ul>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Today, I'll take you through three interconnected parts of my research journey. First, we'll examine why
+                API misuses represent an important challenge - one that can costs companies a lot and affects virtually
+                every application. Then, I'll present domain-specific solutions I've worked on, including CrySL for
+                static specification and jGuard for runtime prevention - showing how embedding domain expertise directly
+                into APIs can eliminate entire classes of vulnerabilities. Finally, I'll share my vision for how these
+                domain-specific modeling techniques can address the broader challenges we face with AI-generated code -
+                essentially, how the lessons from API misuse prevention can guide us toward more reliable AI-assisted
+                development</p>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 3 of 29</div>
+        <div class="slide-content">
+            <h2>Challenges</h2>
+            <p>API misuse = any unintended incorrect or potentially dangerous uses of an API that would not be caught by
+                the compiler.</p>
+            <h3>Example Misuse: Incorrect Initialization</h3>
+            <div style="text-align: center;">
+                <img src="apimisuseexample.png" alt="All the places one could misuse an API" style="max-width: 45%;">
+                <div class="example-block" style="margin-top: 40px;">
+                    <p>Using a cryptographic API without proper initialization can lead to security vulnerabilities.</p>
+                </div>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>By API misuse I mean .... This is sort of a toned down informal definition, but this works for our scope
+                of discussion now. Here is a use of javas standard inhouse crypto API to do. I have picked a piece of
+                code from the security world because it drives the seriousness even more, but these sort of misuses
+                happen in all sorts of APIs. (File api, Database connection apis, etc.) Essentially, This code shows a
+                typical cryptographic setup in Java - generating a key, creating a cipher, and encrypting data. While it
+                looks straightforward, there are multiple points where a developer can silently introduce critical
+                security vulnerabilities</p>
+            <p>The autocomplete dropdown shows the overwhelming choices:</p>
+            <ul>
+                <li>"AES" alone defaults to insecure ECB mode</li>
+                <li>128-bit keys might be too weak for some standards</li>
+                <li>Missing initialization vectors</li>
+                <li>No guidance on secure random sources</li>
+                <li>Compiler gives zero warnings about any of this</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 4 of 29</div>
+        <div class="slide-content">
+            <h2>The API Misuse Seriousness</h2>
+            <div class="impact-number">$85 Million</div>
+            <p>Zoom's settlement for API misuse leading to security vulnerabilities</p>
+            <div class="diagram-flow" style="margin-top: 40px;">
+                <div class="diagram-node">Incorrect Crypto API Usage</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node">Security Vulnerabilities</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node" style="border-color: #ef5350; background: #ffebee;">
+                    Real-World Consequences
+                </div>
+            </div>
+            <div class="example-block" style="margin-top: 40px;">
+                <h3>Why This Matters</h3>
+                <ul>
+                    <li>APIs are increasingly complex and numerous</li>
+                    <li>Misuses lead to security vulnerabilities, crashes, and performance issues</li>
+                    <li>Traditional approaches (documentation, static analysis) have limitations</li>
+                </ul>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Avoiding API misuses are not just a problem of helping the developer. These issues can end up costing a
+                lot.</p>
+            <p><strong>Zoom story</strong>: "Non-secure AES configuration exposed user data" and they had to settle for
+                85 million finally when it was pointed out it was because they were using the wrong algorithm.</p>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 5 of 29</div>
+        <div class="slide-content">
+            <h2>Why Current Solutions Fall Short</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Approach</th>
+                        <th>Strengths</th>
+                        <th>Limitations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Documentation</strong></td>
+                        <td>Comprehensive</td>
+                        <td>64+ pages for JCA alone - overwhelming!</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Static Analysis</strong></td>
+                        <td>Early detection</td>
+                        <td>
+                            <ul>
+                                <li><strong>High false positive rate</strong> (e.g., 67 in our study)</li>
+                                <li>Limited to known patterns, need separate set of rules for each API or
+                                    task(Encryption, Password hashing)</li>
+                                <li>Requires external tooling which developers resist</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="alert-block" style="margin-top: 30px;">
+                <h3>Also!</h3>
+                <p>API usage patterns vary by context (Android vs JDK), security standards (BSI vs NIST), and versions -
+                    making one-size-fits-all solutions ineffective</p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>What is available in the way of avoiding these issues as state of the art? API documentation. These are
+                cumbersome, no one reads them. Static analysis has a bunch of issues itself.</p>
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 6 of 29</div>
+        <div class="slide-content">
+            <h2>Three Main API Misuse Patterns</h2>
+            <p style="text-align: center; margin-bottom: 15px;">MuBench: 89 real-world API misuses from GitHub projects
+            </p>
+
+            <div style="display: flex; justify-content: space-around; gap: 20px; margin-bottom: 20px;">
+                <div style="flex: 1; text-align: center;">
+                    <h3 style="color: #ef5350;">Insecure Parameter</h3>
+                    <img src="insecureparam.png" alt="Insecure parameter usage"
+                        style="max-height: 250px; border: 2px solid #333;">
+                    <p>Missing block mode defaults to <strong>ECB</strong><br />
+                        <span style="color: #27ae60;">✓ Better: CBC with random IV</span>
+                    </p>
+                </div>
+
+                <div style="flex: 1; text-align: center;">
+                    <h3 style="color: #ef5350;">Incorrect Call Sequence</h3>
+                    <img src="incorrectparam.png" alt="Missing update call"
+                        style="max-height: 250px; border: 2px solid #333;">
+                    <p>Missing <strong>update()</strong> before sign()<br />
+                        <span style="color: #27ae60;">✓ Result: Unsigned data!</span>
+                    </p>
+                </div>
+
+                <div style="flex: 1; text-align: center;">
+                    <h3 style="color: #ef5350;">Insecure Class Composition</h3>
+                    <img src="insecureclass.png" alt="Insecure class composition"
+                        style="max-height: 250px; border: 2px solid #333;">
+                    <p>keySize of <strong>64</strong> is insecure<br />
+                        <span style="color: #27ae60;">✓ Modern algorithms need 256+</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert-block">
+                <p style="text-align: center;"><strong>Key Insight:</strong> All patterns involve state machines and
+                    sequencing → State machine</p>
+            </div>
+            <p class="citation">Based on MUBench dataset of 139 real-world API misuses</p>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>We saw what API misuses are. Before we look at the solutions, lets first narrow the scope of discussion.
+                If we want domain specific solutions, we would need to define our domain. In the case of API misuses,
+                that would mean coming up how mususes look in practice. Here are the three main misuse types as gathered
+                by a large scale study on API misuses.</p>
+            <p><strong>Walk through each image:</strong></p>
+            <ul>
+                <li><strong>Insecure Parameter</strong>: Here the misuses are essentially wrongly initialized parameter
+                    whatever that means to that particular context of the API use. 'AES' without mode? Defaults to ECB -
+                    Same input gives same output - that's terrible for security. It's like if your password always
+                    produced the same scrambled version. Attackers can spot patterns and break it!</li>
+                <li><strong>Incorrect Call</strong>: These are misuses where you have an unexpected method call at a
+                    particular run of the code. For example, you would expect a file to be closed after it is open. In
+                    this case, "Missing update() - the data never gets into the signature!"</li>
+                <li><strong>Insecure Composition</strong>: "64-bit keys in 2025 is consideres quite crackable."</li>
+            </ul>
+            <p><strong>MuBench reference</strong>: "89 real GitHub projects with these exact mistakes"</p>
+            <p><strong>Transition</strong>: "These all follow state machine patterns..."</p>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 7 of 29</div>
+        <div class="slide-content">
+            <h2>API Usage: Expressable using States and Transitions</h2>
+            <p>Many APIs require a specific sequence of calls to be used correctly. This behavior can be captured using
+                <strong>State Machines</strong>.
+            </p>
+
+            <div
+                style="position: relative; width: 80%; max-width: 700px; height: 350px; margin: 30px auto; border: 1px solid #555; border-radius: 10px; background-color: #f5f5f5;">
+                <p style="position: absolute; top: 10px; left: 10px; font-size: 0.8em; color: #666;">Example: Simplified
+                    API Lifecycle</p>
+
+                <div
+                    style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%); background-color: #e3f2fd; border: 2px solid #2196f3; border-radius: 10px; padding: 15px 25px; text-align: center;">
+                    Initialized</div>
+                <div style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); font-size: 1.5em;">↓
+                </div>
+                <div
+                    style="position: absolute; top: 125px; left: calc(50% + 30px); background-color: #f5f5f5; padding: 3px 8px; border-radius: 5px; font-size: 0.75em;">
+                    <code>.configure()</code>
+                </div>
+
+                <div
+                    style="position: absolute; top: 150px; left: 50%; transform: translateX(-50%); background-color: #e3f2fd; border: 2px solid #2196f3; border-radius: 10px; padding: 15px 25px; text-align: center;">
+                    Ready</div>
+                <div style="position: absolute; top: 220px; left: 50%; transform: translateX(-50%); font-size: 1.5em;">↓
+                </div>
+                <div
+                    style="position: absolute; top: 225px; left: calc(50% + 30px); background-color: #f5f5f5; padding: 3px 8px; border-radius: 5px; font-size: 0.75em;">
+                    <code>.start()</code>
+                </div>
+
+                <div
+                    style="position: absolute; top: 250px; left: 50%; transform: translateX(-50%); background-color: #e3f2fd; border: 2px solid #2196f3; border-radius: 10px; padding: 15px 25px; text-align: center;">
+                    Active</div>
+            </div>
+
+            <div class="example-block">
+                <h3>The DSL Solution</h3>
+                <ul>
+                    <li>Expressing these patterns in general-purpose code can be cumbersome</li>
+                    <li><strong>Domain-Specific Languages (DSLs)</strong> come to the rescue</li>
+                    <li>DSLs allow intuitive, high-level specification of API behavior</li>
+                </ul>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p><strong>Key insight</strong>: "APIs have implicit state machines"</p>
+            <p><strong>Connect to DSLs</strong>: "What if we could make these states explicit?"</p>
+            <p><strong>Example</strong>: "Just like an Iterator - hasNext before next"</p>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 8 of 29</div>
+        <div class="slide-content">
+            <h2>DSLs to the Rescue: CrySL</h2>
+            <p style="text-align: center; margin-bottom: 20px;">CrySL (Cryptographic Specification Language) - External
+                specification of correct API usage</p>
+
+            <div style="display: flex; gap: 40px;">
+                <div style="flex: 1;">
+                    <h4>Structure & Events</h4>
+                    <pre><code><span class="keyword">SPEC</span> <span class="type">java.security.Signature</span>
+
+<span class="keyword">OBJECTS</span>
+    <span class="type">byte</span> <span class="variable">data</span>;
+    <span class="type">byte</span> <span class="variable">signedData</span>;
+    <span class="type">java.lang.String</span> <span class="variable">algorithm</span>;
+    <span class="type">java.security.PrivateKey</span> <span class="variable">privateKey</span>;
+
+<span class="keyword">EVENTS</span>
+    <span class="variable">g1</span>: <span class="method">getInstance</span>(<span class="variable">algorithm</span>);
+    <span class="variable">g2</span>: <span class="method">getInstance</span>(<span class="variable">algorithm</span>, _);
+    <span class="variable">GetInstance</span> := <span class="variable">g1</span> | <span class="variable">g2</span>;
+    
+    <span class="variable">i1</span>: <span class="method">initSign</span>(<span class="variable">privateKey</span>);
+    <span class="variable">i2</span>: <span class="method">initSign</span>(<span class="variable">privateKey</span>, _);
+    <span class="variable">InitSigns</span> := <span class="variable">i1</span> | <span class="variable">i2</span>;</code></pre>
+                </div>
+
+                <div style="flex: 1;">
+                    <h4>Constraints & Order</h4>
+                    <pre><code><span class="keyword">CONSTRAINTS</span>
+    <span class="variable">algorithm</span> <span class="keyword">in</span> {<span class="string">"SHA256withDSA"</span>, 
+                  <span class="string">"SHA256withRSA"</span>, 
+                  <span class="string">"SHA256withECDSA"</span>};
+
+<span class="keyword">ORDER</span>
+    <span class="variable">GetInstance</span>, <span class="variable">InitSigns</span>, <span class="variable">Updates</span>+, <span class="variable">Sign</span>
+
+<span class="keyword">REQUIRES</span>
+    <span class="variable">generated</span> <span class="type">PrivKey</span>[<span class="variable">privateKey</span>];
+
+<span class="keyword">ENSURES</span>
+    <span class="variable">signed</span>;</code></pre>
+                </div>
+            </div>
+
+            <div class="block" style="margin-top: 20px;">
+                <p style="text-align: center;"><strong>944 rules</strong> for Java crypto APIs |
+                    <strong>Limitations:</strong> Separate from implementation, requires external tools, no dynamic
+                    state
+                </p>
+            </div>
+
+            <p style="text-align: center; font-size: 0.85em; color: #666; margin-top: 15px;"><em>Krüger et al., ECOOP
+                    2018</em></p>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p><strong>Context</strong>: "Before my work, CrySL was state-of-the-art". It was a DSL to express API usage
+                patterns (Essentially all the three types of misuses we saw) and there is a static analyser behind that
+                checks for compliance of the code with the DSL specifications.</p>
+            <p>CrySL represents the current state-of-the-art in API misuse specification. Let me walk through its
+                approach. The left side defines the structural elements - objects and API events. For each method like
+                getInstance or initSign, we enumerate all possible parameter combinations. The right side encodes the
+                behavioral constraints and temporal properties.</p>
+            <p>In the CONSTRAINTS section, we restrict algorithm choices to secure options. The ORDER section specifies
+                valid method sequences as a regular expression: getInstance, followed by optional initSign, then one or
+                more updates, finally sign. This effectively encodes the state machine we saw earlier.</p>
+            <p>CrySL is comprehensive - 944 rules cover Java's cryptographic APIs. However, it operates as an external
+                specification language, requiring developers to install CogniCrypt and execute separate analysis passes.
+                The fundamental limitation is this separation between API implementation and safety specification.</p>
+            <p>This motivated my work on jGuard: what if we could embed these specifications directly into the API
+                implementation? No external tooling, no separate analysis phase - just APIs that enforce their own
+                correct usage</p>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 9 of 29</div>
+        <div class="slide-content">
+            <h2>The Challenge with a static solution</h2>
+            <div class="example-block">
+                <h3>Static Analysis Has Fundamental Limits</h3>
+                <p>Consider the Iterator pattern - a seemingly simple API:</p>
+                <pre><code><span class="keyword">if</span> (<span class="variable">iterator</span>.<span class="method">hasNext</span>()) {
+    <span class="type">Object</span> <span class="variable">obj</span> = <span class="variable">iterator</span>.<span class="method">next</span>();  <span class="comment">// Safe only if hasNext() returned true</span>
+}</code></pre>
+                <p>Static analysis cannot determine if <code>hasNext()</code> returned <code>true</code> or
+                    <code>false</code> - this depends on runtime data. Yet calling <code>next()</code> without checking
+                    causes crashes.
+                </p>
+            </div>
+            <div class="alert-block">
+                <ul>
+                    <li>Static analysis tools have high false positive rates</li>
+                    <li>Developers resist adopting new tooling</li>
+                    <li>Many misuses are only detectable at runtime</li>
+                </ul>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>The challenge extends beyond security APIs. Consider the Iterator pattern - fundamental to Java, used
+                millions of times daily.</p>
+            <p>Look at this code. Whether next() is safe depends entirely on what hasNext() returned. If it returned
+                false, calling next() throws NoSuchElementException. This is a classic API misuse that crashes
+                applications.</p>
+            <p>Here's the key insight: static analysis cannot determine the return value of hasNext() - it depends on
+                runtime data like collection contents. No amount of sophisticated analysis can predict this statically.
+                Yet this pattern causes real crashes in production systems.</p>
+            <p>This exemplifies why we need runtime enforcement. Some API constraints are inherently dynamic. Static
+                analysis, no matter how advanced, has fundamental limitations. This motivates jGuard's approach of
+                embedding runtime checks directly into APIs</p>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 10 of 29</div>
+        <div class="slide-content">
+            <h2>JGuard: A New Approach</h2>
+            <div class="example-block">
+                <h3>Instead of external tools detecting misuses, APIs themselves become self-defensive</h3>
+            </div>
+            <div class="diagram-flow">
+                <div class="diagram-node">API Designer writes JGuard-annotated code</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node">JGuard compiler generates Java + checks</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node">API users get misuse-resilient libraries</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node" style="border-color: #4caf50; background: #e8f5e9;">
+                    No new tools needed!
+                </div>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>JGuard fundamentally shifts where API safety is enforced. Instead of external tools trying to catch
+                misuses after the fact, we make APIs themselves self-defensive.</p>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 11 of 29</div>
+        <div class="slide-content">
+            <h2>JGuard: High-Level State Machine Approach</h2>
+
+            <div style="display: flex; gap: 40px;">
+                <div style="flex: 1;">
+                    <h3>State Machine Encoding</h3>
+                    <div
+                        style="background-color: #f5f5f5; border: 2px solid #666; border-radius: 10px; padding: 30px; text-align: center; min-height: 400px; display: flex; flex-direction: column; justify-content: space-around;">
+                        <div><strong>API Method Call</strong></div>
+                        <div style="font-size: 1.8em;">↓</div>
+                        <div><strong>jGuard `require` Clause</strong><br /><span
+                                style="font-size: 0.9em; color: #666;">(Checks guards)</span></div>
+                        <div style="font-size: 1.8em;">↓</div>
+                        <div><strong>Method Body</strong></div>
+                        <div style="font-size: 1.8em;">↓</div>
+                        <div><strong>jGuard `when returns`</strong><br /><span
+                                style="font-size: 0.9em; color: #666;">(Updates guards)</span></div>
+                    </div>
+                </div>
+
+                <div style="flex: 1;">
+                    <h3>Core Concepts in Code</h3>
+                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
+    <span class="comment">// Guards: explicit state variables</span>
+    <span class="keyword">private</span> <span class="annotation">guard</span> <span class="variable">isInitialized</span>;
+    <span class="keyword">private</span> <span class="annotation">guard</span> <span class="variable">encryptionStarted</span> 
+        <span class="keyword">finally</span> <span class="keyword">false</span>;
+    
+    <span class="comment">// Requirements: preconditions</span>
+    <span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">void</span> <span class="method">init</span>(<span class="type">Key</span> <span class="variable">key</span>)
+        <span class="annotation">require</span> !<span class="variable">encryptionStarted</span>, 
+                !<span class="variable">isInitialized</span>
+        <span class="comment">// Consequences: state updates</span>
+        <span class="annotation">when returns sets</span> <span class="variable">isInitialized</span>,
+        <span class="annotation">when returns sets</span> <span class="variable">encryptionStarted</span> {}
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="example-block" style="margin-top: 20px;">
+                <p style="text-align: center;">State machines become first-class citizens in the API implementation
+                    itself</p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p><strong>Core innovation</strong>: "State machines as first-class citizens IN the API"</p>
+            <p><strong>Walk through flow diagram</strong>:</p>
+            <ul>
+                <li>"API call comes in"</li>
+                <li>"Check guards (our state variables)"</li>
+                <li>"Execute method"</li>
+                <li>"Update guards for next call"</li>
+            </ul>
+            <p><strong>Code example</strong>: Point to verified class, guards, requirements</p>
+            <p><strong>Key differentiator</strong>: "No external tools needed!"</p>
+            <p>jGuard embeds state machines directly into API implementations. The left diagram shows the conceptual
+                flow: method calls check guards, execute, then update guards. The right shows the actual syntax -
+                verified classes with explicit guard variables and requirements. These compile to regular Java. No
+                external tools required. API users get safety guarantees transparently.</p>
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 12 of 29</div>
+        <div class="slide-content">
+            <h2>JGuard Component 1: Guards</h2>
+            <h3>Making Implicit State Explicit</h3>
+            <div style="display: flex; gap: 40px; position: relative;">
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e3f2fd; border: 2px solid #2196f3; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
+    <span class="keyword">private</span> <span class="annotation">guard</span> <span class="variable">isInitialized</span>;
+    <span class="keyword">private</span> <span class="annotation">guard</span> <span class="variable">encryptionStarted</span> 
+        <span class="keyword">finally</span> <span class="keyword">false</span>;
+}</code></pre>
+                </div>
+
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div
+                        style="background: #2196f3; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #2196f3;">→</div>
+                </div>
+
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #4caf50;">Generated Java Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
+    <span class="keyword">private</span> <span class="keyword">boolean</span> <span class="variable">isInitialized</span> = <span class="keyword">false</span>;
+    <span class="keyword">private</span> <span class="keyword">boolean</span> <span class="variable">encryptionStarted</span> = <span class="keyword">false</span>;
+    
+    <span class="comment">// Finalizer check added to destructor</span>
+    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="method">finalize</span>() {
+        <span class="keyword">if</span> (<span class="variable">encryptionStarted</span>) <span class="method">reportMisuse</span>();
+    }
+}</code></pre>
+                </div>
+            </div>
+            <div class="block" style="margin-top: 20px;">
+                <p><strong>Guards</strong> are boolean variables that track object state. They compile to regular
+                    boolean fields with additional finalizer checks for <code>finally</code> clauses.</p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Guards make implicit API state explicit. On the left, the jGuard DSL declares boolean state variables.
+                The 'finally false' annotation requires that the guard must be false (reset) when the object is
+                destroyed. In this example, 'encryptionStarted finally false' means any encryption operation that was
+                started must be completed (which resets the guard) before the object can be safely garbage collected. If
+                the object is destroyed while encryptionStarted is still true, jGuard reports a misuse - indicating an
+                incomplete encryption operation.</p>
+            <p>This compiles to standard Java fields with finalizer checks. The transformation is straightforward -
+                guards become booleans, finally clauses generate finalizer validation. API users see normal Java, but
+                get state machine enforcement.</p>
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 13 of 29</div>
+        <div class="slide-content">
+            <h2>JGuard Component 2: Requirements</h2>
+            <h3>Enforcing Preconditions</h3>
+            <div style="display: flex; gap: 40px; position: relative;">
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e3f2fd; border: 2px solid #2196f3; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">void</span> <span class="method">init</span>(<span class="annotation">@NonNull</span> <span class="type">Key</span> <span class="variable">key</span>)
+    <span class="annotation">require</span> !<span class="variable">encryptionStarted</span>, 
+    <span class="annotation">require</span> !<span class="variable">isInitialized</span>
+    <span class="annotation">when returns sets</span> <span class="variable">isInitialized</span>,
+    <span class="annotation">when returns sets</span> <span class="variable">encryptionStarted</span> {
+    <span class="comment">// Original method body</span>
+}</code></pre>
+                </div>
+
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div
+                        style="background: #2196f3; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #2196f3;">→</div>
+                </div>
+
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #4caf50;">Generated Java Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">init</span>(<span class="annotation">@NonNull</span> <span class="type">Key</span> <span class="variable">key</span>) {
+    <span class="comment">// Requirements checked in order</span>
+    <span class="keyword">if</span> (<span class="variable">key</span> == <span class="keyword">null</span>) <span class="method">reportMisuse</span>();
+    <span class="keyword">if</span> (<span class="variable">encryptionStarted</span>) <span class="method">reportMisuse</span>();
+    <span class="keyword">if</span> (<span class="variable">isInitialized</span>) <span class="method">reportMisuse</span>();
+    
+    <span class="comment">// Original method body</span>
+    
+    <span class="comment">// Consequences applied on return</span>
+    <span class="variable">isInitialized</span> = <span class="keyword">true</span>;
+    <span class="variable">encryptionStarted</span> = <span class="keyword">true</span>;
+}</code></pre>
+                </div>
+            </div>
+            <div class="example-block" style="margin-top: 20px;">
+                <p><strong>Requirements</strong> are preconditions checked before method execution. They compile to
+                    if-statements at method entry.</p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Requirements encode preconditions declaratively. The jGuard syntax specifies what must be true before
+                method execution. The compiler generates simple if-checks at method entry. Failed requirements trigger
+                reportMisuse().</p>
+        </div>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 14 of 29</div>
+        <div class="slide-content">
+            <h2>JGuard Component 3: Consequences</h2>
+            <h3>Managing State Changes</h3>
+            <div style="display: flex; gap: 40px; position: relative;">
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e3f2fd; border: 2px solid #2196f3; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">boolean</span> <span class="method">hasNext</span>()
+    <span class="annotation">when returns true sets</span> <span class="variable">canCallNext</span> {
+    <span class="comment">// Method body</span>
+}
+
+<span class="keyword">public</span> <span class="annotation">verified</span> <span class="type">T</span> <span class="method">next</span>() 
+    <span class="annotation">require</span> <span class="variable">canCallNext</span>
+    <span class="annotation">when returns resets</span> <span class="variable">canCallNext</span> {
+    <span class="comment">// Method body</span>
+}</code></pre>
+                </div>
+
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div
+                        style="background: #2196f3; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #2196f3;">→</div>
+                </div>
+
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #4caf50;">Generated Java Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="method">hasNext_$mangled</span>() {
+    <span class="comment">// Original method body</span>
+}
+
+<span class="keyword">public</span> <span class="keyword">boolean</span> <span class="method">hasNext</span>() {
+    <span class="keyword">boolean</span> <span class="variable">retVal</span> = <span class="method">hasNext_$mangled</span>();
+    <span class="keyword">if</span> (<span class="variable">retVal</span> == <span class="keyword">true</span>) {
+        <span class="variable">canCallNext</span> = <span class="keyword">true</span>;
+    }
+    <span class="keyword">return</span> <span class="variable">retVal</span>;
+}
+
+<span class="keyword">public</span> <span class="type">T</span> <span class="method">next</span>() {
+    <span class="keyword">if</span> (!<span class="variable">canCallNext</span>) <span class="method">reportMisuse</span>();
+    <span class="type">T</span> <span class="variable">retVal</span> = <span class="method">next_$mangled</span>();
+    <span class="variable">canCallNext</span> = <span class="keyword">false</span>;
+    <span class="keyword">return</span> <span class="variable">retVal</span>;
+}</code></pre>
+                </div>
+            </div>
+            <div class="block" style="margin-top: 20px;">
+                <p><strong>Consequences</strong> update guards based on method execution results. The compiler creates
+                    wrapper methods to intercept returns and exceptions.</p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Consequences update guards based on method outcomes. The Iterator example demonstrates conditional state
+                changes - hasNext returning true enables next().</p>
+            <p>The compilation strategy uses method wrapping. Original methods become private with mangled names. Public
+                wrappers handle state updates based on return values. This ensures state changes cannot be forgotten or
+                incorrectly implemented.</p>
+        </div>
+    </div>
+
+    <!-- Slide 15 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 15 of 29</div>
+        <div class="slide-content">
+            <h2>JGuard Advanced: Exception Handling in Consequences</h2>
+            <div style="display: flex; gap: 40px; position: relative;">
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e3f2fd; border: 2px solid #2196f3; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">void</span> <span class="method">encrypt</span>(<span class="keyword">byte[]</span> <span class="variable">data</span>) 
+    <span class="keyword">throws</span> <span class="type">CryptoException</span>
+    <span class="annotation">require</span> <span class="variable">isInitialized</span>
+    <span class="annotation">when returns sets</span> <span class="variable">hasEncrypted</span>
+    <span class="annotation">when throws</span> <span class="type">CryptoException</span> 
+        <span class="annotation">resets</span> <span class="variable">isInitialized</span> {
+    <span class="comment">// Encryption logic that may throw</span>
+}</code></pre>
+                </div>
+
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div
+                        style="background: #2196f3; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #2196f3;">→</div>
+                </div>
+
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #4caf50;">Generated Java Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">encrypt</span>(<span class="keyword">byte[]</span> <span class="variable">data</span>) 
+    <span class="keyword">throws</span> <span class="type">CryptoException</span> {
+    <span class="keyword">if</span> (!<span class="variable">isInitialized</span>) <span class="method">reportMisuse</span>();
+    
+    <span class="keyword">try</span> {
+        <span class="method">encrypt_$mangled</span>(<span class="variable">data</span>);
+        <span class="comment">// Success path: set guard</span>
+        <span class="variable">hasEncrypted</span> = <span class="keyword">true</span>;
+    } <span class="keyword">catch</span> (<span class="type">CryptoException</span> <span class="variable">e</span>) {
+        <span class="comment">// Exception path: reset guard</span>
+        <span class="variable">isInitialized</span> = <span class="keyword">false</span>;
+        <span class="keyword">throw</span> <span class="variable">e</span>;
+    }
+}</code></pre>
+                </div>
+            </div>
+            <div class="example-block" style="margin-top: 20px;">
+                <p>jGuard can track exceptional control flow, allowing APIs to maintain consistent state even when
+                    operations fail.</p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Real-world APIs must handle exceptional control flow. Consider what happens when encryption fails
+                mid-operation - perhaps due to invalid data, hardware security module errors, or memory issues. Without
+                proper state management, the Cipher object could be left in an inconsistent state - partially
+                initialized, thinking it's ready for operations it cannot perform.</p>
+            <p>jGuard consequences support exception triggers to handle these scenarios. Look at the example: 'when
+                throws CryptoException resets isInitialized'. This means if the encryption method throws this exception,
+                we automatically reset the initialization state. The object returns to a safe, predictable state rather
+                than remaining in limbo.</p>
+            <p>The generated code wraps the original method in try-catch blocks. On success, we update guards normally.
+                On exception, we execute the exception-specific guard updates before re-throwing. This is critical -
+                imagine a Cipher that fails during initialization but still thinks it's initialized. Subsequent
+                operations would fail mysteriously or, worse, silently produce incorrect results.</p>
+            <p>This pattern prevents an entire class of bugs where partial operations leave objects in zombie states. In
+                cryptographic APIs, this is especially dangerous - a partially initialized cipher might fall back to
+                insecure defaults or leak sensitive data. By encoding exception handling into our state machine, we
+                ensure consistent, predictable behavior even when things go wrong.</p>
+        </div>
+    </div>
+
+    <!-- Slide 16 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 16 of 29</div>
+        <div class="slide-content">
+            <h2>JGuard Advanced: Meta Variables for Context-Aware Constraints</h2>
+            <div style="display: flex; gap: 40px; position: relative;">
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e3f2fd; border: 2px solid #2196f3; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
+    <span class="annotation">meta</span> <span class="type">Set</span>&lt;<span class="type">String</span>&gt; <span class="variable">allowedAlgorithms</span>;
+    
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="annotation">verified</span> <span class="type">Cipher</span> 
+        <span class="method">getInstance</span>(<span class="type">String</span> <span class="variable">algorithm</span>)
+        <span class="annotation">require</span> <span class="variable">allowedAlgorithms</span>.<span class="method">contains</span>(<span class="variable">algorithm</span>) {}
+}
+
+<span class="comment">// Instantiation for different standards</span>
+<span class="annotation">instantiation</span> <span class="variable">FIPS</span> {
+    <span class="variable">Cipher.allowedAlgorithms</span> = {<span class="string">"AES"</span>, <span class="string">"TripleDES"</span>};
+}
+
+<span class="annotation">instantiation</span> <span class="variable">BSI</span> {
+    <span class="variable">Cipher.allowedAlgorithms</span> = {<span class="string">"AES"</span>};
+}</code></pre>
+                </div>
+
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div
+                        style="background: #2196f3; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #2196f3;">→</div>
+                </div>
+
+                <div style="flex: 1;">
+                    <div
+                        style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #4caf50;">Generated Java Code</strong>
+                    </div>
+                    <pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Cipher_FIPS</span> {
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Set</span>&lt;<span class="type">String</span>&gt; 
+        <span class="variable">allowedAlgorithms</span> = <span class="type">Set</span>.<span class="method">of</span>(
+            <span class="string">"AES"</span>, <span class="string">"TripleDES"</span>
+        );
+    
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">Cipher</span> 
+        <span class="method">getInstance</span>(<span class="type">String</span> <span class="variable">algorithm</span>) {
+        <span class="keyword">if</span> (!<span class="variable">allowedAlgorithms</span>.<span class="method">contains</span>(<span class="variable">algorithm</span>)) 
+            <span class="method">reportMisuse</span>();
+        <span class="comment">// Method body</span>
+    }
+}
+
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Cipher_BSI</span> {
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Set</span>&lt;<span class="type">String</span>&gt; 
+        <span class="variable">allowedAlgorithms</span> = <span class="type">Set</span>.<span class="method">of</span>(<span class="string">"AES"</span>);
+    <span class="comment">// Same implementation, different allowed set</span>
+}</code></pre>
+                </div>
+            </div>
+            <div class="block" style="margin-top: 20px;">
+                <p><strong>Meta Variables</strong> enable context-specific API constraints. Each instantiation generates
+                    a separate class with customized validation rules.</p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>API constraints vary by deployment context. Meta variables enable context-specific validation - FIPS
+                allows TripleDES, BSI prohibits it.</p>
+            <p>Each instantiation generates a separate class with customized validation rules. When you write
+                'instantiation FIPS' and 'instantiation BSI', the jGuard compiler doesn't create one class with runtime
+                flags or configuration files. Instead, it generates two completely separate Java classes: Cipher_FIPS
+                and Cipher_BSI. Each has its allowed algorithms hard-coded as static final sets.</p>
+            <p>This design has several advantages. First, compliance is verified at compile-time, not runtime. If you
+                try to use TripleDES in Cipher_BSI, it fails immediately - no runtime surprises. Second, there's zero
+                performance overhead from checking configuration flags or consulting external rule files. The validation
+                is compiled directly into bytecode.</p>
+            <p>Most importantly, this supports regulatory compliance scenarios. A financial application shipping to
+                Germany can include only Cipher_BSI.jar, physically unable to use algorithms that BSI prohibits. An
+                application for US government use includes only Cipher_FIPS.jar. The compliance is baked into the
+                artifact itself - auditors can verify compliance by examining which JAR is deployed.</p>
+            <p>This also enables gradual migration. An organization moving from FIPS to BSI standards can run both
+                versions simultaneously during transition, with different components using different implementations. No
+                global configuration changes, no runtime switches - just type-safe, compile-time guaranteed compliance.
+            </p>
+            <p>The alternative - runtime configuration - is error-prone. One misconfigured property file could violate
+                security standards. Our approach makes misconfiguration impossible: if it compiles and runs, it's
+                compliant.</p>
+        </div>
+    </div>
+
+    <!-- Slide 17 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 17 of 29</div>
+        <div class="slide-content">
+            <h2>Empirical Validation: Expressiveness & Accuracy</h2>
+
+            <div style="display: flex; gap: 30px; margin-bottom: 20px;">
+                <div style="flex: 1;">
+                    <div class="example-block" style="height: 100%;">
+                        <h3>Expressiveness</h3>
+                        <p style="font-size: 2em; color: #27ae60; text-align: center; margin: 20px 0;">
+                            <strong>89.2%</strong>
+                        </p>
+                        <p style="text-align: center;">124/139 MuBench misuses expressed</p>
+                        <p style="text-align: center; font-size: 0.9em; margin-top: 10px;">Exceeds CrySL for dynamic
+                            patterns</p>
+                    </div>
+                </div>
+
+                <div style="flex: 1;">
+                    <div class="alert-block" style="height: 100%;">
+                        <h3>Zero False Positives</h3>
+                        <table style="width: 100%; font-size: 0.9em; margin-top: 10px;">
+                            <tr>
+                                <td>True Positives</td>
+                                <td style="text-align: right; color: #27ae60;"><strong>26/31</strong></td>
+                                <td style="text-align: right;">vs 25/31</td>
+                            </tr>
+                            <tr>
+                                <td>False Positives</td>
+                                <td style="text-align: right; color: #27ae60;"><strong>0</strong></td>
+                                <td style="text-align: right; color: #ef5350;">vs 67</td>
+                            </tr>
+                            <tr>
+                                <td>Precision</td>
+                                <td style="text-align: right; color: #27ae60;"><strong>100%</strong></td>
+                                <td style="text-align: right;">vs 27.17%</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <h3>Performance Impact</h3>
+                <div style="display: flex; justify-content: space-around; text-align: center;">
+                    <div>
+                        <strong>Apache POI</strong><br />
+                        <span style="color: #27ae60;">No measurable impact</span>
+                    </div>
+                    <div>
+                        <strong>JWT Libraries</strong><br />
+                        <span style="color: #27ae60;">&lt;5% overhead</span>
+                    </div>
+                    <div>
+                        <strong>AES Encryption</strong><br />
+                        <span style="color: #27ae60;">Negligible for large data</span>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 15px; font-size: 0.9em;"><em>Deploy with checks in dev/test,
+                        disable in production</em></p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>We evaluated jGuard on the MUBench dataset. Key results: 89.2% of real-world misuses expressible, zero
+                false positives compared to CogniCrypt's 67, negligible performance overhead. The precision difference
+                is fundamental - runtime checking has complete program state, while static analysis must approximate.
+            </p>
+            <p>Consider our ECB mode example. Static analysis sees Cipher.getInstance("AES") and must assume all
+                possible values that string could have - it might be computed, loaded from config, or user input. So it
+                warns about potential ECB usage even when the code might actually compute "AES/GCM/NoPadding" at
+                runtime. This uncertainty causes false positives.</p>
+            <p>Runtime checking is different. When getInstance executes, we know the exact string value. No
+                approximation, no uncertainty. If it's "AES", we catch it. If it's "AES/GCM/NoPadding", we don't. This
+                is why jGuard achieves zero false positives while CogniCrypt reports 67.</p>
+            <p>The same applies to control flow. Static analysis must consider all possible paths through your code.
+                Runtime checking only deals with the path actually taken. This fundamental difference - complete
+                information versus conservative approximation - explains why runtime enforcement can be so much more
+                precise.</p>
+            <p>Key point: Static analysis trades precision for early detection. jGuard trades early detection for
+                perfect precision. For API misuse, precision matters more because false positives train developers to
+                ignore warnings. Performance impact is minimal because checks are simple boolean tests.</p>
+        </div>
+    </div>
+
+    <!-- Slide 18 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 18 of 29</div>
+        <div class="slide-content">
+            <h2>From Domain-Specific Safety to Broader Challenges</h2>
+            <div class="block">
+                <h3>What We've Achieved with JGuard</h3>
+                <ul>
+                    <li>APIs that are inherently harder to misuse</li>
+                    <li>Domain expert knowledge embedded directly in implementation</li>
+                    <li>Runtime enforcement with zero false positives</li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <h3>The Broader Challenge</h3>
+                <p>API misuse is just one facet of developer assistance challenges</p>
+            </div>
+            <div class="diagram-flow">
+                <div class="diagram-node">
+                    Domain-Specific Modeling<br />for API Safety
+                    <div style="font-size: 0.8em; color: #666;">JGuard foundation</div>
+                </div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node" style="border-color: #e67e22;">
+                    Model First,<br />AI Next Approach
+                    <div style="font-size: 0.8em; color: #666;">Building on this...</div>
+                </div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node" style="border-color: #27ae60;">
+                    Precise models +<br />Strategic AI<br />= Systematic guarantees
+                </div>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>jGuard demonstrates the value of embedding domain expertise directly into implementations. This principle
+                extends beyond API safety.</p>
+            <p>The broader insight: explicit modeling of correctness properties enables systematic guarantees. This
+                becomes critical when we consider AI-generated code.</p>
+        </div>
+    </div>
+
+    <!-- Slide 19 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 19 of 29</div>
+        <div class="slide-content">
+            <h2>The Promise of LLMs in Software Engineering</h2>
+            <div class="example-block">
+                <h3>Current Capabilities</h3>
+                <ul>
+                    <li>Automated code generation and completion</li>
+                    <li>Code summarization and documentation</li>
+                    <li>Conversational debugging assistance</li>
+                    <li>Refactoring suggestions</li>
+                </ul>
+            </div>
+            <div class="block">
+                <h3>Vision: SE 3.0 - AI-Native Development</h3>
+                <p>"Intent-first, conversation-oriented development" where LLMs are intelligent collaborators</p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Large Language Models are transforming software development. Current capabilities include code
+                generation, summarization, and debugging assistance.</p>
+            <p>The SE 3.0 vision proposes AI as an intelligent collaborator. However, this assumes LLMs can provide
+                reliable, correct outputs.</p>
+            <p>The SE 3.0 vision comes from Hassan et al.'s position paper at FSE 2024, 'Towards AI-Native Software
+                Engineering.' This represents a systematic attempt to characterize how software engineering might evolve
+                with widespread LLM adoption.</p>
+            <p>The paper identifies three eras: SE 1.0 focused on manual programming, SE 2.0 introduced IDEs and
+                tooling, and SE 3.0 envisions AI-native development. Their core proposal is 'intent-first,
+                conversation-oriented development' - developers express requirements in natural language, AI systems
+                handle implementation.</p>
+            <p>Key technical claims include: AI understanding ambiguous specifications, generating complete systems from
+                high-level descriptions, and automatically adapting code to requirement changes. The framework assumes
+                the communication burden shifts from human to AI - precise prompting becomes unnecessary as AI infers
+                developer intent.</p>
+            <p>However, this assumes LLMs can provide reliable, correct outputs. Current empirical evidence shows
+                significant gaps: hallucination rates up to 76.3% in some contexts, systematic generation of vulnerable
+                code patterns, and inability to maintain consistency across large codebases. The paper acknowledges
+                these as challenges but doesn't address whether they're fundamental limitations or engineering problems.
+            </p>
+            <p>This motivates our hybrid approach. We accept the premise that AI will be central to future development,
+                but argue that pure generation is insufficient. Systematic validation through static analysis and formal
+                specifications is essential. The realistic path to SE 3.0 requires combining AI capabilities with
+                correctness guarantees - exactly what our architecture provides.</p>
+        </div>
+    </div>
+
+    <!-- Slide 20 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 20 of 29</div>
+        <div class="slide-content">
+            <h2>The "Black Box" Problem</h2>
+            <h3>Inherent Limitations of Current LLMs</h3>
+            <div class="alert-block">
+                <ul>
+                    <li><strong>No True Understanding:</strong> Statistical patterns, not logical comprehension</li>
+                    <li><strong>Hallucinations:</strong> Convincing but false information</li>
+                    <li><strong>Short Memory:</strong> Limited context windows</li>
+                    <li><strong>Security Risks:</strong> LLM-generated code often contains vulnerabilities</li>
+                </ul>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 30px; margin: 30px 0;">
+                <div
+                    style="background: #ffebee; border: 2px solid #f44336; border-radius: 12px; padding: 20px; text-align: center;">
+                    <h4>LLM Output</h4>
+                    <p>Plausible but potentially incorrect</p>
+                </div>
+                <div style="font-size: 2em; color: #666;">?</div>
+                <div
+                    style="background: #ffebee; border: 2px solid #f44336; border-radius: 12px; padding: 20px; text-align: center;">
+                    <h4>Production Code</h4>
+                    <p>May contain hidden vulnerabilities</p>
+                </div>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>LLMs have fundamental limitations rooted in their architecture. They operate through statistical pattern
+                matching, not logical reasoning. Tie et al. (2024) demonstrate this empirically - LLMs fail at
+                multi-step reasoning and abstract thinking, achieving only 23% accuracy on logical inference tasks.</p>
+            <p>Hallucinations are systematic. The same study shows 76.3% hallucination rates in complex scenarios. LLMs
+                generate syntactically plausible but incorrect code because they match patterns without understanding
+                correctness.</p>
+            <p>Context limitations compound these issues. With 8-128K token windows, LLMs cannot maintain consistency
+                across large codebases. Each request processes in isolation, losing critical system-wide invariants.</p>
+            <p>Security implications are severe. Pearce et al. (2022) found 40% of GitHub Copilot's generated code
+                contains security vulnerabilities. These aren't random - LLMs consistently replicate insecure patterns
+                from training data: hardcoded passwords, SQL injections, weak cryptography.</p>
+            <p>The key insight: these are architectural properties, not bugs. Statistical models cannot distinguish
+                secure from insecure when both appear frequently in training data. This is why Tie et al. conclude LLMs
+                'cannot be sole judges of correctness' - they lack the logical foundation required for security
+                reasoning.</p>
+        </div>
+    </div>
+
+    <!-- Slide 21 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 21 of 29</div>
+        <div class="slide-content">
+            <h2>Why Current LLMs Fail at Program Comprehension - Dictionary learning</h2>
+            <div class="alert-block">
+                <p>Our recent study reveals that code LLMs operate as sophisticated <strong>dictionary lookup
+                        systems</strong> rather than true program comprehenders</p>
+                <ul>
+                    <li><strong>✓ Syntax ↔ Syntax:</strong> LLMs learn co-occurrence (e.g., 'if' appears with '{')</li>
+                    <li><strong>✓ Identifier ↔ Identifier:</strong> LLMs match naming patterns (e.g., 'key' with
+                        'encrypt')</li>
+                    <li><strong>✗ Syntax ↔ Semantics:</strong> Cannot connect structure to meaning</li>
+                    <li><strong>✗ Cross-Domain Integration:</strong> Cannot reason about program behavior</li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <pre><code><span class="comment">// LLMs see this pattern frequently in training data:</span>
+<span class="type">Cipher</span> <span class="variable">cipher</span> = <span class="type">Cipher</span>.<span class="method">getInstance</span>(<span class="string">"AES"</span>);
+
+<span class="comment">// So they reproduce it, not understanding that "AES" → ECB mode → insecure</span></code></pre>
+                <p>The model matches syntactic patterns without grasping security semantics</p>
+            </div>
+
+            <p class="citation">Narasimhan et al., ACL Findings 2024: "Do Code LLMs Understand Structured Syntax?"</p>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>In our recent ACL Findings paper, we investigated how code LLMs actually process programs. We found they
+                operate as sophisticated dictionary systems, not true comprehension engines.</p>
+            <p>The experiment was revealing. We tested whether LLMs could integrate information across syntactic and
+                semantic domains. They excel at syntax-to-syntax associations - knowing that 'if' pairs with braces,
+                that certain tokens co-occur. They're equally good at identifier patterns - recognizing that 'key'
+                appears near 'encrypt'.</p>
+            <p>But here's the critical failure: they cannot connect syntax to program semantics. When you write
+                Cipher.getInstance("AES"), the model knows this pattern appears frequently in training data. It doesn't
+                understand that "AES" implies ECB mode, which enables pattern attacks.</p>
+            <p>This explains systematic API misuses. LLMs reproduce statistically common patterns without security
+                comprehension. They've memorized that getInstance takes a string parameter, but not what that string
+                means for security. This isn't a training problem - it's architectural. Dictionary learning cannot
+                bridge the syntax-semantic gap.</p>
+            <p>For API safety, this is fatal. Security requires understanding consequences, not just matching patterns.
+                Our findings demonstrate why hybrid approaches are essential - we need systems that can verify semantic
+                correctness, not just syntactic plausibility.</p>
+        </div>
+    </div>
+
+    <!-- Slide 22 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 22 of 29</div>
+        <div class="slide-content">
+            <h2>The Expertise Gap in Human-AI Interaction</h2>
+            <h3>TOMMY Study Insights</h3>
+            <div style="display: flex; justify-content: center; gap: 40px; margin: 30px 0;">
+                <div style="background: #e8f5e9; border: 2px solid #4caf50; border-radius: 12px; padding: 20px;">
+                    <h4>Expert Programmers</h4>
+                    <ul style="text-align: left;">
+                        <li>Better context provision</li>
+                        <li>Recognize AI errors</li>
+                        <li>Effective prompts</li>
+                    </ul>
+                </div>
+                <div style="background: #ffebee; border: 2px solid #f44336; border-radius: 12px; padding: 20px;">
+                    <h4>Novice Developers</h4>
+                    <ul style="text-align: left;">
+                        <li>Struggle with prompts</li>
+                        <li>Miss AI mistakes</li>
+                        <li>Accept incorrect output</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="alert-block">
+                <h3>Technical Gaps Identified</h3>
+                <ul>
+                    <li>No systematic post-processing with static analysis</li>
+                    <li>Absence of formal mental state representation</li>
+                </ul>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>The TOMMY study, conducted by Richards and Wessel in 2024, investigated how LLM-based coding assistants
+                could adapt to different users' mental states. The researchers built a system that infers developer
+                expertise, knowledge gaps, and comprehension patterns - essentially giving the AI a 'Theory of Mind'
+                about its users.</p>
+            <p>They tested TOMMY with developers ranging from novices to experts, examining how personalized
+                explanations affected code understanding and task completion. The key innovation was treating developer
+                mental state as a first-class concern in AI assistance.</p>
+            <p>The TOMMY study quantified expertise effects on LLM usage. Expert programmers provide better context and
+                recognize errors. Novices struggle with both.</p>
+            <p>Current systems require users to compensate for LLM limitations. This creates unequal access to AI
+                benefits. We need systems that work regardless of user expertise.</p>
+        </div>
+    </div>
+
+    <!-- Slide 23 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 23 of 29</div>
+        <div class="slide-content">
+            <h2>Our Vision: Hybrid System with Developer Context</h2>
+
+            <div class="diagram-flow" style="margin-bottom: 35px;">
+                <div class="diagram-node">Human<br />Developer</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node" style="border-color: #e67e22;">AI Assistant<br />(LLM)</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node" style="border-color: #27ae60;">Developer<br />Context DSL</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node" style="border-color: #2196f3;">Static Analysis<br />Tools</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node" style="border-color: #8e44ad;">Validation &<br />Refinement</div>
+            </div>
+
+            <div style="display: flex; gap: 40px; justify-content: center; margin-bottom: 25px;">
+                <div style="flex: 1; max-width: 400px;">
+                    <div style="background: #e3f2fd; border: 2px solid #2196f3; border-radius: 12px; padding: 25px;">
+                        <h4>developer_mental_model</h4>
+                        <ul style="text-align: left; list-style: none;">
+                            <li>• Programming expertise level</li>
+                            <li>• Current intent</li>
+                            <li>• Knowledge gaps</li>
+                            <li>• Comprehension level</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="flex: 1; max-width: 400px;">
+                    <div style="background: #e3f2fd; border: 2px solid #2196f3; border-radius: 12px; padding: 25px;">
+                        <h4>program_context_graph</h4>
+                        <ul style="text-align: left; list-style: none;">
+                            <li>• AST representation</li>
+                            <li>• Control flow graph</li>
+                            <li>• Data flow graph</li>
+                            <li>• Semantic annotations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <pre><code><span class="type">context_state</span> {
+    <span class="variable">programming_expertise</span>: <span class="keyword">novice</span> | <span class="keyword">intermediate</span> | <span class="keyword">expert</span>
+    <span class="variable">current_intent</span>: { <span class="variable">type</span>: <span class="keyword">enum</span> (<span class="string">"bug_fix"</span>, <span class="string">"feature_add"</span>) }
+    <span class="variable">knowledge_gaps</span>: [<span class="variable">topic</span>: <span class="type">String</span>, <span class="variable">confidence</span>: <span class="type">Float</span>]
+}</code></pre>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>We propose combining LLM fluency with static analysis correctness through structured context
+                representation.</p>
+            <p>The developer context DSL has two components: mental model capturing user expertise and intent, program
+                context providing semantic information through ASTs and flow graphs. This design reflects how developers
+                actually think about code - cognitive science research shows programmers maintain mental models of
+                program state, control flow, and domain concepts while coding. We're simply making these implicit mental
+                representations explicit and machine-readable.</p>
+            <p>The TOMMY system demonstrated this empirically - by inferring developer mental states like comprehension
+                level and background knowledge, it achieved significantly better assistance outcomes. Our DSL formalizes
+                what TOMMY discovered: effective AI assistance requires understanding not just the code, but the human
+                examining it.</p>
+            <p>This structured representation enables precise reasoning and personalized assistance, overcoming natural
+                language limitations. Instead of hoping an LLM infers context from vague prompts, we provide explicit,
+                structured information about both the developer's understanding and the program's actual semantics.</p>
+        </div>
+    </div>
+
+    <!-- Slide 24 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 24 of 29</div>
+        <div class="slide-content">
+            <h2>Case Study: How Our System Prevents ECB Misuse</h2>
+
+            <div class="alert-block" style="margin-bottom: 20px;">
+                <h3>The Problem: ECB Mode Reveals Patterns</h3>
+                <div style="display: flex; align-items: center; gap: 40px; justify-content: center;">
+                    <div style="flex: 1;">
+                        <pre><code><span class="type">Cipher</span> <span class="variable">cipher</span> = <span class="type">Cipher</span>.<span class="method">getInstance</span>(<span class="string">"AES/ECB/PKCS5Padding"</span>);</code></pre>
+                    </div>
+                    <div style="flex: 1; text-align: center;">
+                        Same plaintext → Same ciphertext<br /><strong style="color: #ef5350;">Enables pattern
+                            attacks!</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px;">
+                <div class="diagram-node">LLM generates<br /><strong>ECB code</strong></div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node">Static Analysis<br /><strong>detects issue</strong></div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node">Feedback with<br /><strong>context</strong></div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node" style="border-color: #27ae60; background: #e8f5e9;">Secure
+                    code<br /><strong>generated</strong></div>
+            </div>
+
+            <div style="display: flex; gap: 40px; margin-bottom: 15px;">
+                <div style="flex: 1;">
+                    <h4 style="color: #ef5350;">❌ Insecure (LLM Generated)</h4>
+                    <pre style="background: #ffebee; border: 2px solid #ef5350;"><code><span class="type">Cipher</span> <span class="variable">cipher</span> = <span class="type">Cipher</span>.<span class="method">getInstance</span>(
+    <span class="string">"AES/ECB/PKCS5Padding"</span>);</code></pre>
+                </div>
+                <div style="flex: 1;">
+                    <h4 style="color: #27ae60;">✓ Secure (After Feedback)</h4>
+                    <pre
+                        style="background: #e8f5e9; border: 2px solid #4caf50;"><code><span class="type">Cipher</span> <span class="variable">cipher</span> = <span class="type">Cipher</span>.<span class="method">getInstance</span>(
+    <span class="string">"AES/GCM/NoPadding"</span>);
+<span class="variable">cipher</span>.<span class="method">init</span>(<span class="variable">ENCRYPT_MODE</span>, <span class="variable">keySpec</span>, 
+    <span class="keyword">new</span> <span class="type">GCMParameterSpec</span>(<span class="variable">128</span>, <span class="method">generateRandomIV</span>()));</code></pre>
+                </div>
+            </div>
+
+            <div class="example-block">
+                <p style="text-align: center;"><strong>Personalized Explanation:</strong> "ECB encrypts identical blocks
+                    identically. GCM uses unique IVs for semantic security."</p>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Consider the complete flow: LLM generates insecure ECB mode, static analysis detects the vulnerability,
+                system queries developer context for expertise level, generates personalized explanation, provides
+                secure alternative.</p>
+            <p>The key is context-aware feedback. Novices get different explanations than experts. The system adapts to
+                the user rather than requiring adaptation.</p>
+        </div>
+    </div>
+
+    <!-- Slide 25 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 25 of 29</div>
+        <div class="slide-content">
+            <h2>Iterative Refinement and Learning</h2>
+            <div class="diagram-flow">
+                <div class="diagram-node">Static Analysis<br />Validates Output</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node">Feedback for<br />LLM Fine-tuning</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node">User Feedback<br />on Explanations</div>
+                <div class="diagram-arrow">→</div>
+                <div class="diagram-node">Improved<br />Theory of Mind</div>
+            </div>
+            <div class="example-block">
+                <h3>Trust, but Verify Paradigm</h3>
+                <ul>
+                    <li>LLM provides fluent, context-aware assistance</li>
+                    <li>Static analysis ensures correctness</li>
+                    <li>Continuous improvement through feedback loops</li>
+                </ul>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>The system improves through feedback loops. Static analysis findings train the LLM, user feedback refines
+                mental model inference, property-based testing validates complex scenarios.</p>
+            <p>This creates a trust-but-verify architecture where LLM creativity combines with formal method
+                correctness.</p>
+        </div>
+    </div>
+
+    <!-- Slide 26 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 26 of 29</div>
+        <div class="slide-content">
+            <h2>Future Research Directions</h2>
+            <div class="block">
+                <h3>Technical Challenges</h3>
+                <ul>
+                    <li><strong>Mental Model Inference:</strong> Improving accuracy of developer understanding</li>
+                    <li><strong>DSL Evolution:</strong> Automated construction and adaptation</li>
+                    <li><strong>Scalability:</strong> Real-time analysis for large codebases</li>
+                    <li><strong>Explainable AI:</strong> Making static analysis findings intuitive</li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <h3>Integration Opportunities</h3>
+                <ul>
+                    <li>Property-Based Testing integration</li>
+                    <li>Cross-language support</li>
+                    <li>IDE integration with real-time feedback</li>
+                </ul>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Looking forward, several technical challenges remain. Mental model inference needs improvement - how
+                accurately can we determine what a developer understands? DSL evolution presents opportunities for
+                automated construction based on domain patterns. Scalability to enterprise codebases requires
+                optimization. Making static analysis findings intuitive for all expertise levels remains challenging.
+            </p>
+            <p>Integration opportunities abound: property-based testing could automatically generate test cases for
+                AI-generated code, cross-language support would extend beyond Java, and IDE integration could provide
+                real-time feedback as developers work with AI assistants.</p>
+        </div>
+    </div>
+
+    <!-- Slide 27 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 27 of 29</div>
+        <div class="slide-content">
+            <h2>Grounding Our Vision in Research</h2>
+            <div class="block">
+                <h3>Evidence from Literature</h3>
+                <ul>
+                    <li><strong>LLM Limitations:</strong> "LLMs operate on statistical patterns rather than logical
+                        comprehension" <span class="citation">(Tie et al., 2024)</span></li>
+                    <li><strong>Expertise Gap:</strong> "Programming expertise significantly influences LLM tool
+                        effectiveness" <span class="citation">(TOMMY Study, 2024)</span></li>
+                    <li><strong>Hybrid Benefits:</strong> "Combining LLMs with formal methods improves correctness"
+                        <span class="citation">(Hassan et al., SE 3.0 Vision, 2024)</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="example-block">
+                <h3>Trust but Verify</h3>
+                <ul>
+                    <li>LLM provides fluent, context-aware assistance</li>
+                    <li>Static analysis ensures correctness</li>
+                    <li>Continuous improvement through feedback loops</li>
+                </ul>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Our approach is grounded in empirical findings. Tie et al. demonstrate LLM limitations in logical
+                reasoning. The TOMMY study establishes the expertise gap. Hassan et al.'s SE 3.0 vision calls for
+                exactly this kind of hybrid approach.</p>
+            <p>The innovation is our specific architecture: structured context representation with systematic
+                validation.</p>
+        </div>
+    </div>
+
+    <!-- Slide 28 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 28 of 29</div>
+        <div class="slide-content">
+            <h2>Collaborations at LIACS</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Research opportunities that leverage my DSL and software
+                tooling expertise with LIACS strengths</p>
+
+            <div style="display: flex; gap: 40px;">
+                <div style="flex: 1;">
+                    <div class="example-block" style="margin-bottom: 25px;">
+                        <h3>Formal Methods Integration</h3>
+                        <p><strong>Partners:</strong> Laarman (model checking)</p>
+                        <p><strong>My contribution:</strong> DSL design for domain-specific verification, practical
+                            state machine modeling</p>
+                        <p><strong>Their expertise:</strong> Theoretical foundations, verification frameworks</p>
+                        <p><strong>Impact:</strong> Create verification DSLs that make formal methods accessible to
+                            domain experts</p>
+                    </div>
+
+                    <div class="block">
+                        <h3>Security & Education</h3>
+                        <p><strong>Partners:</strong> Gadyatskaya (XAI security), Takes (curriculum design)</p>
+                        <p><strong>My contribution:</strong> Developer-centric tooling design, runtime feedback systems
+                        </p>
+                        <p><strong>Their expertise:</strong> Security-by-design, educational frameworks</p>
+                        <p><strong>Impact:</strong> Build interactive tools that teach secure development through
+                            immediate feedback</p>
+                    </div>
+                </div>
+
+                <div style="flex: 1;">
+                    <div class="alert-block" style="margin-bottom: 25px;">
+                        <h3>Large-Scale & ML Systems</h3>
+                        <p><strong>Partners:</strong> Visser (software metrics), Batenburg (SAILS interdisciplinary)</p>
+                        <p><strong>My contribution:</strong> Domain-specific tooling for software quality, developer
+                            experience design</p>
+                        <p><strong>Their expertise:</strong> Ecosystem analysis, domain-specific applications</p>
+                        <p><strong>Impact:</strong> Create specialized tools for ML engineering and large-scale software
+                            analysis</p>
+                    </div>
+
+                    <div class="example-block">
+                        <h3>Novel Perspectives</h3>
+                        <p><strong>Unique angles:</strong> Software tool adoption as social phenomenon (Takes),
+                            quantum-enhanced development tools (Laarman), visualization-driven programming interfaces
+                            (Batenburg)</p>
+                        <p><strong>Strategic value:</strong> Positions research at intersection of SE, AI, and
+                            human-computer interaction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>I see exciting collaboration opportunities at LIACS that leverage my DSL and software tooling expertise
+                with existing strengths.</p>
+            <p>With Laarman's model checking expertise, we could create verification DSLs that make formal methods
+                accessible to domain experts. My practical state machine modeling combined with theoretical foundations
+                could bridge the gap between theory and practice.</p>
+            <p>Gadyatskaya's XAI security work and Takes' curriculum design expertise align perfectly with building
+                educational security tools. Interactive systems that teach secure development through immediate feedback
+                could transform how we train developers.</p>
+            <p>Visser's software metrics and Batenburg's interdisciplinary approach through SAILS open doors for
+                specialized ML engineering tools. The strategic value lies in positioning research at the intersection
+                of SE, AI, and human-computer interaction.</p>
+            <p>Novel perspectives include treating software tool adoption as a social phenomenon, exploring
+                quantum-enhanced development tools, and creating visualization-driven programming interfaces. These
+                unique angles could differentiate LIACS research globally.</p>
+        </div>
+    </div>
+
+    <!-- Slide 29 -->
+    <div class="slide-with-notes">
+        <div class="slide-number-header">Slide 29 of 29</div>
+        <div class="slide-content title-slide">
+            <h2>Thank you</h2>
+            <h3>Questions?</h3>
+        </div>
+        <div class="presenter-notes">
+            <h4>Presenter Notes</h4>
+            <p>Thank you for your attention. I'm happy to answer any questions about jGuard, our hybrid AI vision, or
+                potential collaborations at LIACS.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

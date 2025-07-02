@@ -692,14 +692,31 @@
         <div class="slide">
             <h2>Agenda</h2>
             <ul>
-                <li>API misuses (Seriousness, Challenges)</li>
-                <li>Existing approaches (Documentation/ Static Analysis)</li>
-                <li>DSLs to the rescue (CrySL, jGuard)</li>
-                <li>Types of misuses supported</li>
-                <li>Static approach (CrySL)</li>
-                <li>Dynamic approach (jGuard)</li>
-                <li> Broader software tooling challenges and an AI-enabled vision</li\>
-                <li>Collaboration thoughts and conclusion</li>
+                <li>
+                    <h3>API misuses (Seriousness, Challenges)</h3>
+                </li>
+                <li>
+                    <h3>Existing approaches (Documentation/ Static Analysis)</h3>
+                </li>
+                <li>
+                    <h3DSLs to the rescue (CrySL, jGuard)>
+                        </h3>
+                </li>
+                <li>
+                    <h3>Types of misuses supported</h3>
+                </li>
+                <li>
+                    <h3>Static approach (CrySL)</h3>
+                </li>
+                <li>
+                    <h3>Dynamic approach (jGuard)</h3>
+                </li>
+                <li>
+                    <h3>Broader software tooling challenges and an AI-enabled vision</h3>
+                    </li\>
+                <li>
+                    <h3>Collaboration thoughts and conclusion</h3>
+                </li>
             </ul>
         </div>
 
@@ -711,14 +728,14 @@
             <div style="width: 45%; text-align: center; margin: 10px;">
                 <img src="apimisuseexample.png" alt="All the places one could misuse an API'"
                     style="max-width: 100%; height: auto;">
-                <p>Research highlights how cryptographic API misuses lead to vulnerabilities due to complex
-                    programming choices and lack of usability features in APIs. Integrated security advice can
-                    significantly improve code security.</p>
+                <div class="example-block" style="margin-top: 40px;">
+                    <p>Using a cryptographic API without proper initialization can lead to security vulnerabilities.</p>
+                </div>
             </div>
         </div>
 
         <div class="slide">
-            <h2>The API Misuse Crisis</h2>
+            <h2>The API Misuse Seriousness</h2>
             <div class="impact-number">$85 Million</div>
             <p>Zoom's settlement for API misuse leading to security vulnerabilities</p>
             <div class="diagram-flow" style="margin-top: 40px;">
@@ -759,45 +776,25 @@
                     <tr>
                         <td><strong>Static Analysis</strong></td>
                         <td>Early detection</td>
-                        <td>High false positives (67 in our study)</td>
+                        <td>
+                            <ul>
+                                <li><strong>High false positive rate</strong> (e.g., 67 in our study)</li>
+                                <li>Limited to known patterns, need separate set of rules for each API or
+                                    task(Encryption, Password hashing)</li>
+                                <li>Requires external tooling which developers resist</li>
+                            </ul>
                     </tr>
-                    <tr>
-                        <td><strong>External Tools</strong></td>
-                        <td>Powerful analysis</td>
-                        <td>Developers resist new tooling</td>
-                    </tr>
+
                 </tbody>
             </table>
             <div class="alert-block" style="margin-top: 30px;">
-                <h3>The Core Problem</h3>
+                <h3>Also!</h3>
                 <p>API usage patterns vary by context (Android vs JDK), security standards (BSI vs NIST), and versions -
                     making one-size-fits-all solutions ineffective</p>
             </div>
         </div>
 
-        <div class="slide">
-            <h2>Three Main API Misuse Patterns</h2>
-            <div class="cipher-flow">
-                <div class="cipher-step">
-                    <div class="cipher-box insecure">
-                        <h4>Insecure Parameters</h4>
-                        <code>Cipher.getInstance("AES/ECB")</code>
-                        <p style="font-size: 0.9em; margin-top: 10px;">ECB mode reveals patterns</p>
-                    </div>
-                    <div class="cipher-box insecure">
-                        <h4>Incorrect Call Sequence</h4>
-                        <code>sign() without update()</code>
-                        <p style="font-size: 0.9em; margin-top: 10px;">Missing crucial step</p>
-                    </div>
-                    <div class="cipher-box insecure">
-                        <h4>Insecure Composition</h4>
-                        <code>keySize = 64</code>
-                        <p style="font-size: 0.9em; margin-top: 10px;">Weak security parameters</p>
-                    </div>
-                </div>
-            </div>
-            <p class="citation">Based on MUBench dataset of 139 real-world API misuses</p>
-        </div>
+
 
         <div style="text-align: center; margin: 10px;">
 
@@ -845,14 +842,15 @@
 
             <div class="alert-block" style="margin-top: 30px; max-width: 95%; margin-left: auto; margin-right: auto;">
                 <p style="text-align: center; margin: 0; font-size: 1.1em;"><strong>Key Insight:</strong> All patterns
-                    involve state machines and sequencing → Perfect for DSL solutions</p>
+                    involve state machines and sequencing → State machine</p>
             </div>
+            <p class="citation">Based on MUBench dataset of 139 real-world API misuses</p>
         </div>
 
         <div class="slide">
             <h2>API Usage: Expressable using States and Transitions</h2>
-            <p>Many APIs require a specific sequence of calls to be used correctly. This inherent "behavior" can be
-                precisely captured using **State Machines**.</p>
+            <p>Many APIs require a specific sequence of calls to be used correctly. This behavior can be
+                captured using **State Machines**.</p>
 
             <div
                 style="position: relative; width: 80%; max-width: 700px; height: 350px; margin: 30px auto; border: 1px solid #555; border-radius: 10px; background-color: #222; box-shadow: 0 0 15px rgba(0,0,0,0.5);">
@@ -1026,22 +1024,20 @@
 
 
 
-        <!-- Slide 2: The Problem with API Misuse -->
         <div class="slide">
-            <h2>The Challenge: API Misuse is Costly and Common</h2>
-            <div class="block">
-                <h3>Why Do Developers Struggle with APIs?</h3>
-                <ul>
-                    <li>APIs are increasingly complex and numerous</li>
-                    <li>Documentation alone is often insufficient</li>
-                    <li>Misuses lead to <strong>security vulnerabilities</strong>, <strong>crashes</strong>, and
-                        <strong>performance issues</strong>
-                    </li>
-                    <li>Example: Zoom's $85M lawsuit due to insecure crypto API usage</li>
-                </ul>
+            <h2>The Challenge with a static solution</h2>
+            <div class="example-block">
+                <h3>Static Analysis Has Fundamental Limits</h3>
+                <p>Consider the Iterator pattern - a seemingly simple API:</p>
+                <pre><code><span class="keyword">if</span> (<span class="variable">iterator</span>.<span class="method">hasNext</span>()) {
+    <span class="type">Object</span> <span class="variable">obj</span> = <span class="variable">iterator</span>.<span class="method">next</span>();  <span class="comment">// Safe only if hasNext() returned true</span>
+}</code></pre>
+                <p>Static analysis cannot determine if <code>hasNext()</code> returned <code>true</code> or
+                    <code>false</code> -
+                    this depends on runtime data. Yet calling <code>next()</code> without checking causes crashes.
+                </p>
             </div>
             <div class="alert-block">
-                <h3>Traditional Solutions Fall Short</h3>
                 <ul>
                     <li>Static analysis tools have high false positive rates</li>
                     <li>Developers resist adopting new tooling</li>
@@ -1053,10 +1049,8 @@
         <!-- Slide 3: Introducing JGuard -->
         <div class="slide">
             <h2>JGuard: A New Approach</h2>
-            <h3>Programming Misuse-Resilient APIs by Design</h3>
             <div class="example-block">
-                <h3>Core Innovation</h3>
-                <p>Instead of external tools detecting misuses, APIs themselves become self-defensive</p>
+                <h3>Instead of external tools detecting misuses, APIs themselves become self-defensive</h3>
             </div>
             <div class="diagram-flow">
                 <div class="diagram-node">API Designer writes JGuard-annotated code</div>
@@ -1122,7 +1116,7 @@
             </div>
 
             <div class="example-block" style="margin-top: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
-                <p style="text-align: center; margin: 0; font-size: 1.1em;"><strong>Key Innovation:</strong> State
+                <p style="text-align: center; margin: 0; font-size: 1.1em;"> State
                     machines become
                     first-class citizens in the API implementation itself</p>
             </div>
@@ -1565,36 +1559,27 @@
         </div>
 
         <div class="slide">
-            <h2>Why Current LLMs Fail at Program Comprehension</h2>
-            <h3>From API Misuse to General Program Understanding</h3>
-
+            <h2>Why Current LLMs Fail at Program Comprehension - Dictionary learning</h2>
             <div class="alert-block">
-                <h3>The Dictionary Connection Problem</h3>
-                <p>Recent research reveals that code LLMs operate through <strong>dictionary-style pattern
-                        matching</strong> rather than true syntactic-semantic understanding</p>
+                <p>Our recent study reveals that code LLMs operate as sophisticated <strong>dictionary lookup
+                        systems</strong> rather than true program comprehenders</p>
                 <ul>
-                    <li><strong>Syntax ↔ Syntax:</strong> ✓ LLMs recognize relationships (e.g., if → {)</li>
-                    <li><strong>Identifier ↔ Identifier:</strong> ✓ LLMs match variable patterns</li>
-                    <li><strong>Syntax ↔ Identifier:</strong> ✗ Critical gap - cannot connect structure to meaning</li>
+                    <li><strong>✓ Syntax ↔ Syntax:</strong> LLMs learn co-occurrence (e.g., 'if' appears with '{')</li>
+                    <li><strong>✓ Identifier ↔ Identifier:</strong> LLMs match naming patterns (e.g., 'key' with
+                        'encrypt')</li>
+                    <li><strong>✗ Syntax ↔ Semantics:</strong> Cannot connect structure to meaning</li>
+                    <li><strong>✗ Cross-Domain Integration:</strong> Cannot reason about program behavior</li>
                 </ul>
             </div>
+            <div class="example-block">
+                <pre><code><span class="comment">// LLMs see this pattern frequently in training data:</span>
+<span class="type">Cipher</span> <span class="variable">cipher</span> = <span class="type">Cipher</span>.<span class="method">getInstance</span>(<span class="string">"AES"</span>);
 
-            <div class="diagram-flow" style="margin-top: 30px;">
-                <div class="diagram-node" style="border-color: #ef5350;">
-                    LLMs lack integrative<br />understanding
-                    <div class="diagram-label">No syntax-semantic bridge</div>
-                </div>
-                <div class="diagram-arrow">→</div>
-                <div class="diagram-node" style="border-color: #ffb74d;">
-                    API misuse patterns<br />emerge naturally
-                    <div class="diagram-label">Statistical matching fails</div>
-                </div>
-                <div class="diagram-arrow">→</div>
-                <div class="diagram-node" style="border-color: #4fc3f7;">
-                    Programmer expertise<br />becomes essential
-                    <div class="diagram-label">Humans provide the bridge</div>
-                </div>
+<span class="comment">// So they reproduce it, not understanding that "AES" → ECB mode → insecure</span></code></pre>
+                <p>The model matches syntactic patterns without grasping security semantics</p>
             </div>
+
+            <p class="citation">Narasimhan et al., ACL Findings 2024: "Do Code LLMs Understand Structured Syntax?"</p>
         </div>
 
         <!-- Slide 17: The Expertise Gap -->
@@ -1808,7 +1793,7 @@
                 </ul>
             </div>
             <div class="example-block">
-                <h3>Key Innovation: Trust but Verify</h3>
+                <h3>Trust but Verify</h3>
                 <ul>
                     <li>LLM provides fluent, context-aware assistance</li>
                     <li>Static analysis ensures correctness</li>
@@ -1817,55 +1802,126 @@
             </div>
         </div>
 
-        <div class="slide">
-            <h2>Collaborations at LIACS</h2>
-            <p style="text-align: center; margin-bottom: 30px; font-size: 1.1em;">Research opportunities that leverage
-                my
-                DSL and software tooling expertise with LIACS strengths</p>
+        <!-- Collaboration Slide 1 -->
+        <div class="slide collab-slide">
+            <h2>Collaboration Opportunities at LIACS</h2>
+
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 95%; margin: 0 auto;">
+                <!-- Top Left: Laarman -->
+                <div class="example-block">
+                    <h3 style="color: #4fc3f7;">Alfons Laarman - Formal Methods</h3>
+                    <p><strong>Expertise:</strong> Model checking, parallel verification, quantum algorithms</p>
+                    <p><strong>Joint Vision:</strong> Verified AI-assisted development</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Parallel analysis of large codebases</li>
+                        <li>Correctness guarantees for AI suggestions</li>
+                    </ul>
+                </div>
+
+                <!-- Top Right: Takes -->
+                <div class="block">
+                    <h3 style="color: #81c784;">Frank Takes - Computational Social Science</h3>
+                    <p><strong>Expertise:</strong> Network analysis, social phenomena, large-scale data</p>
+                    <p><strong>Joint Vision:</strong> Developer ecosystems as networks</p>
+                    <ul style="margin-top: 10px;">
+                        <li>How developers learn and adopt tools</li>
+                        <li>Knowledge diffusion in programming communities</li>
+                        <li>Social factors in software quality</li>
+                    </ul>
+                </div>
+
+                <!-- Bottom Left: Gadyatskaya -->
+                <div class="alert-block">
+                    <h3 style="color: #ffb74d;">Olga Gadyatskaya - Security & XAI</h3>
+                    <p><strong>Expertise:</strong> Explainable AI, security-by-design, developer studies</p>
+                    <p><strong>Joint Vision:</strong> Trustworthy AI assistance</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Explainable code recommendations</li>
+                        <li>Understanding developer decision-making</li>
+                        <li>Security as a subset of correctness</li>
+                    </ul>
+                </div>
+
+                <!-- Bottom Right: Batenburg -->
+                <div class="example-block">
+                    <h3 style="color: #ba68c8;">Joost Batenburg - Algorithms & SAILS</h3>
+                    <p><strong>Expertise:</strong> Hybrid algorithms, adaptive systems, interdisciplinary AI</p>
+                    <p><strong>Joint Vision:</strong> Adaptive developer tools</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Multi-level code understanding pipelines</li>
+                        <li>Real-time adaptation to developer needs</li>
+                        <li>Scalable hybrid analysis architectures</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collaboration Slide 2 -->
+        <div class="slide collab-slide">
+            <h2>Projects: From Code to Developer Experience</h2>
 
             <div style="display: flex; gap: 40px; width: 95%; margin: 0 auto;">
-                <!-- Left Column -->
+                <!-- Left: Near-term Projects -->
                 <div style="flex: 1;">
-                    <div class="example-block" style="margin-bottom: 25px;">
-                        <h3>Formal Methods Integration</h3>
-                        <p><strong>Partners:</strong> Bonsangue (coalgebraic modeling), Laarman (model checking)</p>
-                        <p><strong>My contribution:</strong> DSL design for domain-specific verification, practical
-                            state machine modeling</p>
-                        <p><strong>Their expertise:</strong> Theoretical foundations, verification frameworks</p>
-                        <p><strong>Impact:</strong> Create verification DSLs that make formal methods accessible to
-                            domain experts</p>
+                    <h3 style="color: #4fc3f7; margin-bottom: 20px;">Near-term Projects (1-2 years)</h3>
+
+                    <div class="example-block" style="margin-bottom: 20px;">
+                        <h4>1. Intelligent Code Review Assistant <strong>Partners:</strong> Laarman , Gadyatskaya</h4>
+                        <ul style="font-size: 0.95em;">
+                            <li>Combine formal verification with explainable AI</li>
+                            <li>Learn from developer corrections</li>
+                        </ul>
                     </div>
 
-                    <div class="block" style="margin-bottom: 25px;">
-                        <h3>Security & Education</h3>
-                        <p><strong>Partners:</strong> Gadyatskaya (XAI security), Takes (curriculum design)</p>
-                        <p><strong>My contribution:</strong> Developer-centric tooling design, runtime feedback systems
-                        </p>
-                        <p><strong>Their expertise:</strong> Security-by-design, educational frameworks</p>
-                        <p><strong>Impact:</strong> Build interactive tools that teach secure development through
-                            immediate feedback</p>
+                    <div class="block" style="margin-bottom: 20px;">
+                        <h4>2. Developer Behavior Analytics <strong>Partners:</strong> Takes </h4>
+                        <ul style="font-size: 0.95em;">
+                            <li>Network analysis of tool adoption patterns</li>
+                            <li>Why do some tools fail despite being better?</li>
+                        </ul>
+                    </div>
+
+                    <div class="alert-block">
+                        <h4>3. Adaptive IDE Infrastructure <strong>Partners:</strong> Batenburg</h4>
+                        <ul style="font-size: 0.95em;">
+                            <li>IDEs that learn developer preferences</li>
+                            <li>Multi-stage understanding: syntax → semantics → intent</li>
+                            <li>GPU-accelerated real-time analysis</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Right Column -->
+                <!-- Right: Long-term Vision -->
                 <div style="flex: 1;">
-                    <div class="alert-block" style="margin-bottom: 25px;">
-                        <h3>Large-Scale & ML Systems</h3>
-                        <p><strong>Partners:</strong> Visser (software metrics), Batenburg (SAILS interdisciplinary)</p>
-                        <p><strong>My contribution:</strong> Domain-specific tooling for software quality, developer
-                            experience design</p>
-                        <p><strong>Their expertise:</strong> Ecosystem analysis, domain-specific applications</p>
-                        <p><strong>Impact:</strong> Create specialized tools for ML engineering and large-scale software
-                            analysis</p>
+                    <h3 style="color: #81c784; margin-bottom: 20px;">Long-term Vision (3-5 years)</h3>
+
+                    <div class="cipher-box secure" style="padding: 25px; min-height: 250px;">
+                        <h4 style="font-size: 1.3em; margin-bottom: 15px;">Software Intelligence Lab</h4>
+                        <p style="font-size: 1.05em; margin-bottom: 15px;">Beyond fixing bugs: Augmenting developer
+                            intelligence</p>
+
+                        <div style="text-align: left; margin-top: 20px;">
+                            <p><strong>Research Pillars:</strong></p>
+                            <ul style="font-size: 0.95em; margin-top: 10px;">
+                                <li><span class="collab-highlight">Verified Intelligence:</span> AI that's provably
+                                    correct</li>
+                                <li><span class="collab-highlight">Social Computing:</span> Tools designed for how
+                                    developers actually work</li>
+                                <li><span class="collab-highlight">Adaptive Systems:</span> Personalized to individual
+                                    developers</li>
+                                <li><span class="collab-highlight">Explainable Assistance:</span> Building developer
+                                    trust through transparency</li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="example-block">
-                        <h3>Novel Perspectives</h3>
-                        <p><strong>Unique angles:</strong> Software tool adoption as social phenomenon (Takes),
-                            quantum-enhanced development tools (Laarman), visualization-driven programming interfaces
-                            (Batenburg)</p>
-                        <p><strong>Strategic value:</strong> Positions research at intersection of SE, AI, and
-                            human-computer interaction</p>
+                    <div
+                        style="margin-top: 20px; padding: 20px; background: rgba(79, 195, 247, 0.1); border-radius: 8px; border: 2px solid #4fc3f7;">
+                        <p style="text-align: center; margin: 0; font-weight: 600;">
+                            Impact: Transform software development from<br />
+                            "human with tools" to "human-AI collaboration"
+                        </p>
                     </div>
                 </div>
             </div>
