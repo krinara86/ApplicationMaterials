@@ -39,7 +39,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
-            padding: 60px 100px;
+            padding: 60px 5vw;
             opacity: 0;
             transform: translateX(100%);
             transition: all 0.6s ease-in-out;
@@ -119,7 +119,7 @@
         p {
             font-size: 1.1em;
             margin-bottom: 15px;
-            max-width: 900px;
+            max-width: 95%;
             text-align: center;
             line-height: 1.8;
         }
@@ -129,7 +129,7 @@
             list-style: none;
             padding: 0;
             margin: 20px 0;
-            max-width: 800px;
+            max-width: 95%;
         }
 
         ul li {
@@ -167,7 +167,7 @@
             /* Changed: More padding */
             margin: 20px 0;
             overflow-x: auto;
-            max-width: 900px;
+            max-width: 95%;
             width: 100%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             /* Changed: Stronger shadow */
@@ -474,7 +474,7 @@
         /* Tables */
         table {
             width: 100%;
-            max-width: 900px;
+            max-width: 95%;
             border-collapse: collapse;
             margin: 20px 0;
             background: rgba(255, 255, 255, 0.05);
@@ -531,7 +531,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .slide {
-                padding: 40px 30px;
+                padding: 40px 3vw;
             }
 
             h1 {
@@ -563,20 +563,8 @@
             color: #4fc3f7;
             text-shadow: 2px 2px 10px rgba(79, 195, 247, 0.5);
             margin: 20px 0;
-            animation: glow 2s ease-in-out infinite;
         }
 
-        @keyframes glow {
-
-            0%,
-            100% {
-                text-shadow: 2px 2px 10px rgba(79, 195, 247, 0.5);
-            }
-
-            50% {
-                text-shadow: 2px 2px 20px rgba(79, 195, 247, 0.8);
-            }
-        }
 
         /* Citation styling */
         .citation {
@@ -820,14 +808,14 @@
             <p style="text-align: center; margin-bottom: 15px; font-size: 1.1em;">MuBench: 89 real-world API misuses
                 from GitHub projects</p>
 
-            <!-- Top row: 2 misuses -->
+            <!-- All three misuses in one row -->
             <div
-                style="display: flex; justify-content: space-around; align-items: flex-start; gap: 40px; margin-bottom: 30px;">
+                style="display: flex; justify-content: space-around; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
                 <!-- Insecure Parameter -->
-                <div style="flex: 1; text-align: center; max-width: 400px;">
+                <div style="flex: 1; text-align: center; max-width: 500px;">
                     <h3 style="font-size: 1.4em; margin-bottom: 15px; color: #ef5350;">Insecure Parameter</h3>
                     <img src="insecureparam.png" alt="Insecure parameter usage"
-                        style="width: 100%; max-height: 250px; display: block; margin: 0 auto 15px; border: 2px solid #333; border-radius: 8px;">
+                        style="width: 100%; max-height: 350px; display: block; margin: 0 auto 15px; border: 2px solid #333; border-radius: 8px;">
                     <p style="font-size: 1em; line-height: 1.6;">Missing block mode defaults to
                         <strong>ECB</strong><br />
                         <span style="color: #81c784;">✓ Better: CBC with random IV</span>
@@ -835,29 +823,27 @@
                 </div>
 
                 <!-- Incorrect Call Sequence -->
-                <div style="flex: 1; text-align: center; max-width: 400px;">
+                <div style="flex: 1; text-align: center; max-width: 500px;">
                     <h3 style="font-size: 1.4em; margin-bottom: 15px; color: #ef5350;">Incorrect Call Sequence</h3>
                     <img src="incorrectparam.png" alt="Missing update call"
-                        style="width: 100%; max-height: 250px; display: block; margin: 0 auto 15px; border: 2px solid #333; border-radius: 8px;">
+                        style="width: 100%; max-height: 350px; display: block; margin: 0 auto 15px; border: 2px solid #333; border-radius: 8px;">
                     <p style="font-size: 1em; line-height: 1.6;">Missing <strong>update()</strong> before sign()<br />
                         <span style="color: #81c784;">✓ Result: Unsigned data!</span>
                     </p>
                 </div>
-            </div>
 
-            <!-- Bottom row: 1 misuse centered -->
-            <div style="display: flex; justify-content: center;">
-                <div style="text-align: center; max-width: 400px;">
+                <!-- Insecure Class Composition -->
+                <div style="flex: 1; text-align: center; max-width: 500px;">
                     <h3 style="font-size: 1.4em; margin-bottom: 15px; color: #ef5350;">Insecure Class Composition</h3>
                     <img src="insecureclass.png" alt="Insecure class composition"
-                        style="width: 100%; max-height: 250px; display: block; margin: 0 auto 15px; border: 2px solid #333; border-radius: 8px;">
+                        style="width: 100%; max-height: 350px; display: block; margin: 0 auto 15px; border: 2px solid #333; border-radius: 8px;">
                     <p style="font-size: 1em; line-height: 1.6;">keySize of <strong>64</strong> is insecure<br />
                         <span style="color: #81c784;">✓ Modern algorithms need 256+</span>
                     </p>
                 </div>
             </div>
 
-            <div class="alert-block" style="margin-top: 30px; max-width: 900px; margin-left: auto; margin-right: auto;">
+            <div class="alert-block" style="margin-top: 30px; max-width: 95%; margin-left: auto; margin-right: auto;">
                 <p style="text-align: center; margin: 0; font-size: 1.1em;"><strong>Key Insight:</strong> All patterns
                     involve state machines and sequencing → Perfect for DSL solutions</p>
             </div>
@@ -969,9 +955,14 @@
 
                 <div class="state-node state-active fragment fade-in">Active</div>
             </div>
-            <p class="fragment fade-in">While powerful, expressing these patterns in general-purpose code can be
-                cumbersome. This is where **Domain-Specific Languages (DSLs)** come to the rescue, allowing intuitive,
-                high-level specification of API behavior. </p>
+            <div class="example-block fragment fade-in">
+                <h3>The DSL Solution</h3>
+                <ul>
+                    <li>Expressing these patterns in general-purpose code can be cumbersome</li>
+                    <li><strong>Domain-Specific Languages (DSLs)</strong> come to the rescue</li>
+                    <li>DSLs allow intuitive, high-level specification of API behavior</li>
+                </ul>
+            </div>
         </div>
 
 
@@ -980,12 +971,12 @@
             <p style="text-align: center; margin-bottom: 20px;">CrySL (Cryptographic Specification Language) - External
                 specification of correct API usage</p>
 
-            <div style="display: flex; gap: 30px; align-items: flex-start;">
+            <div style="display: flex; gap: 40px; align-items: flex-start; width: 95%; margin: 0 auto;">
                 <!-- Left Column -->
-                <div style="flex: 1;">
-                    <h4 style="font-size: 1.1em; margin-bottom: 10px;">Structure & Events</h4>
+                <div style="flex: 1; min-width: 45%;">
+                    <h4 style="font-size: 1.3em; margin-bottom: 15px;">Structure & Events</h4>
                     <pre
-                        style="font-size: 0.8em;"><code><span class="keyword">SPEC</span> <span class="type">java.security.Signature</span>
+                        style="font-size: 1.1em; padding: 25px; min-height: 400px; overflow: visible;"><code><span class="keyword">SPEC</span> <span class="type">java.security.Signature</span>
 
 <span class="keyword">OBJECTS</span>
     <span class="type">byte</span> <span class="variable">data</span>;
@@ -1004,9 +995,9 @@
                 </div>
 
                 <!-- Right Column -->
-                <div style="flex: 1;">
-                    <h4 style="font-size: 1.1em; margin-bottom: 10px;">Constraints & Order</h4>
-                    <pre style="font-size: 0.8em;"><code><span class="keyword">CONSTRAINTS</span>
+                <div style="flex: 1; min-width: 45%;">
+                    <h4 style="font-size: 1.3em; margin-bottom: 15px;">Constraints & Order</h4>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 400px; overflow: visible;"><code><span class="keyword">CONSTRAINTS</span>
     <span class="variable">algorithm</span> <span class="keyword">in</span> {<span class="string">"SHA256withDSA"</span>, 
                   <span class="string">"SHA256withRSA"</span>, 
                   <span class="string">"SHA256withECDSA"</span>};
@@ -1022,7 +1013,7 @@
                 </div>
             </div>
 
-            <div class="block" style="margin-top: 20px;">
+            <div class="block" style="margin-top: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
                 <p style="text-align: center; margin: 0;"><strong>944 rules</strong> for Java crypto APIs |
                     <strong>Limitations:</strong> Separate from implementation, requires external tools, no dynamic
                     state
@@ -1080,39 +1071,40 @@
             </div>
         </div>
 
+        <!-- Slide 1: JGuard Overview -->
         <div class="slide">
-            <h2>JGuard: Making State Machines Explicit</h2>
+            <h2>JGuard: High-Level State Machine Approach</h2>
 
-            <div style="display: flex; gap: 30px; align-items: flex-start;">
+            <div style="display: flex; gap: 40px; align-items: flex-start; width: 95%; margin: 0 auto;">
                 <!-- Left side: State machine concept -->
-                <div style="flex: 1;">
-                    <h3 style="font-size: 1.3em; margin-bottom: 15px;">State Machine Encoding</h3>
+                <div style="flex: 1; min-width: 45%;">
+                    <h3 style="font-size: 1.4em; margin-bottom: 15px;">State Machine Encoding</h3>
                     <div
-                        style="background-color: #333; border: 2px solid #666; border-radius: 10px; padding: 20px; text-align: center;">
+                        style="background-color: #333; border: 2px solid #666; border-radius: 10px; padding: 30px; text-align: center; min-height: 400px; display: flex; flex-direction: column; justify-content: space-around;">
                         <div style="margin-bottom: 20px;">
-                            <strong>API Method Call</strong>
+                            <strong style="font-size: 1.2em;">API Method Call</strong>
                         </div>
-                        <div style="font-size: 1.5em; margin: 10px 0;">↓</div>
-                        <div style="margin-bottom: 10px;">
-                            <strong>jGuard `require` Clause</strong><br />
-                            <span style="font-size: 0.85em; color: #999;">(Checks guards)</span>
+                        <div style="font-size: 1.8em; margin: 15px 0;">↓</div>
+                        <div style="margin-bottom: 15px;">
+                            <strong style="font-size: 1.1em;">jGuard `require` Clause</strong><br />
+                            <span style="font-size: 1em; color: #999;">(Checks guards)</span>
                         </div>
-                        <div style="font-size: 1.5em; margin: 10px 0;">↓</div>
-                        <div style="margin-bottom: 10px;">
-                            <strong>Method Body</strong>
+                        <div style="font-size: 1.8em; margin: 15px 0;">↓</div>
+                        <div style="margin-bottom: 15px;">
+                            <strong style="font-size: 1.1em;">Method Body</strong>
                         </div>
-                        <div style="font-size: 1.5em; margin: 10px 0;">↓</div>
+                        <div style="font-size: 1.8em; margin: 15px 0;">↓</div>
                         <div>
-                            <strong>jGuard `when returns`</strong><br />
-                            <span style="font-size: 0.85em; color: #999;">(Updates guards)</span>
+                            <strong style="font-size: 1.1em;">jGuard `when returns`</strong><br />
+                            <span style="font-size: 1em; color: #999;">(Updates guards)</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right side: Code example -->
-                <div style="flex: 1;">
-                    <h3 style="font-size: 1.3em; margin-bottom: 15px;">Core Concepts in Code</h3>
-                    <pre style="font-size: 0.85em;"><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
+                <div style="flex: 1; min-width: 45%;">
+                    <h3 style="font-size: 1.4em; margin-bottom: 15px;">Core Concepts in Code</h3>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 400px; overflow: visible;"><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
     <span class="comment">// Guards: explicit state variables</span>
     <span class="keyword">private</span> <span class="annotation">guard</span> <span class="variable">isInitialized</span>;
     <span class="keyword">private</span> <span class="annotation">guard</span> <span class="variable">encryptionStarted</span> 
@@ -1129,36 +1121,45 @@
                 </div>
             </div>
 
-            <div class="example-block" style="margin-top: 20px;">
-                <p style="text-align: center; margin: 0;"><strong>Key Innovation:</strong> State machines become
+            <div class="example-block" style="margin-top: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
+                <p style="text-align: center; margin: 0; font-size: 1.1em;"><strong>Key Innovation:</strong> State
+                    machines become
                     first-class citizens in the API implementation itself</p>
             </div>
         </div>
 
-        <!-- Slide 4: JGuard Core Concepts -->
+        <!-- Slide 2: Guards -->
         <div class="slide">
-            <h2>JGuard Core Concepts: Guards</h2>
+            <h2>JGuard Component 1: Guards</h2>
             <h3>Making Implicit State Explicit</h3>
-            <div class="code-comparison">
-                <div class="code-section">
-                    <div class="code-label">jGuard DSL Code</div>
-                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
+            <div
+                style="display: flex; gap: 40px; align-items: flex-start; width: 95%; margin: 0 auto; position: relative;">
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(79, 195, 247, 0.1); border: 2px solid #4fc3f7; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 300px; overflow: visible;"><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
     <span class="keyword">private</span> <span class="annotation">guard</span> <span class="variable">isInitialized</span>;
     <span class="keyword">private</span> <span class="annotation">guard</span> <span class="variable">encryptionStarted</span> 
         <span class="keyword">finally</span> <span class="keyword">false</span>;
 }</code></pre>
                 </div>
 
-                <div class="compilation-arrow">
-                    <div class="arrow-container"></div>
-                    <div class="arrow-label">compiles to</div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
+                    <div
+                        style="background: #4fc3f7; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #4fc3f7;">→</div>
                 </div>
 
-                <div class="code-section">
-                    <div class="code-label"
-                        style="border-color: #81c784; background: rgba(129, 199, 132, 0.1); color: #81c784;">Generated
-                        Java Code</div>
-                    <pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(129, 199, 132, 0.1); border: 2px solid #81c784; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #81c784;">Generated Java Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 300px; overflow: visible;"><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
     <span class="keyword">private</span> <span class="keyword">boolean</span> <span class="variable">isInitialized</span> = <span class="keyword">false</span>;
     <span class="keyword">private</span> <span class="keyword">boolean</span> <span class="variable">encryptionStarted</span> = <span class="keyword">false</span>;
     
@@ -1169,19 +1170,25 @@
 }</code></pre>
                 </div>
             </div>
-            <div class="block" style="margin-top: 20px;">
-                <p><strong>Guards</strong> are boolean variables that track object state. They compile to regular
+            <div class="block" style="margin-top: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 1.1em;"><strong>Guards</strong> are boolean variables that track object state. They
+                    compile to regular
                     boolean fields with additional finalizer checks for <code>finally</code> clauses.</p>
             </div>
         </div>
 
-        <!-- Slide 5: Requirements in Action -->
+        <!-- Slide 3: Requirements -->
         <div class="slide">
-            <h2>JGuard Requirements: Enforcing Preconditions</h2>
-            <div class="code-comparison">
-                <div class="code-section">
-                    <div class="code-label">jGuard DSL Code</div>
-                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">void</span> <span class="method">init</span>(<span class="annotation">@NonNull</span> <span class="type">Key</span> <span class="variable">key</span>)
+            <h2>JGuard Component 2: Requirements</h2>
+            <h3>Enforcing Preconditions</h3>
+            <div
+                style="display: flex; gap: 40px; align-items: flex-start; width: 95%; margin: 0 auto; position: relative;">
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(79, 195, 247, 0.1); border: 2px solid #4fc3f7; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 350px; overflow: visible;"><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">void</span> <span class="method">init</span>(<span class="annotation">@NonNull</span> <span class="type">Key</span> <span class="variable">key</span>)
     <span class="annotation">require</span> !<span class="variable">encryptionStarted</span>, 
     <span class="annotation">require</span> !<span class="variable">isInitialized</span>
     <span class="annotation">when returns sets</span> <span class="variable">isInitialized</span>,
@@ -1190,16 +1197,20 @@
 }</code></pre>
                 </div>
 
-                <div class="compilation-arrow">
-                    <div class="arrow-container"></div>
-                    <div class="arrow-label">compiles to</div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
+                    <div
+                        style="background: #4fc3f7; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #4fc3f7;">→</div>
                 </div>
 
-                <div class="code-section">
-                    <div class="code-label"
-                        style="border-color: #81c784; background: rgba(129, 199, 132, 0.1); color: #81c784;">Generated
-                        Java Code</div>
-                    <pre><code><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">init</span>(<span class="annotation">@NonNull</span> <span class="type">Key</span> <span class="variable">key</span>) {
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(129, 199, 132, 0.1); border: 2px solid #81c784; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #81c784;">Generated Java Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 350px; overflow: visible;"><code><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">init</span>(<span class="annotation">@NonNull</span> <span class="type">Key</span> <span class="variable">key</span>) {
     <span class="comment">// Requirements checked in order</span>
     <span class="keyword">if</span> (<span class="variable">key</span> == <span class="keyword">null</span>) <span class="method">reportMisuse</span>();
     <span class="keyword">if</span> (<span class="variable">encryptionStarted</span>) <span class="method">reportMisuse</span>();
@@ -1213,34 +1224,25 @@
 }</code></pre>
                 </div>
             </div>
-            <div class="example-block" style="margin-top: 20px;">
-                <p><strong>Requirements</strong> are preconditions checked before method execution. They compile to
+            <div class="example-block" style="margin-top: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 1.1em;"><strong>Requirements</strong> are preconditions checked before method
+                    execution. They compile to
                     if-statements at method entry.</p>
             </div>
         </div>
 
-        <!-- Slide 6: Generated Runtime Checks -->
+        <!-- Slide 5: Consequences -->
         <div class="slide">
-            <h2>How JGuard Works: Generated Checks</h2>
-            <h3>JGuard Requirements → Java Runtime Checks</h3>
-            <pre><code><span class="comment">// Generated Java code from JGuard</span>
-<span class="keyword">public</span> <span class="keyword">void</span> <span class="method">init</span>(<span class="annotation">@NonNull</span> <span class="type">Key</span> <span class="variable">key</span>) {
-    <span class="keyword">if</span> (<span class="variable">key</span> == <span class="keyword">null</span>) <span class="method">reportMisuse</span>();
-    <span class="keyword">if</span> (<span class="variable">encryptionStarted</span>) <span class="method">reportMisuse</span>();
-    <span class="keyword">if</span> (<span class="variable">isInitialized</span>) <span class="method">reportMisuse</span>();
-    <span class="comment">// Original method body follows...</span>
-}</code></pre>
-            <div class="block">
-                <p>Runtime checks are automatically inserted at compile time, making APIs defensive by default</p>
-            </div>
-        </div>
-
-        <div class="slide">
-            <h2>JGuard Consequences: Managing State Changes</h2>
-            <div class="code-comparison">
-                <div class="code-section">
-                    <div class="code-label">jGuard DSL Code</div>
-                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">boolean</span> <span class="method">hasNext</span>()
+            <h2>JGuard Component 3: Consequences</h2>
+            <h3>Managing State Changes</h3>
+            <div
+                style="display: flex; gap: 40px; align-items: flex-start; width: 95%; margin: 0 auto; position: relative;">
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(79, 195, 247, 0.1); border: 2px solid #4fc3f7; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 400px; overflow: visible;"><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">boolean</span> <span class="method">hasNext</span>()
     <span class="annotation">when returns true sets</span> <span class="variable">canCallNext</span> {
     <span class="comment">// Method body</span>
 }
@@ -1252,16 +1254,20 @@
 }</code></pre>
                 </div>
 
-                <div class="compilation-arrow">
-                    <div class="arrow-container"></div>
-                    <div class="arrow-label">compiles to</div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
+                    <div
+                        style="background: #4fc3f7; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #4fc3f7;">→</div>
                 </div>
 
-                <div class="code-section">
-                    <div class="code-label"
-                        style="border-color: #81c784; background: rgba(129, 199, 132, 0.1); color: #81c784;">Generated
-                        Java Code</div>
-                    <pre><code><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="method">hasNext_$mangled</span>() {
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(129, 199, 132, 0.1); border: 2px solid #81c784; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #81c784;">Generated Java Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 400px; overflow: visible;"><code><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="method">hasNext_$mangled</span>() {
     <span class="comment">// Original method body</span>
 }
 
@@ -1281,106 +1287,25 @@
 }</code></pre>
                 </div>
             </div>
-            <div class="block" style="margin-top: 20px;">
-                <p><strong>Consequences</strong> update guards based on method execution results. The compiler creates
+            <div class="block" style="margin-top: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 1.1em;"><strong>Consequences</strong> update guards based on method execution
+                    results. The compiler creates
                     wrapper methods to intercept returns and exceptions.</p>
             </div>
         </div>
 
-        <!-- Slide 8: Visualizing State Transitions -->
+
+        <!-- Slide: Exception Handling -->
         <div class="slide">
-            <h2>Visualizing Correct API Usage</h2>
-            <h3>Example: Digital Signature Flow</h3>
-            <div class="state-flow">
-                <div class="state-box">
-                    Constructed
-                    <div class="state-method">getInstance()</div>
-                </div>
-                <div class="state-arrow">→</div>
-                <div class="state-box">
-                    Initialized
-                    <div class="state-method">initSign()</div>
-                </div>
-                <div class="state-arrow">→</div>
-                <div class="state-box">
-                    Updated
-                    <div class="state-method">update()</div>
-                </div>
-                <div class="state-arrow">→</div>
-                <div class="state-box" style="border-color: #4fc3f7;">
-                    Signed
-                    <div class="state-method">sign()</div>
-                </div>
-            </div>
-            <h3 style="margin-top: 40px;">Common Misuse: Skipping Update</h3>
-            <div class="state-flow">
-                <div class="state-box">
-                    Constructed
-                    <div class="state-method">getInstance()</div>
-                </div>
-                <div class="state-arrow">→</div>
-                <div class="state-box">
-                    Initialized
-                    <div class="state-method">initSign()</div>
-                </div>
-                <div class="state-arrow" style="color: #ef5350;">→</div>
-                <div class="state-box error">
-                    ERROR!
-                    <div class="state-method">sign() without update()</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slide">
-            <h2>JGuard Consequences: Managing State Changes</h2>
-            <div style="display: flex; gap: 30px; margin-top: 20px;">
-                <div style="flex: 1;">
-                    <h4 style="color: #4fc3f7;">jGuard Code</h4>
-                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">boolean</span> <span class="method">hasNext</span>()
-    <span class="annotation">when returns true sets</span> <span class="variable">canCallNext</span> {
-    <span class="comment">// Method body</span>
-}
-
-<span class="keyword">public</span> <span class="annotation">verified</span> <span class="type">T</span> <span class="method">next</span>() 
-    <span class="annotation">require</span> <span class="variable">canCallNext</span>
-    <span class="annotation">when returns resets</span> <span class="variable">canCallNext</span> {
-    <span class="comment">// Method body</span>
-}</code></pre>
-                </div>
-                <div style="flex: 1;">
-                    <h4 style="color: #81c784;">Generated Java Code</h4>
-                    <pre><code><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="method">hasNext_$mangled</span>() {
-    <span class="comment">// Original method body</span>
-}
-
-<span class="keyword">public</span> <span class="keyword">boolean</span> <span class="method">hasNext</span>() {
-    <span class="keyword">boolean</span> <span class="variable">retVal</span> = <span class="method">hasNext_$mangled</span>();
-    <span class="keyword">if</span> (<span class="variable">retVal</span> == <span class="keyword">true</span>) {
-        <span class="variable">canCallNext</span> = <span class="keyword">true</span>;
-    }
-    <span class="keyword">return</span> <span class="variable">retVal</span>;
-}
-
-<span class="keyword">public</span> <span class="type">T</span> <span class="method">next</span>() {
-    <span class="keyword">if</span> (!<span class="variable">canCallNext</span>) <span class="method">reportMisuse</span>();
-    <span class="type">T</span> <span class="variable">retVal</span> = <span class="method">next_$mangled</span>();
-    <span class="variable">canCallNext</span> = <span class="keyword">false</span>;
-    <span class="keyword">return</span> <span class="variable">retVal</span>;
-}</code></pre>
-                </div>
-            </div>
-            <div class="block" style="margin-top: 20px;">
-                <p><strong>Consequences</strong> update guards based on method execution results. The compiler creates
-                    wrapper methods to intercept returns and exceptions.</p>
-            </div>
-        </div>
-
-        <div class="slide">
-            <h2>JGuard: Handling Exceptions in Consequences</h2>
-            <div style="display: flex; gap: 30px; margin-top: 20px;">
-                <div style="flex: 1;">
-                    <h4 style="color: #4fc3f7;">jGuard Code</h4>
-                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">void</span> <span class="method">encrypt</span>(<span class="keyword">byte[]</span> <span class="variable">data</span>) 
+            <h2>JGuard Advanced: Exception Handling in Consequences</h2>
+            <div
+                style="display: flex; gap: 40px; align-items: flex-start; width: 95%; margin: 0 auto; position: relative;">
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(79, 195, 247, 0.1); border: 2px solid #4fc3f7; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 400px; overflow: visible;"><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">void</span> <span class="method">encrypt</span>(<span class="keyword">byte[]</span> <span class="variable">data</span>) 
     <span class="keyword">throws</span> <span class="type">CryptoException</span>
     <span class="annotation">require</span> <span class="variable">isInitialized</span>
     <span class="annotation">when returns sets</span> <span class="variable">hasEncrypted</span>
@@ -1389,9 +1314,21 @@
     <span class="comment">// Encryption logic that may throw</span>
 }</code></pre>
                 </div>
-                <div style="flex: 1;">
-                    <h4 style="color: #81c784;">Generated Java Code</h4>
-                    <pre><code><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">encrypt</span>(<span class="keyword">byte[]</span> <span class="variable">data</span>) 
+
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
+                    <div
+                        style="background: #4fc3f7; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #4fc3f7;">→</div>
+                </div>
+
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(129, 199, 132, 0.1); border: 2px solid #81c784; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #81c784;">Generated Java Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 400px; overflow: visible;"><code><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">encrypt</span>(<span class="keyword">byte[]</span> <span class="variable">data</span>) 
     <span class="keyword">throws</span> <span class="type">CryptoException</span> {
     <span class="keyword">if</span> (!<span class="variable">isInitialized</span>) <span class="method">reportMisuse</span>();
     
@@ -1407,18 +1344,24 @@
 }</code></pre>
                 </div>
             </div>
-            <div class="example-block" style="margin-top: 20px;">
-                <p>jGuard can track exceptional control flow, allowing APIs to maintain consistent state even when
+            <div class="example-block" style="margin-top: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 1.1em;">jGuard can track exceptional control flow, allowing APIs to maintain
+                    consistent state even when
                     operations fail.</p>
             </div>
         </div>
 
+        <!-- Slide: Meta Variables -->
         <div class="slide">
-            <h2>JGuard Meta Variables: Context-Aware Constraints</h2>
-            <div class="code-comparison">
-                <div class="code-section">
-                    <div class="code-label">jGuard DSL Code</div>
-                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
+            <h2>JGuard Advanced: Meta Variables for Context-Aware Constraints</h2>
+            <div
+                style="display: flex; gap: 40px; align-items: flex-start; width: 95%; margin: 0 auto; position: relative;">
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(79, 195, 247, 0.1); border: 2px solid #4fc3f7; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong>jGuard DSL Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 450px; overflow: visible;"><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">class</span> <span class="type">Cipher</span> {
     <span class="annotation">meta</span> <span class="type">Set</span>&lt;<span class="type">String</span>&gt; <span class="variable">allowedAlgorithms</span>;
     
     <span class="keyword">public</span> <span class="keyword">static</span> <span class="annotation">verified</span> <span class="type">Cipher</span> 
@@ -1436,16 +1379,20 @@
 }</code></pre>
                 </div>
 
-                <div class="compilation-arrow">
-                    <div class="arrow-container"></div>
-                    <div class="arrow-label">compiles to</div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
+                    <div
+                        style="background: #4fc3f7; color: white; padding: 8px 15px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">
+                        compiles to
+                    </div>
+                    <div style="text-align: center; margin-top: 5px; font-size: 1.5em; color: #4fc3f7;">→</div>
                 </div>
 
-                <div class="code-section">
-                    <div class="code-label"
-                        style="border-color: #81c784; background: rgba(129, 199, 132, 0.1); color: #81c784;">Generated
-                        Java Code</div>
-                    <pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Cipher_FIPS</span> {
+                <div style="flex: 1; min-width: 45%;">
+                    <div
+                        style="background: rgba(129, 199, 132, 0.1); border: 2px solid #81c784; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 15px;">
+                        <strong style="color: #81c784;">Generated Java Code</strong>
+                    </div>
+                    <pre style="font-size: 1.1em; padding: 25px; min-height: 450px; overflow: visible;"><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="type">Cipher_FIPS</span> {
     <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Set</span>&lt;<span class="type">String</span>&gt; 
         <span class="variable">allowedAlgorithms</span> = <span class="type">Set</span>.<span class="method">of</span>(
             <span class="string">"AES"</span>, <span class="string">"TripleDES"</span>
@@ -1466,57 +1413,13 @@
 }</code></pre>
                 </div>
             </div>
-            <div class="block" style="margin-top: 20px;">
-                <p><strong>Meta Variables</strong> enable context-specific API constraints. Each instantiation generates
+            <div class="block" style="margin-top: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 1.1em;"><strong>Meta Variables</strong> enable context-specific API constraints.
+                    Each instantiation generates
                     a separate class with customized validation rules.</p>
             </div>
         </div>
 
-        <div class="slide">
-            <h2>JGuard: Handling Exceptions in Consequences</h2>
-            <div class="code-comparison">
-                <div class="code-section">
-                    <div class="code-label">jGuard DSL Code</div>
-                    <pre><code><span class="keyword">public</span> <span class="annotation">verified</span> <span class="keyword">void</span> <span class="method">encrypt</span>(<span class="keyword">byte[]</span> <span class="variable">data</span>) 
-    <span class="keyword">throws</span> <span class="type">CryptoException</span>
-    <span class="annotation">require</span> <span class="variable">isInitialized</span>
-    <span class="annotation">when returns sets</span> <span class="variable">hasEncrypted</span>
-    <span class="annotation">when throws</span> <span class="type">CryptoException</span> 
-        <span class="annotation">resets</span> <span class="variable">isInitialized</span> {
-    <span class="comment">// Encryption logic that may throw</span>
-}</code></pre>
-                </div>
-
-                <div class="compilation-arrow">
-                    <div class="arrow-container"></div>
-                    <div class="arrow-label">compiles to</div>
-                </div>
-
-                <div class="code-section">
-                    <div class="code-label"
-                        style="border-color: #81c784; background: rgba(129, 199, 132, 0.1); color: #81c784;">Generated
-                        Java Code</div>
-                    <pre><code><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">encrypt</span>(<span class="keyword">byte[]</span> <span class="variable">data</span>) 
-    <span class="keyword">throws</span> <span class="type">CryptoException</span> {
-    <span class="keyword">if</span> (!<span class="variable">isInitialized</span>) <span class="method">reportMisuse</span>();
-    
-    <span class="keyword">try</span> {
-        <span class="method">encrypt_$mangled</span>(<span class="variable">data</span>);
-        <span class="comment">// Success path: set guard</span>
-        <span class="variable">hasEncrypted</span> = <span class="keyword">true</span>;
-    } <span class="keyword">catch</span> (<span class="type">CryptoException</span> <span class="variable">e</span>) {
-        <span class="comment">// Exception path: reset guard</span>
-        <span class="variable">isInitialized</span> = <span class="keyword">false</span>;
-        <span class="keyword">throw</span> <span class="variable">e</span>;
-    }
-}</code></pre>
-                </div>
-            </div>
-            <div class="example-block" style="margin-top: 20px;">
-                <p>jGuard can track exceptional control flow, allowing APIs to maintain consistent state even when
-                    operations fail.</p>
-            </div>
-        </div>
 
         <div class="slide">
             <h2>Empirical Validation: Expressiveness & Accuracy</h2>
@@ -1693,22 +1596,7 @@
                 </div>
             </div>
         </div>
-        <div class="slide">
-            <div class="example-block" style="margin-top: 30px;">
-                <h3>Key Findings Supporting Our Approach</h3>
-                <ul>
-                    <li><strong>Larger models perform worse</strong> at encoding code relationships</li>
-                    <li><strong>Fine-tuning worsens</strong> cross-category understanding</li>
-                    <li><strong>Expert programmers compensate</strong> by providing the missing semantic context</li>
-                </ul>
-            </div>
 
-            <div class="block">
-                <p><strong>The Solution Path:</strong> Domain-specific models like JGuard provide the precise
-                    syntactic-semantic connections that LLMs fundamentally lack, enabling AI to reason correctly about
-                    code</p>
-            </div>
-        </div>
         <!-- Slide 17: The Expertise Gap -->
         <div class="slide">
             <h2>The Expertise Gap in Human-AI Interaction</h2>
@@ -1742,57 +1630,7 @@
             </div>
         </div>
 
-        <div class="slide">
-            <h2>Our Vision: Hybrid System with Developer Context</h2>
 
-            <!-- Top: Vision Flow -->
-            <div class="diagram-flow" style="margin-bottom: 30px;">
-                <div class="diagram-node" style="font-size: 0.9em;">Human<br />Developer</div>
-                <div class="diagram-arrow">→</div>
-                <div class="diagram-node" style="font-size: 0.9em; border-color: #ffb74d;">AI Assistant<br />(LLM)</div>
-                <div class="diagram-arrow">→</div>
-                <div class="diagram-node" style="font-size: 0.9em; border-color: #81c784;">Developer<br />Context DSL
-                </div>
-                <div class="diagram-arrow">→</div>
-                <div class="diagram-node" style="font-size: 0.9em; border-color: #4fc3f7;">Static Analysis<br />Tools
-                </div>
-                <div class="diagram-arrow">→</div>
-                <div class="diagram-node" style="font-size: 0.9em; border-color: #ba68c8;">Validation &<br />Refinement
-                </div>
-            </div>
-
-            <!-- Bottom: DSL Components -->
-            <div style="display: flex; gap: 30px;">
-                <div style="flex: 1;">
-                    <div class="cipher-box">
-                        <h4>developer_mental_model</h4>
-                        <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0;">
-                            <li>• Programming expertise level</li>
-                            <li>• Current intent</li>
-                            <li>• Knowledge gaps</li>
-                            <li>• Comprehension level</li>
-                        </ul>
-                    </div>
-                </div>
-                <div style="flex: 1;">
-                    <div class="cipher-box">
-                        <h4>program_context_graph</h4>
-                        <ul style="text-align: left; font-size: 0.85em; list-style: none; padding: 0;">
-                            <li>• AST representation</li>
-                            <li>• Control flow graph</li>
-                            <li>• Data flow graph</li>
-                            <li>• Semantic annotations</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <pre style="font-size: 0.75em; margin-top: 20px;"><code><span class="type">context_state</span> {
-    <span class="variable">programming_expertise</span>: <span class="keyword">novice</span> | <span class="keyword">intermediate</span> | <span class="keyword">expert</span>
-    <span class="variable">current_intent</span>: { <span class="variable">type</span>: <span class="keyword">enum</span> (<span class="string">bug_fix</span>, <span class="string">feature_add</span>) }
-    <span class="variable">knowledge_gaps</span>: [<span class="variable">topic</span>: <span class="type">String</span>, <span class="variable">confidence</span>: <span class="type">Float</span>]
-}</code></pre>
-        </div>
 
         <div class="slide">
             <h2>Our Vision: Hybrid System with Developer Context</h2>
@@ -1847,98 +1685,65 @@
     <span class="variable" style="color: #f78c6c;">knowledge_gaps</span>: [<span class="variable" style="color: #f78c6c;">topic</span>: <span class="type" style="color: #82aaff;">String</span>, <span class="variable" style="color: #f78c6c;">confidence</span>: <span class="type" style="color: #82aaff;">Float</span>]
 }</code></pre>
         </div>
-
-        <!-- Slide 19: Developer Context DSL -->
-        <div class="slide">
-            <h2>Developer Context DSL</h2>
-            <h3>Formalizing Mental Models and Program Context</h3>
-            <div class="cipher-flow">
-                <div class="cipher-step">
-                    <div class="cipher-box">
-                        <h4>developer_mental_model</h4>
-                        <ul style="text-align: left; font-size: 0.9em;">
-                            <li>Programming expertise level</li>
-                            <li>Current intent</li>
-                            <li>Knowledge gaps</li>
-                            <li>Comprehension level</li>
-                        </ul>
-                    </div>
-                    <div class="cipher-box">
-                        <h4>program_context_graph</h4>
-                        <ul style="text-align: left; font-size: 0.9em;">
-                            <li>AST representation</li>
-                            <li>Control flow graph</li>
-                            <li>Data flow graph</li>
-                            <li>Semantic annotations</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <pre><code><span class="type">context_state</span> {
-    <span class="variable">programming_expertise</span>: <span class="keyword">novice</span> | <span class="keyword">intermediate</span> | <span class="keyword">expert</span>
-    <span class="variable">current_intent</span>: { <span class="variable">type</span>: <span class="keyword">enum</span> (<span class="string">bug_fix</span>, <span class="string">feature_add</span>) }
-    <span class="variable">knowledge_gaps</span>: [<span class="variable">topic</span>: <span class="type">String</span>, <span class="variable">confidence</span>: <span class="type">Float</span>]
-}</code></pre>
-        </div>
-
         <div class="slide">
             <h2>Case Study: How Our System Prevents ECB Misuse</h2>
 
-            <!-- Problem - Full Width -->
-            <div class="alert-block" style="margin-bottom: 25px; padding: 30px;">
-                <h3 style="font-size: 1.3em; margin-bottom: 15px;">The Problem: ECB Mode Reveals Patterns</h3>
+            <div class="alert-block"
+                style="margin-bottom: 20px; padding: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
+                <h3 style="font-size: 1.2em; margin-bottom: 12px;">The Problem: ECB Mode Reveals Patterns</h3>
                 <div style="display: flex; align-items: center; gap: 40px; justify-content: center;">
-                    <div style="flex: 1; max-width: 800px;">
+                    <div style="flex: 1; max-width: 600px;">
                         <pre
-                            style="font-size: 1.1em; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px;"><code><span class="type" style="color: #82aaff; font-weight: bold;">Cipher</span> <span class="variable" style="color: #f78c6c;">cipher</span> = <span class="type" style="color: #82aaff;">Cipher</span>.<span class="method" style="color: #82aaff;">getInstance</span>(<span class="string" style="color: #c3e88d;">"AES/ECB/PKCS5Padding"</span>);</code></pre>
+                            style="font-size: 1.05em; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin: 0; overflow: visible;"><code><span class="type" style="color: #82aaff; font-weight: bold;">Cipher</span> <span class="variable" style="color: #f78c6c;">cipher</span> = <span class="type" style="color: #82aaff;">Cipher</span>.<span class="method" style="color: #82aaff;">getInstance</span>(<span class="string" style="color: #c3e88d;">"AES/ECB/PKCS5Padding"</span>);</code></pre>
                     </div>
                     <div style="flex: 1; text-align: center; font-size: 1.1em;">
-                        <span style="line-height: 1.8;">Same plaintext → Same ciphertext<br /><strong
+                        <span style="line-height: 1.6;">Same plaintext → Same ciphertext<br /><strong
                                 style="color: #ef5350;">Enables pattern attacks!</strong></span>
                     </div>
                 </div>
             </div>
 
-            <!-- Solution Flow - Full Width -->
+            <!-- Solution Flow - Compressed vertically -->
             <div
-                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; gap: 20px; padding: 0 20px;">
-                <div class="diagram-node" style="font-size: 1em; padding: 20px 25px; min-width: 150px;">
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px; padding: 0 10px;">
+                <div class="diagram-node" style="font-size: 0.9em; padding: 15px 20px; min-width: 140px;">
                     LLM generates<br /><strong>ECB code</strong>
                 </div>
-                <div class="diagram-arrow" style="font-size: 2em;">→</div>
-                <div class="diagram-node" style="font-size: 1em; padding: 20px 25px; min-width: 150px;">
+                <div class="diagram-arrow" style="font-size: 1.5em;">→</div>
+                <div class="diagram-node" style="font-size: 0.9em; padding: 15px 20px; min-width: 140px;">
                     Static Analysis<br /><strong>detects issue</strong>
                 </div>
-                <div class="diagram-arrow" style="font-size: 2em;">→</div>
-                <div class="diagram-node" style="font-size: 1em; padding: 20px 25px; min-width: 150px;">
+                <div class="diagram-arrow" style="font-size: 1.5em;">→</div>
+                <div class="diagram-node" style="font-size: 0.9em; padding: 15px 20px; min-width: 140px;">
                     Feedback with<br /><strong>context</strong>
                 </div>
-                <div class="diagram-arrow" style="font-size: 2em;">→</div>
+                <div class="diagram-arrow" style="font-size: 1.5em;">→</div>
                 <div class="diagram-node"
-                    style="font-size: 1em; padding: 20px 25px; min-width: 150px; border-color: #81c784; background: rgba(129, 199, 132, 0.2);">
+                    style="font-size: 0.9em; padding: 15px 20px; min-width: 140px; border-color: #81c784; background: rgba(129, 199, 132, 0.2);">
                     Secure code<br /><strong>generated</strong>
                 </div>
             </div>
 
-            <!-- Before/After Code - Full Width -->
-            <div style="display: flex; gap: 30px; margin-bottom: 20px;">
-                <div style="flex: 1;">
+            <!-- Before/After Code - Wider and better formatted -->
+            <div
+                style="display: flex; gap: 40px; margin-bottom: 15px; width: 95%; margin-left: auto; margin-right: auto;">
+                <div style="flex: 1; min-width: 45%;">
                     <h4 style="color: #ef5350; font-size: 1.2em; margin-bottom: 10px;">❌ Insecure (LLM Generated)</h4>
                     <pre
-                        style="font-size: 1.05em; background: rgba(239, 83, 80, 0.1); padding: 20px; border-radius: 8px; border: 2px solid #ef5350;"><code><span class="type" style="color: #82aaff; font-weight: bold;">Cipher</span> <span class="variable" style="color: #f78c6c;">cipher</span> = <span class="type" style="color: #82aaff;">Cipher</span>.<span class="method" style="color: #82aaff;">getInstance</span>(
+                        style="font-size: 1.2em; background: rgba(239, 83, 80, 0.1); padding: 25px; border-radius: 8px; border: 2px solid #ef5350; margin: 0; min-height: 100px; overflow: visible;"><code><span class="type" style="color: #82aaff; font-weight: bold;">Cipher</span> <span class="variable" style="color: #f78c6c;">cipher</span> = <span class="type" style="color: #82aaff;">Cipher</span>.<span class="method" style="color: #82aaff;">getInstance</span>(
     <span class="string" style="color: #c3e88d;">"AES/ECB/PKCS5Padding"</span>);</code></pre>
                 </div>
-                <div style="flex: 1;">
+                <div style="flex: 1; min-width: 45%;">
                     <h4 style="color: #81c784; font-size: 1.2em; margin-bottom: 10px;">✓ Secure (After Feedback)</h4>
                     <pre
-                        style="font-size: 1.05em; background: rgba(129, 199, 132, 0.1); padding: 20px; border-radius: 8px; border: 2px solid #81c784;"><code><span class="type" style="color: #82aaff; font-weight: bold;">Cipher</span> <span class="variable" style="color: #f78c6c;">cipher</span> = <span class="type" style="color: #82aaff;">Cipher</span>.<span class="method" style="color: #82aaff;">getInstance</span>(
+                        style="font-size: 1.2em; background: rgba(129, 199, 132, 0.1); padding: 25px; border-radius: 8px; border: 2px solid #81c784; margin: 0; min-height: 100px; overflow: visible;"><code><span class="type" style="color: #82aaff; font-weight: bold;">Cipher</span> <span class="variable" style="color: #f78c6c;">cipher</span> = <span class="type" style="color: #82aaff;">Cipher</span>.<span class="method" style="color: #82aaff;">getInstance</span>(
     <span class="string" style="color: #c3e88d;">"AES/GCM/NoPadding"</span>);
 <span class="variable" style="color: #f78c6c;">cipher</span>.<span class="method" style="color: #82aaff;">init</span>(<span class="variable" style="color: #f78c6c;">ENCRYPT_MODE</span>, <span class="variable" style="color: #f78c6c;">keySpec</span>, 
     <span class="keyword" style="color: #c792ea; font-weight: bold;">new</span> <span class="type" style="color: #82aaff;">GCMParameterSpec</span>(<span class="number" style="color: #f78c6c;">128</span>, <span class="method" style="color: #82aaff;">generateRandomIV</span>()));</code></pre>
                 </div>
             </div>
 
-            <div class="example-block" style="padding: 25px;">
+            <div class="example-block" style="padding: 20px; max-width: 95%; margin-left: auto; margin-right: auto;">
                 <p style="text-align: center; margin: 0; font-size: 1.1em;"><strong>Personalized Explanation:</strong>
                     "ECB encrypts identical blocks identically. GCM uses unique IVs for semantic security."</p>
             </div>
@@ -2011,234 +1816,70 @@
                 </ul>
             </div>
         </div>
+
+        <div class="slide">
+            <h2>Collaborations at LIACS</h2>
+            <p style="text-align: center; margin-bottom: 30px; font-size: 1.1em;">Research opportunities that leverage
+                my
+                DSL and software tooling expertise with LIACS strengths</p>
+
+            <div style="display: flex; gap: 40px; width: 95%; margin: 0 auto;">
+                <!-- Left Column -->
+                <div style="flex: 1;">
+                    <div class="example-block" style="margin-bottom: 25px;">
+                        <h3>Formal Methods Integration</h3>
+                        <p><strong>Partners:</strong> Bonsangue (coalgebraic modeling), Laarman (model checking)</p>
+                        <p><strong>My contribution:</strong> DSL design for domain-specific verification, practical
+                            state machine modeling</p>
+                        <p><strong>Their expertise:</strong> Theoretical foundations, verification frameworks</p>
+                        <p><strong>Impact:</strong> Create verification DSLs that make formal methods accessible to
+                            domain experts</p>
+                    </div>
+
+                    <div class="block" style="margin-bottom: 25px;">
+                        <h3>Security & Education</h3>
+                        <p><strong>Partners:</strong> Gadyatskaya (XAI security), Takes (curriculum design)</p>
+                        <p><strong>My contribution:</strong> Developer-centric tooling design, runtime feedback systems
+                        </p>
+                        <p><strong>Their expertise:</strong> Security-by-design, educational frameworks</p>
+                        <p><strong>Impact:</strong> Build interactive tools that teach secure development through
+                            immediate feedback</p>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div style="flex: 1;">
+                    <div class="alert-block" style="margin-bottom: 25px;">
+                        <h3>Large-Scale & ML Systems</h3>
+                        <p><strong>Partners:</strong> Visser (software metrics), Batenburg (SAILS interdisciplinary)</p>
+                        <p><strong>My contribution:</strong> Domain-specific tooling for software quality, developer
+                            experience design</p>
+                        <p><strong>Their expertise:</strong> Ecosystem analysis, domain-specific applications</p>
+                        <p><strong>Impact:</strong> Create specialized tools for ML engineering and large-scale software
+                            analysis</p>
+                    </div>
+
+                    <div class="example-block">
+                        <h3>Novel Perspectives</h3>
+                        <p><strong>Unique angles:</strong> Software tool adoption as social phenomenon (Takes),
+                            quantum-enhanced development tools (Laarman), visualization-driven programming interfaces
+                            (Batenburg)</p>
+                        <p><strong>Strategic value:</strong> Positions research at intersection of SE, AI, and
+                            human-computer interaction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <!-- Slide 25: Conclusion -->
         <div class="slide">
-            <h2>Conclusion</h2>
-            <h3>Towards AI-Native Software Engineering</h3>
-            <div class="block">
-                <h3>Key Contributions</h3>
-                <ul>
-                    <li><strong>JGuard:</strong> Misuse-resilient APIs with zero false positives</li>
-                    <li><strong>Developer Context DSL:</strong> Formalizing mental models and program context</li>
-                    <li><strong>Hybrid System:</strong> Bridging probabilistic AI with deterministic verification
-                    </li>
-                </ul>
-            </div>
-            <div class="example-block">
-                <h3>Vision Realized</h3>
-                <p>A new generation of intelligent, reliable, and user-centric software development tools that
-                    combine
-                    the best of human expertise, AI capabilities, and formal verification</p>
-            </div>
-            <div style="margin-top: 40px;">
-                <h3>Thank You!</h3>
-                <p>Questions?</p>
-            </div>
+            <h2>Thank you</h2>
+            <h3>Questions?</h3>
         </div>
 
-        <div class="slide">
-            <h2>Collaboration Opportunities at Leiden University</h2>
-            <p>Presented by Krishna Narasimhan, Assistant Professor Candidate</p>
-            <p>June 29, 2025</p>
-        </div>
 
-        <div class="slide collab-slide">
-            <h2>Collaboration: Prof. Marcello Bonsangue</h2>
-            <h3>Scientific Director - Systems Modelling & Analysis</h3>
-
-            <h3>Research Synergies</h3>
-            <ul>
-                <li><span class="collab-highlight">Formal Methods × API Safety</span>: Apply coalgebraic approaches to
-                    model API state transitions</li>
-                <li><span class="collab-highlight">Symbolic Execution</span>: Combine jGuard's runtime detection with
-                    his symbolic verification</li>
-                <li><span class="collab-highlight">Quantum Computing</span>: Explore quantum algorithms for large-scale
-                    API analysis</li>
-            </ul>
-
-            <h3>Concrete Project: Verified API Contracts</h3>
-            <div class="example-block">
-                <p>Integrate jGuard specifications with his symbolic constraint automata to provide both runtime and
-                    compile-time guarantees. His recent CAV 2024 work on quantum circuit simulation could revolutionize
-                    static analysis scalability.</p>
-            </div>
-
-            <h3>Why This Matters</h3>
-            <ul>
-                <li>Bridges practical API safety with theoretical foundations</li>
-                <li>His expertise in AI for software engineering aligns with our LLM vision</li>
-                <li>Access to Systems Modelling Lab infrastructure</li>
-            </ul>
-        </div>
-
-        <div class="slide collab-slide">
-            <h2>Collaboration: Dr. Olga Gadyatskaya</h2>
-            <h3>Associate Professor - Cyber Security</h3>
-
-            <h3>Research Synergies</h3>
-            <ul>
-                <li><span class="collab-highlight">Security-by-Design</span>: Integrate API misuse detection into her
-                    €1.45M C-SIDe project</li>
-                <li><span class="collab-highlight">Explainable AI</span>: Apply her XAI malware detection to explain API
-                    vulnerabilities</li>
-                <li><span class="collab-highlight">Mobile Security</span>: Extend jGuard to Android API misuse detection
-                </li>
-            </ul>
-
-            <h3>Concrete Project: Secure API Education Platform</h3>
-            <div class="example-block">
-                <p>Develop an educational framework combining jGuard's runtime feedback with her security-by-design
-                    methodology. Create interactive tutorials where developers learn secure API usage through immediate,
-                    explainable feedback.</p>
-            </div>
-
-            <h3>Why This Matters</h3>
-            <ul>
-                <li>Direct path to industry impact through C-SIDe consortium</li>
-                <li>Addresses critical need for secure software development education</li>
-                <li>Potential for joint EU grant applications in cybersecurity</li>
-            </ul>
-        </div>
-
-        <div class="slide collab-slide">
-            <h2>Collaboration: Prof. Joost Visser</h2>
-            <h3>Professor - Large Scale Software & Data Science</h3>
-
-            <h3>Research Synergies</h3>
-            <ul>
-                <li><span class="collab-highlight">SE for ML</span>: Apply API misuse detection to ML pipeline
-                    components</li>
-                <li><span class="collab-highlight">Software Metrics</span>: Measure jGuard's impact on code quality at
-                    scale</li>
-                <li><span class="collab-highlight">Large-Scale Analysis</span>: Leverage Software Lab infrastructure for
-                    ecosystem studies</li>
-            </ul>
-
-            <h3>Concrete Project: API Misuse in ML Systems</h3>
-            <div class="example-block">
-                <p>Investigate how ML frameworks (TensorFlow, PyTorch) are misused in practice. Apply jGuard principles
-                    to create safer ML APIs. His recent work on ML deployment practices provides the perfect foundation
-                    for understanding real-world ML API challenges.</p>
-            </div>
-
-            <h3>Why This Matters</h3>
-            <ul>
-                <li>ML systems increasingly critical but often poorly engineered</li>
-                <li>Direct connection to industry through his consultancy experience</li>
-                <li>Potential to influence ML framework design</li>
-            </ul>
-        </div>
-
-        <div class="slide collab-slide">
-            <h2>Collaboration: Dr. Frank Takes</h2>
-            <h3>Associate Professor - Network Science & Director of Education</h3>
-
-            <h3>Research Synergies</h3>
-            <ul>
-                <li><span class="collab-highlight">Network Analysis</span>: Model API dependencies as social networks
-                </li>
-                <li><span class="collab-highlight">Pattern Detection</span>: Use graph algorithms to predict misuse
-                    propagation</li>
-                <li><span class="collab-highlight">Education Innovation</span>: Integrate API safety into CS curriculum
-                </li>
-            </ul>
-
-            <h3>Concrete Project: API Ecosystem Analysis</h3>
-            <div class="example-block">
-                <p>Apply population-scale network analysis to GitHub repositories. Map how API misuses spread through
-                    dependency networks. His €1M POPNET project methodology can reveal how bad API practices propagate
-                    through software ecosystems.</p>
-            </div>
-
-            <h3>Why This Matters</h3>
-            <ul>
-                <li>Novel perspective on API misuse as a "social" phenomenon</li>
-                <li>Educational impact through curriculum development</li>
-                <li>Potential to influence package manager security policies</li>
-            </ul>
-        </div>
-
-        <div class="slide collab-slide">
-            <h2>Collaboration: Prof. Joost Batenburg</h2>
-            <h3>Professor - Imaging & Visualization, SAILS Program Director</h3>
-
-            <h3>Research Synergies</h3>
-            <ul>
-                <li><span class="collab-highlight">Interdisciplinary AI</span>: Position API safety within SAILS
-                    framework</li>
-                <li><span class="collab-highlight">Visualization</span>: Create visual representations of API usage
-                    patterns</li>
-                <li><span class="collab-highlight">Performance Optimization</span>: Apply his HPC expertise to scale
-                    jGuard</li>
-            </ul>
-
-            <h3>Concrete Project: API Safety Across Domains</h3>
-            <div class="example-block">
-                <p>Demonstrate API misuse detection in medical imaging, legal AI, and social science applications.
-                    Create domain-specific visualizations of API usage patterns. Leverage SAILS to show how software
-                    engineering impacts all AI applications.</p>
-            </div>
-
-            <h3>Why This Matters</h3>
-            <ul>
-                <li>Access to university-wide interdisciplinary network</li>
-                <li>Demonstrates broader impact beyond computer science</li>
-                <li>Strategic positioning for large collaborative grants</li>
-            </ul>
-        </div>
-
-        <div class="slide collab-slide">
-            <h2>Collaboration: Dr. Alfons Laarman</h2>
-            <h3>Associate Professor - Formal Verification & Quantum Computing</h3>
-
-            <h3>Research Synergies</h3>
-            <ul>
-                <li><span class="collab-highlight">Model Checking</span>: Integrate jGuard with verification frameworks
-                </li>
-                <li><span class="collab-highlight">Quantum Algorithms</span>: Develop quantum-enhanced API analysis</li>
-                <li><span class="collab-highlight">Parallel Computing</span>: Scale verification to massive codebases
-                </li>
-            </ul>
-
-            <h3>Concrete Project: Quantum-Enhanced Verification</h3>
-            <div class="example-block">
-                <p>Explore quantum algorithms for API misuse detection at unprecedented scale. His €2M Divide & Quantum
-                    project provides the perfect platform. Combine jGuard's practical approach with his theoretical
-                    quantum verification work.</p>
-            </div>
-
-            <h3>Why This Matters</h3>
-            <ul>
-                <li>Positions Leiden at forefront of quantum software engineering</li>
-                <li>Access to System Verification Lab infrastructure</li>
-                <li>Potential for breakthrough in verification scalability</li>
-            </ul>
-        </div>
-
-        <div class="slide">
-            <h2>Why Leiden University?</h2>
-            <div class="block">
-                <h3>Perfect Alignment</h3>
-                <ul>
-                    <li><strong>Research Synergies:</strong> Every interviewer offers unique collaboration opportunities
-                    </li>
-                    <li><strong>Infrastructure:</strong> World-class labs and computing resources</li>
-                    <li><strong>Strategic Position:</strong> SAILS program enables interdisciplinary impact</li>
-                </ul>
-            </div>
-            <div class="example-block">
-                <h3>My Contribution to LIACS</h3>
-                <ul>
-                    <li>Bridge practical software engineering with formal methods</li>
-                    <li>Strengthen AI safety and trustworthy computing initiatives</li>
-                    <li>Contribute to education through innovative curriculum development</li>
-                </ul>
-            </div>
-            <div style="margin-top: 40px; text-align: center;">
-                <h3>Thank You!</h3>
-                <p>Questions?</p>
-            </div>
-        </div>
     </div>
 
     <!-- Navigation Controls -->
