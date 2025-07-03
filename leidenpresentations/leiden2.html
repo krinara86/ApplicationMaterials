@@ -706,10 +706,10 @@
                     <h3>Types of misuses supported</h3>
                 </li>
                 <li>
-                    <h3>Static approach (CrySL)</h3>
+                    <h3>Static(compile-time) approach (CrySL)</h3>
                 </li>
                 <li>
-                    <h3>Dynamic approach (jGuard)</h3>
+                    <h3>Dynamic(run-time) approach (jGuard)</h3>
                 </li>
                 <li>
                     <h3>Broader software tooling challenges and an AI-enabled vision</h3>
@@ -841,7 +841,7 @@
             </div>
 
             <div class="alert-block" style="margin-top: 30px; max-width: 95%; margin-left: auto; margin-right: auto;">
-                <p style="text-align: center; margin: 0; font-size: 1.1em;"><strong>Key Insight:</strong> All patterns
+                <p style="text-align: center; margin: 0; font-size: 1.1em;"><strong>Insight:</strong> All patterns
                     involve state machines and sequencing → State machine</p>
             </div>
             <p class="citation">Based on MUBench dataset of 139 real-world API misuses</p>
@@ -1048,7 +1048,7 @@
 
         <!-- Slide 3: Introducing JGuard -->
         <div class="slide">
-            <h2>JGuard: A New Approach</h2>
+            <h2>JGuard: A dynamic (runtime) Approach</h2>
             <div class="example-block">
                 <h3>Instead of external tools detecting misuses, APIs themselves become self-defensive</h3>
             </div>
@@ -1447,11 +1447,6 @@
                                 <td style="text-align: right; color: #81c784;"><strong>0</strong></td>
                                 <td style="text-align: right; color: #ef5350;">vs 67</td>
                             </tr>
-                            <tr>
-                                <td>Precision</td>
-                                <td style="text-align: right; color: #81c784;"><strong>100%</strong></td>
-                                <td style="text-align: right;">vs 27.17%</td>
-                            </tr>
                         </table>
                     </div>
                 </div>
@@ -1543,18 +1538,17 @@
                     <li><strong>Security Risks:</strong> LLM-generated code often contains vulnerabilities</li>
                 </ul>
             </div>
-            <div class="cipher-flow">
-                <div class="cipher-step">
-                    <div class="cipher-box insecure">
-                        <h4>LLM Output</h4>
-                        <p>Plausible but potentially incorrect</p>
-                    </div>
-                    <div class="state-arrow">?</div>
-                    <div class="cipher-box insecure">
-                        <h4>Production Code</h4>
-                        <p>May contain hidden vulnerabilities</p>
-                    </div>
-                </div>
+            <div class="block">
+                <h3>Evidence from Literature</h3>
+                <ul>
+                    <li><strong>LLM Limitations:</strong> "LLMs operate on statistical patterns rather than logical
+                        comprehension" <span class="citation">(Tie et al., 2024)</span></li>
+                    <li><strong>Expertise Gap:</strong> "Programming expertise significantly influences LLM tool
+                        effectiveness" <span class="citation">(TOMMY Study, 2024)</span></li>
+                    <li><strong>Hybrid Benefits:</strong> "Combining LLMs with formal methods improves correctness"
+                        <span class="citation">(Hassan et al., SE 3.0 Vision, 2024)</span>
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -1779,19 +1773,7 @@
         </div>
 
         <div class="slide">
-            <h2>Grounding Our Vision in Research</h2>
-            <div class="block">
-                <h3>Evidence from Literature</h3>
-                <ul>
-                    <li><strong>LLM Limitations:</strong> "LLMs operate on statistical patterns rather than logical
-                        comprehension" <span class="citation">(Tie et al., 2024)</span></li>
-                    <li><strong>Expertise Gap:</strong> "Programming expertise significantly influences LLM tool
-                        effectiveness" <span class="citation">(TOMMY Study, 2024)</span></li>
-                    <li><strong>Hybrid Benefits:</strong> "Combining LLMs with formal methods improves correctness"
-                        <span class="citation">(Hassan et al., SE 3.0 Vision, 2024)</span>
-                    </li>
-                </ul>
-            </div>
+            <h2></h2>
             <div class="example-block">
                 <h3>Trust but Verify</h3>
                 <ul>
